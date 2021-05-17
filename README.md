@@ -1,6 +1,6 @@
-[![master](https://circleci.com/gh/olmedocr/tfm-ios/tree/master.svg?style=shield)](https://circleci.com/<VCS>/olmedocr/tfm-ios/?branch=master)
+![CircleCI](https://img.shields.io/circleci/build/github/olmedocr/tfm-ios/master?label=master)
+![CircleCI](https://img.shields.io/circleci/build/github/olmedocr/tfm-ios/development?label=development)
 
-[![development](https://circleci.com/gh/olmedocr/tfm-ios/tree/development.svg?style=shield)](https://circleci.com/<VCS>/olmedocr/tfm-ios/?branch=development)
 
 # KELO
 
