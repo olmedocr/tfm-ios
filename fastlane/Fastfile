@@ -53,9 +53,22 @@ platform :ios do
 
     run_tests(
       scheme: "Kelo",
-      cloned_source_packages_path: "SourcePackages", 
-      code_coverage: true
+      code_coverage: true,
+      cloned_source_packages_path: "SourcePackages"
     )
+
+    slather(
+      proj: "Kelo.xcodeproj",
+      scheme: "Kelo",
+      circleci: true,
+      cobertura_xml: true,
+      output_directory: ENV["FL_OUTPUT_DIR"],
+      ignore: [
+        '../../../Library/*',
+        '**/DerivedData/*'
+      ]
+    )
+
   end
 
   desc "Build for upload, either to TestFlight or to the AppStore"

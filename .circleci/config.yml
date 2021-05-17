@@ -65,7 +65,7 @@ jobs:
           command: fastlane test
       - *save_spm_cache
       - codecov/upload:
-          file: output/scan/report.xml
+          file: output/cobertura.xml
           token: $CODECOV_TOKEN
       - store_artifacts:
           path: output

@@ -231,3 +231,4 @@ SourcePackages/
 
 .bundle/
 vendor/
+cobertura.xml
