@@ -3,6 +3,9 @@
 
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.0.2
+
 references:
   known_hosts: &known_hosts
     run: 
@@ -61,6 +64,9 @@ jobs:
           name: Execute lane "test"
           command: fastlane test
       - *save_spm_cache
+      - codecov/upload:
+          file: output/scan/report.xml
+          token: $CODECOV_TOKEN
       - store_artifacts:
           path: output
       - store_test_results:

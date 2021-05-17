@@ -53,7 +53,8 @@ platform :ios do
 
     run_tests(
       scheme: "Kelo",
-      cloned_source_packages_path: "SourcePackages"
+      cloned_source_packages_path: "SourcePackages", 
+      code_coverage: true
     )
   end
 
