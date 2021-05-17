@@ -1,0 +1,5 @@
+git_url("git@github.com:olmedocr/ios-certificates.git")
+
+storage_mode("git")
+
+app_identifier(["com.raulolmedo.kelo"])

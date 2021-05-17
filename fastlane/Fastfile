@@ -1,0 +1,138 @@
+default_platform(:ios)
+
+### Helper functions ###
+def latest_version_info
+  changelog = File.read("../CHANGELOG.md")
+  return changelog.split("\n## ")[2]
+end
+
+def release_notes
+  notes = latest_version_info.split("\n").drop(1)
+  return notes.join("\n")
+end
+
+def version_number
+  first_line = latest_version_info.split("\n").first
+  version = first_line.split(" ").first
+  return version.tr("[]","")
+end
+
+def build_number
+  date = Time.new.strftime("%Y%m%d%H%M")
+  return date
+end
+
+def set_up_api_key 
+  app_store_connect_api_key(
+    key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+    issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+    key_content: ENV["APP_STORE_CONNECT_API_KEY_B64"],
+    is_key_content_base64: true,
+    in_house: false
+  )
+end
+
+platform :ios do
+  before_all do
+    xcversion(version: "12.4")
+    setup_circle_ci
+  end
+
+  desc "Setup code signing and App Store Connect"
+  lane :match_configuration do |options|
+    match(
+      type: options[:type],
+      readonly: true,
+      verbose: true
+    )
+  end
+
+  desc "Perform Tests"
+  lane :test do 
+    match_configuration(type: "development")
+
+    run_tests(
+      scheme: "Kelo",
+      cloned_source_packages_path: "SourcePackages"
+    )
+  end
+
+  desc "Build for upload, either to TestFlight or to the AppStore"
+  lane :build do
+    match_configuration(type: "appstore")
+
+    set_up_api_key
+    
+    increment_build_number(
+      build_number: build_number
+    )
+
+    increment_version_number(
+      version_number: version_number
+    )
+
+    gym(
+      clean: false,
+      scheme: "Kelo",
+      export_method: "app-store",
+      configuration: "Release",
+      cloned_source_packages_path: "SourcePackages"
+    )
+
+    ensure_git_status_clean(
+      show_uncommitted_changes: true,
+      show_diff: true
+    )
+  end
+
+  lane :cleanup do |options|
+    clean_build_artifacts
+
+    commit_version_bump(
+      message: "Deploying version #{version_number}.",
+      xcodeproj: "Kelo.xcodeproj"
+    )
+
+    if options[:tag] 
+      add_git_tag tag: version_number
+    end
+
+    push_to_git_remote
+  end
+
+  desc "Upload to TestFlight"
+  lane :beta do
+    build
+    
+    pilot(
+      skip_waiting_for_build_processing: true,
+      api_key: ENV["APP_STORE_CONNECT_API_KEY"],
+      beta_app_review_info: {
+        contact_email: "rauleteolmedo@me.com",
+        contact_first_name: "Raul",
+        contact_last_name: "Olmedo",
+        contact_phone: "5558675309",
+        demo_account_name: "",
+        demo_account_password: ""
+      },
+      changelog: release_notes
+    )
+
+    cleanup
+  end
+
+  desc "Release to App Store"
+  lane :release do
+    build
+
+    deliver(
+      skip_screenshots: true,
+      skip_metadata: true,
+      run_precheck_before_submit: false,
+    )
+
+    cleanup(
+      tag: true
+    )
+  end
+end

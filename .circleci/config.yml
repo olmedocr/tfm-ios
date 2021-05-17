@@ -1,0 +1,131 @@
+# For a detailed guide to building and testing on iOS, read the docs:
+# https://circleci.com/docs/2.0/testing-ios/
+
+version: 2.1
+
+references:
+  known_hosts: &known_hosts
+    run: 
+      name: Add github ssh keys to known hosts 
+      command: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
+
+  ruby_dependencies: &ruby_dependencies
+    run:
+      name: Download Ruby Dependencies
+      command: |
+        bundle config set --local path 'vendor/bundle'
+        bundle install
+        bundle clean --force
+        git checkout Gemfile.lock
+
+  restore_ruby_cache: &restore_ruby_cache
+    restore_cache:
+      keys: 
+        - v3-gems-{{ checksum "Gemfile.lock" }}
+        - v3-gems
+
+  save_ruby_cache: &save_ruby_cache
+    save_cache:
+      key: v3-gems-{{ checksum "Gemfile.lock" }}
+      paths:
+        - vendor/bundle
+
+  restore_spm_cache: &restore_spm_cache
+    restore_cache:
+        keys: 
+          - v3-spm-{{ checksum "Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
+          - v3-spm
+
+  save_spm_cache: &save_spm_cache
+    save_cache:
+        key: v3-spm-{{ checksum "Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
+        paths:
+          - SourcePackages
+      
+jobs:
+  test:
+    macos:
+      xcode: 12.4.0
+    working_directory: /Users/distiller/project
+    environment:
+      FL_OUTPUT_DIR: output
+    shell: /bin/bash --login -eo pipefail
+    steps:
+      - checkout
+      - *known_hosts
+      - *restore_ruby_cache
+      - *ruby_dependencies
+      - *save_ruby_cache
+      - *restore_spm_cache
+      - run: 
+          name: Execute lane "test"
+          command: fastlane test
+      - *save_spm_cache
+      - store_artifacts:
+          path: output/test_output
+      - store_test_results:
+          path: output/scan
+
+  beta:
+    macos:
+      xcode: 12.4.0
+    working_directory: /Users/distiller/project
+    shell: /bin/bash --login -eo pipefail
+    steps:
+      - checkout
+      - *known_hosts
+      - *restore_ruby_cache
+      - *ruby_dependencies
+      - *save_ruby_cache
+      - *restore_spm_cache
+      - run: 
+          name: Execute lane "beta"
+          command: fastlane beta
+      - *save_spm_cache
+      - store_artifacts:
+          path: output/Kelo.ipa
+
+  release:
+    macos:
+      xcode: 12.4.0 
+    working_directory: /Users/distiller/project
+    shell: /bin/bash --login -eo pipefail
+    steps:
+      - checkout
+      - *known_hosts
+      - *restore_ruby_cache
+      - *ruby_dependencies
+      - *save_ruby_cache
+      - *restore_spm_cache
+      - run: 
+          name: Execute lane "release"
+          command: fastlane release
+      - *save_spm_cache
+      - store_artifacts:
+          path: output/Kelo.ipa
+
+workflows:
+  make-tests:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - master
+                - development
+
+  beta-build:
+    jobs:
+      - beta:
+          filters:
+            branches:
+              only:
+                - development
+
+  release-build:
+    jobs:
+      - release:
+          filters:
+            branches:
+              only:
+                - master
