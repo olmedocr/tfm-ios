@@ -1,4 +1,6 @@
-[![Build Status](https://www.travis-ci.com/olmedocr/kelo-ios.svg?branch=master)](https://www.travis-ci.com/olmedocr/kelo-ios)
+[![master](https://circleci.com/gh/olmedocr/tfm-ios/tree/master.svg?style=shield)](https://circleci.com/<VCS>/olmedocr/tfm-ios/?branch=master)
+
+[![development](https://circleci.com/gh/olmedocr/tfm-ios/tree/development.svg?style=shield)](https://circleci.com/<VCS>/olmedocr/tfm-ios/?branch=development)
 
 # KELO
 
