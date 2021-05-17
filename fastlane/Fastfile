@@ -77,14 +77,6 @@ platform :ios do
 
     set_up_api_key
 
-    gym(
-      clean: false,
-      scheme: "Kelo",
-      export_method: "app-store",
-      configuration: "Release",
-      cloned_source_packages_path: "SourcePackages"
-    )
-
     ensure_git_status_clean(
       show_uncommitted_changes: true,
       show_diff: true
@@ -96,6 +88,14 @@ platform :ios do
 
     increment_version_number(
       version_number: version_number
+    )
+
+    gym(
+      clean: false,
+      scheme: "Kelo",
+      export_method: "app-store",
+      configuration: "Release",
+      cloned_source_packages_path: "SourcePackages"
     )
   end
 
