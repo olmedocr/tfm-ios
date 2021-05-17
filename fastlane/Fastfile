@@ -53,7 +53,8 @@ platform :ios do
 
     run_tests(
       scheme: "Kelo",
-      cloned_source_packages_path: "SourcePackages"
+      cloned_source_packages_path: "SourcePackages", 
+      code_coverage: true
     )
   end
 
@@ -62,14 +63,6 @@ platform :ios do
     match_configuration(type: "appstore")
 
     set_up_api_key
-    
-    increment_build_number(
-      build_number: build_number
-    )
-
-    increment_version_number(
-      version_number: version_number
-    )
 
     gym(
       clean: false,
@@ -83,6 +76,14 @@ platform :ios do
       show_uncommitted_changes: true,
       show_diff: true
     )
+
+    increment_build_number(
+      build_number: build_number
+    )
+
+    increment_version_number(
+      version_number: version_number
+    )
   end
 
   lane :cleanup do |options|
@@ -90,7 +91,8 @@ platform :ios do
 
     commit_version_bump(
       message: "Deploying version #{version_number}.",
-      xcodeproj: "Kelo.xcodeproj"
+      xcodeproj: "Kelo.xcodeproj",
+      force: true
     )
 
     if options[:tag] 
