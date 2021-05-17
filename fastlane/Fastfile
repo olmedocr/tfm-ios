@@ -90,7 +90,8 @@ platform :ios do
 
     commit_version_bump(
       message: "Deploying version #{version_number}.",
-      xcodeproj: "Kelo.xcodeproj"
+      xcodeproj: "Kelo.xcodeproj",
+      force: true
     )
 
     if options[:tag] 

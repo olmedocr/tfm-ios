@@ -62,7 +62,7 @@ jobs:
           command: fastlane test
       - *save_spm_cache
       - store_artifacts:
-          path: output/test_output
+          path: output
       - store_test_results:
           path: output/scan
 
