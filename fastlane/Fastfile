@@ -62,14 +62,6 @@ platform :ios do
     match_configuration(type: "appstore")
 
     set_up_api_key
-    
-    increment_build_number(
-      build_number: build_number
-    )
-
-    increment_version_number(
-      version_number: version_number
-    )
 
     gym(
       clean: false,
@@ -82,6 +74,14 @@ platform :ios do
     ensure_git_status_clean(
       show_uncommitted_changes: true,
       show_diff: true
+    )
+
+    increment_build_number(
+      build_number: build_number
+    )
+
+    increment_version_number(
+      version_number: version_number
     )
   end
 
