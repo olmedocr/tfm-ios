@@ -117,8 +117,8 @@ workflows:
           filters:
             branches:
               only:
-                - master
-                - development
+                #- master
+                #- development
 
   beta-build:
     jobs:
@@ -126,7 +126,7 @@ workflows:
           filters:
             branches:
               only:
-                - development
+                #- development
 
   release-build:
     jobs:
@@ -134,4 +134,4 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                #- master
