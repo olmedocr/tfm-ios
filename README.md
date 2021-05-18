@@ -2,7 +2,7 @@
 
 |  Branch  |  Builds  |  Code Coverage  |
 | --- | --- | --- |
-|  Master  |  [![master](https://img.shields.io/circleci/build/github/olmedocr/tfm-ios/master)](https://app.circleci.com/pipelines/github/olmedocr/tfm-ios?branch=master)  | [![master](https://codecov.io/gh/olmedocr/tfm-ios/branch/master/graph/badge.svg?token=Q4B7RHSBTG)](https://codecov.io/gh/gabrielglbh/tfm-android) |
+|  Master  |  [![master](https://img.shields.io/circleci/build/github/olmedocr/tfm-ios/master)](https://app.circleci.com/pipelines/github/olmedocr/tfm-ios?branch=master)  | [![master](https://codecov.io/gh/olmedocr/tfm-ios/branch/master/graph/badge.svg?token=Q4B7RHSBTG)](https://codecov.io/gh/olmedocr/tfm-ios) |
 | Development | [![development](https://img.shields.io/circleci/build/github/olmedocr/tfm-ios/development)](https://app.circleci.com/pipelines/github/olmedocr/tfm-ios?branch=development) | [![development](https://codecov.io/gh/olmedocr/tfm-ios/branch/development/graph/badge.svg?token=Q4B7RHSBTG)](https://codecov.io/gh/olmedocr/tfm-ios) |
 
 
