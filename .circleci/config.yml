@@ -110,28 +110,28 @@ jobs:
       - store_artifacts:
           path: output/Kelo.ipa
 
-workflows:
-  make-tests:
-    jobs:
-      - test:
-          filters:
-            branches:
-              only:
-                - master
-                - development
+# workflows:
+#   make-tests:
+#     jobs:
+#       - test:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - development
 
-  beta-build:
-    jobs:
-      - beta:
-          filters:
-            branches:
-              only:
-                - development
+#   beta-build:
+#     jobs:
+#       - beta:
+#           filters:
+#             branches:
+#               only:
+#                 - development
 
-  release-build:
-    jobs:
-      - release:
-          filters:
-            branches:
-              only:
-                - master
+#   release-build:
+#     jobs:
+#       - release:
+#           filters:
+#             branches:
+#               only:
+#                 - master
