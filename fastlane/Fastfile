@@ -108,13 +108,13 @@ platform :ios do
       git_tag: last_git_tag
     )
 
-    gym(
-      clean: false,
-      scheme: "Kelo",
-      export_method: "app-store",
-      configuration: "Release",
-      cloned_source_packages_path: "SourcePackages"
-    )
+    # gym(
+    #   clean: false,
+    #   scheme: "Kelo",
+    #   export_method: "app-store",
+    #   configuration: "Release",
+    #   cloned_source_packages_path: "SourcePackages"
+    # )
   end
 
   desc "Clean and commit version bump"
