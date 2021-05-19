@@ -5,6 +5,7 @@ version: 2.1
 
 orbs:
   codecov: codecov/codecov@1.0.2
+  coverage-reporter: codacy/coverage-reporter@12.1.4
 
 references:
   known_hosts: &known_hosts
@@ -68,6 +69,9 @@ jobs:
       - codecov/upload:
           file: output/cobertura.xml
           token: $CODECOV_TOKEN
+      - coverage-reporter/send_report:
+          coverage-reports: output/cobertura.xml
+          project-token: $CODACY_PROJECT_TOKEN
       - store_artifacts:
           path: output
       - store_test_results:

@@ -1,7 +1,8 @@
 # KELO
 
-[![master](https://img.shields.io/circleci/build/github/olmedocr/tfm-ios/master)](https://app.circleci.com/pipelines/github/olmedocr/tfm-ios?branch=master)
+[![circleci](https://img.shields.io/circleci/build/github/olmedocr/tfm-ios/master)](https://app.circleci.com/pipelines/github/olmedocr/tfm-ios?branch=master)
 [![codecov](https://codecov.io/gh/olmedocr/tfm-ios/branch/master/graph/badge.svg?token=Q4B7RHSBTG)](https://codecov.io/gh/olmedocr/tfm-ios)
+[![codacy](https://app.codacy.com/project/badge/Grade/afe1a0772056449b9ebacf0759cff331)](https://www.codacy.com/gh/olmedocr/tfm-ios/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=olmedocr/tfm-ios&amp;utm_campaign=Badge_Grade)
 
 
 
