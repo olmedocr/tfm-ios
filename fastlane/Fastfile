@@ -43,18 +43,18 @@ platform :ios do
   lane :beta do
     prepare(is_prerelease: true)
     
-    # pilot(
-    #   skip_waiting_for_build_processing: true,
-    #   api_key: ENV["APP_STORE_CONNECT_API_KEY"],
-    #   beta_app_review_info: {
-    #     contact_email: "rauleteolmedo@me.com",
-    #     contact_first_name: "Raul",
-    #     contact_last_name: "Olmedo",
-    #     contact_phone: "5558675309",
-    #     demo_account_name: "",
-    #     demo_account_password: ""
-    #   }
-    # )
+    pilot(
+      skip_waiting_for_build_processing: true,
+      api_key: ENV["APP_STORE_CONNECT_API_KEY"],
+      beta_app_review_info: {
+        contact_email: "rauleteolmedo@me.com",
+        contact_first_name: "Raul",
+        contact_last_name: "Olmedo",
+        contact_phone: "5558675309",
+        demo_account_name: "",
+        demo_account_password: ""
+      }
+    )
 
     finish(is_prerelease: true)
   end
@@ -108,19 +108,19 @@ platform :ios do
       git_tag: last_git_tag
     )
 
-    # gym(
-    #   clean: false,
-    #   scheme: "Kelo",
-    #   export_method: "app-store",
-    #   configuration: "Release",
-    #   cloned_source_packages_path: "SourcePackages"
-    # )
+    gym(
+      clean: false,
+      scheme: "Kelo",
+      export_method: "app-store",
+      configuration: "Release",
+      cloned_source_packages_path: "SourcePackages"
+    )
   end
 
   desc "Clean and commit version bump"
   private_lane :finish do |options|
     clean_build_artifacts
-    
+
     commit_version_bump(
       message: "Deploying version #{last_git_tag}.",
       xcodeproj: "Kelo.xcodeproj",
@@ -135,7 +135,5 @@ platform :ios do
       description: changelog,
       is_prerelease: options[:is_prerelease]
     )
-
-    push_to_git_remote
   end
 end
