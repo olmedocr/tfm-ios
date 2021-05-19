@@ -127,6 +127,8 @@ workflows:
           filters:
             tags:
               only: /^v.*-beta/
+            branches:
+              ignore: /.*/
 
   push-release:
     jobs:
@@ -134,3 +136,5 @@ workflows:
           filters:
             tags:
               only: /^((?!beta).)*$/
+            branches:
+              ignore: /.*/
