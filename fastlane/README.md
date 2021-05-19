@@ -26,16 +26,6 @@ Setup code signing and App Store Connect
 fastlane ios test
 ```
 Perform Tests
-### ios build
-```
-fastlane ios build
-```
-Build for upload, either to TestFlight or to the AppStore
-### ios cleanup
-```
-fastlane ios cleanup
-```
-
 ### ios beta
 ```
 fastlane ios beta
