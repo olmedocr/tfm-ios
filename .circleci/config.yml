@@ -46,12 +46,6 @@ references:
         paths:
           - SourcePackages
 
-  cleanup_cache_hashes: &cleanup_cache_hashes
-    run:
-      command: |
-        git restore Gemfile.lock
-        git restore Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
-      
 jobs:
   test:
     macos:
@@ -67,7 +61,6 @@ jobs:
       - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
-      - *cleanup_cache_hashes
       - run: 
           name: Execute lane "test"
           command: bundle exec fastlane test
@@ -92,7 +85,6 @@ jobs:
       - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
-      - *cleanup_cache_hashes
       - run: 
           name: Execute lane "beta"
           command: bundle exec fastlane beta
@@ -112,7 +104,6 @@ jobs:
       - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
-      - *cleanup_cache_hashes
       - run: 
           name: Execute lane "release"
           command: bundle exec fastlane release
@@ -131,12 +122,12 @@ workflows:
 
   push-beta:
     jobs:
-      - beta:
-          filters:
-            tags:
-              only: /^v.*-beta/
-            branches:
-              ignore: /.*/
+      - beta
+      #     filters:
+      #       tags:
+      #         only: /^v.*-beta/
+      #       branches:
+      #         ignore: /.*/
 
   push-release:
     jobs:
