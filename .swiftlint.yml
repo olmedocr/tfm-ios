@@ -7,8 +7,9 @@ opt_in_rules: # some rules are only opt-in
   #- ProjectUITests
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   #- Project/R.generated.swift
+  #- Pods
   - Kelo/Sources
-  - Pods
+  - SourcePackages
 
 
 # configurable rules can be customized from this configuration file
