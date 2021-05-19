@@ -3,19 +3,24 @@
 
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.0.2
+
 references:
   known_hosts: &known_hosts
     run: 
       name: Add github ssh keys to known hosts 
       command: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
 
-  ruby_dependencies: &ruby_dependencies
+  dependencies: &dependencies
     run:
-      name: Download Ruby Dependencies
+      name: Download Dependencies
       command: |
+        gem install bundler:2.2.17
         bundle config set --local path 'vendor/bundle'
         bundle install
         bundle clean --force
+        fastlane install_plugins
         git checkout Gemfile.lock
 
   restore_ruby_cache: &restore_ruby_cache
@@ -54,15 +59,18 @@ jobs:
       - checkout
       - *known_hosts
       - *restore_ruby_cache
-      - *ruby_dependencies
+      - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
       - run: 
           name: Execute lane "test"
           command: fastlane test
       - *save_spm_cache
+      - codecov/upload:
+          file: output/cobertura.xml
+          token: $CODECOV_TOKEN
       - store_artifacts:
-          path: output/test_output
+          path: output
       - store_test_results:
           path: output/scan
 
@@ -75,7 +83,7 @@ jobs:
       - checkout
       - *known_hosts
       - *restore_ruby_cache
-      - *ruby_dependencies
+      - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
       - run: 
@@ -94,7 +102,7 @@ jobs:
       - checkout
       - *known_hosts
       - *restore_ruby_cache
-      - *ruby_dependencies
+      - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
       - run: 
@@ -105,27 +113,28 @@ jobs:
           path: output/Kelo.ipa
 
 workflows:
-  make-tests:
+  test-pull-request:
     jobs:
       - test:
           filters:
             branches:
               only:
                 - master
-                - development
 
-  beta-build:
+  push-beta:
     jobs:
       - beta:
           filters:
+            tags:
+              only: /^v.*-beta/
             branches:
-              only:
-                - development
+              ignore: /.*/
 
-  release-build:
+  push-release:
     jobs:
       - release:
           filters:
+            tags:
+              only: /^((?!beta).)*$/
             branches:
-              only:
-                - master
+              ignore: /.*/

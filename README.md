@@ -1,5 +1,6 @@
 ![CircleCI](https://img.shields.io/circleci/build/github/olmedocr/tfm-ios/master?label=master)
 ![CircleCI](https://img.shields.io/circleci/build/github/olmedocr/tfm-ios/development?label=development)
+[![codecov](https://codecov.io/gh/olmedocr/tfm-ios/branch/master/graph/badge.svg?token=Q4B7RHSBTG)](https://codecov.io/gh/olmedocr/tfm-ios)
 
 
 # KELO
