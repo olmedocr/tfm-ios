@@ -20,7 +20,7 @@ references:
         bundle config set --local path 'vendor/bundle'
         bundle install
         bundle clean --force
-        fastlane install_plugins
+        bundle exec fastlane install_plugins
         git checkout Gemfile.lock
 
   restore_ruby_cache: &restore_ruby_cache
