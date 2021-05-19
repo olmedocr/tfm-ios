@@ -64,7 +64,7 @@ jobs:
       - *restore_spm_cache
       - run: 
           name: Execute lane "test"
-          command: fastlane test
+          command: bundle exec fastlane test
       - *save_spm_cache
       - codecov/upload:
           file: output/cobertura.xml
@@ -88,7 +88,7 @@ jobs:
       - *restore_spm_cache
       - run: 
           name: Execute lane "beta"
-          command: fastlane beta
+          command: bundle exec fastlane beta
       - *save_spm_cache
       - store_artifacts:
           path: output/Kelo.ipa
@@ -107,7 +107,7 @@ jobs:
       - *restore_spm_cache
       - run: 
           name: Execute lane "release"
-          command: fastlane release
+          command: bundle exec fastlane release
       - *save_spm_cache
       - store_artifacts:
           path: output/Kelo.ipa
