@@ -25,24 +25,24 @@ references:
   restore_ruby_cache: &restore_ruby_cache
     restore_cache:
       keys: 
-        - v3-gems-{{ checksum "Gemfile.lock" }}
-        - v3-gems
+        - v4-gems-{{ checksum "Gemfile.lock" }}
+        - v4-gems
 
   save_ruby_cache: &save_ruby_cache
     save_cache:
-      key: v3-gems-{{ checksum "Gemfile.lock" }}
+      key: v4-gems-{{ checksum "Gemfile.lock" }}
       paths:
         - vendor/bundle
 
   restore_spm_cache: &restore_spm_cache
     restore_cache:
         keys: 
-          - v3-spm-{{ checksum "Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
-          - v3-spm
+          - v4-spm-{{ checksum "Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
+          - v4-spm
 
   save_spm_cache: &save_spm_cache
     save_cache:
-        key: v3-spm-{{ checksum "Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
+        key: v4-spm-{{ checksum "Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
         paths:
           - SourcePackages
 
