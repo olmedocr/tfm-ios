@@ -21,7 +21,6 @@ references:
         bundle install
         bundle clean --force
         bundle exec fastlane install_plugins
-        git checkout Gemfile.lock
 
   restore_ruby_cache: &restore_ruby_cache
     restore_cache:
@@ -46,6 +45,12 @@ references:
         key: v3-spm-{{ checksum "Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
         paths:
           - SourcePackages
+
+  cleanup_cache_hashes: &cleanup_cache_hashes
+  run:
+    command: |
+      git checkout Gemfile.lock
+      git checkout Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
       
 jobs:
   test:
@@ -62,6 +67,7 @@ jobs:
       - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
+      - *cleanup_cache_hashes
       - run: 
           name: Execute lane "test"
           command: bundle exec fastlane test
@@ -86,6 +92,7 @@ jobs:
       - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
+      - *cleanup_cache_hashes
       - run: 
           name: Execute lane "beta"
           command: bundle exec fastlane beta
@@ -105,6 +112,7 @@ jobs:
       - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
+      - *cleanup_cache_hashes
       - run: 
           name: Execute lane "release"
           command: bundle exec fastlane release
