@@ -1,37 +1,5 @@
 default_platform(:ios)
 
-### Helper functions ###
-def latest_version_info
-  changelog = File.read("../CHANGELOG.md")
-  return changelog.split("\n## ")[2]
-end
-
-def release_notes
-  notes = latest_version_info.split("\n").drop(1)
-  return notes.join("\n")
-end
-
-def version_number
-  first_line = latest_version_info.split("\n").first
-  version = first_line.split(" ").first
-  return version.tr("[]","")
-end
-
-def build_number
-  date = Time.new.strftime("%Y%m%d%H%M")
-  return date
-end
-
-def set_up_api_key 
-  app_store_connect_api_key(
-    key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
-    issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
-    key_content: ENV["APP_STORE_CONNECT_API_KEY_B64"],
-    is_key_content_base64: true,
-    in_house: false
-  )
-end
-
 platform :ios do
   before_all do
     xcversion(version: "12.4")
@@ -71,53 +39,9 @@ platform :ios do
 
   end
 
-  desc "Build for upload, either to TestFlight or to the AppStore"
-  lane :build do
-    match_configuration(type: "appstore")
-
-    set_up_api_key
-
-    ensure_git_status_clean(
-      show_uncommitted_changes: true,
-      show_diff: true
-    )
-
-    increment_build_number(
-      build_number: build_number
-    )
-
-    increment_version_number(
-      version_number: version_number
-    )
-
-    gym(
-      clean: false,
-      scheme: "Kelo",
-      export_method: "app-store",
-      configuration: "Release",
-      cloned_source_packages_path: "SourcePackages"
-    )
-  end
-
-  lane :cleanup do |options|
-    clean_build_artifacts
-
-    commit_version_bump(
-      message: "Deploying version #{version_number}.",
-      xcodeproj: "Kelo.xcodeproj",
-      force: true
-    )
-
-    if options[:tag] 
-      add_git_tag tag: version_number
-    end
-
-    push_to_git_remote
-  end
-
   desc "Upload to TestFlight"
   lane :beta do
-    build
+    prepare(is_prerelease: true)
     
     pilot(
       skip_waiting_for_build_processing: true,
@@ -129,25 +53,94 @@ platform :ios do
         contact_phone: "5558675309",
         demo_account_name: "",
         demo_account_password: ""
-      },
-      changelog: release_notes
+      }
     )
 
-    cleanup
+    finish(is_prerelease: true)
   end
 
   desc "Release to App Store"
   lane :release do
-    build
+    prepare(is_prerelease: false)
 
     deliver(
       skip_screenshots: true,
       skip_metadata: true,
-      run_precheck_before_submit: false,
+      run_precheck_before_submit: false
     )
 
-    cleanup(
-      tag: true
+    finish(is_prerelease: false)
+  end
+
+  ##### Private Lanes #####
+  desc "Prepare to upload and update changelog"
+  private_lane :prepare do |options|
+    match_configuration(type: "appstore")
+
+    app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY_B64"],
+      is_key_content_base64: true,
+      in_house: false
     )
+
+    ensure_git_status_clean(
+      show_uncommitted_changes: true,
+      show_diff: true
+    )
+
+    increment_build_number(
+      build_number: Time.new.strftime("%Y%m%d")
+    )
+
+    increment_version_number(
+      version_number: last_git_tag
+    )
+
+    if options[:is_prerelease]
+      changelog_path: "CHANGELOG-beta.md"
+    else
+      changelog_path: "CHANGELOG.md"
+    end
+
+    changelog = read_changelog(
+      changelog_path: changelog_path
+    )
+
+    stamp_changelog(
+      section_identifier: last_git_tag,
+      git_tag: last_git_tag
+    )
+
+    gym(
+      clean: false,
+      scheme: "Kelo",
+      export_method: "app-store",
+      configuration: "Release",
+      cloned_source_packages_path: "SourcePackages"
+    )
+  end
+
+  desc "Clean and commit version bump"
+  private_lane :finish do |options|
+    clean_build_artifacts
+
+    commit_version_bump(
+      message: "Deploying version #{last_git_tag}.",
+      xcodeproj: "Kelo.xcodeproj",
+      include: "CHANGELOG.md"
+    )
+
+    set_github_release(
+      repository_name: "olmedocr/tfm-ios",
+      api_token: ENV["GITHUB_TOKEN"],
+      name: last_git_tag,
+      tag_name: last_git_tag,
+      description: changelog,
+      is_prerelease: options[:is_prerelease]
+    )
+
+    push_to_git_remote
   end
 end
