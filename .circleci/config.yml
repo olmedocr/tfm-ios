@@ -122,12 +122,12 @@ workflows:
 
   push-beta:
     jobs:
-      - beta
-      #     filters:
-      #       tags:
-      #         only: /^v.*-beta/
-      #       branches:
-      #         ignore: /.*/
+      - beta:
+          filters:
+            tags:
+              only: /^v.*-beta/
+            branches:
+              ignore: /.*/
 
   push-release:
     jobs:
