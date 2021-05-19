@@ -12,14 +12,15 @@ references:
       name: Add github ssh keys to known hosts 
       command: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
 
-  ruby_dependencies: &ruby_dependencies
+  dependencies: &dependencies
     run:
-      name: Download Ruby Dependencies
+      name: Download Dependencies
       command: |
         gem install bundler:2.2.17
         bundle config set --local path 'vendor/bundle'
         bundle install
         bundle clean --force
+        fastlane install_plugins
         git checkout Gemfile.lock
 
   restore_ruby_cache: &restore_ruby_cache
@@ -58,7 +59,7 @@ jobs:
       - checkout
       - *known_hosts
       - *restore_ruby_cache
-      - *ruby_dependencies
+      - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
       - run: 
@@ -82,7 +83,7 @@ jobs:
       - checkout
       - *known_hosts
       - *restore_ruby_cache
-      - *ruby_dependencies
+      - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
       - run: 
@@ -101,7 +102,7 @@ jobs:
       - checkout
       - *known_hosts
       - *restore_ruby_cache
-      - *ruby_dependencies
+      - *dependencies
       - *save_ruby_cache
       - *restore_spm_cache
       - run: 
