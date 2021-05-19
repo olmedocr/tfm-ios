@@ -49,8 +49,8 @@ references:
   cleanup_cache_hashes: &cleanup_cache_hashes
     run:
       command: |
-        git checkout Gemfile.lock
-        git checkout Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+        git restore Gemfile.lock
+        git restore Kelo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
       
 jobs:
   test:
