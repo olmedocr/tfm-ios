@@ -98,10 +98,10 @@ platform :ios do
       version_number: last_git_tag
     )
 
+    changelog_path="CHANGELOG.md"
+
     if options[:is_prerelease]
-      changelog_path: "CHANGELOG-beta.md"
-    else
-      changelog_path: "CHANGELOG.md"
+      changelog_path="CHANGELOG-beta.md"
     end
 
     changelog = read_changelog(
