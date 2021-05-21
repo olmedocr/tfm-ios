@@ -11,19 +11,11 @@ import FirebaseFirestoreSwift
 
 struct Chore: Identifiable, Codable {
     @DocumentID public var id: String?
-    let name: String
-    let icon: String
-    let assignee: String
-    let expiration: Date
-    let points: Int
-
-    init(name: String, icon: String, assignee: String, expiration: Date, points: Int) {
-        self.name = name
-        self.icon = icon
-        self.assignee = assignee
-        self.expiration = expiration
-        self.points = points
-    }
+    var name: String = ""
+    var icon: String = ""
+    var assignee: String = ""
+    var expiration: Date = Date()
+    var points: Int = Importance.low.rawValue
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -32,5 +24,11 @@ struct Chore: Identifiable, Codable {
         case assignee
         case expiration
         case points
+    }
+
+    enum Importance: Int {
+        case low = 10
+        case medium = 20
+        case high = 30
     }
 }

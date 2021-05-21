@@ -11,15 +11,9 @@ import FirebaseFirestoreSwift
 
 struct Reward: Identifiable, Codable {
     @DocumentID public var id: String?
-    let name: String
-    let frequency: Date
-    let icon: String
-
-    init(name: String, frequency: Date, icon: String) {
-        self.name = name
-        self.frequency = frequency
-        self.icon = icon
-    }
+    var name: String = ""
+    var frequency: Date = Date()
+    var icon: String = ""
 
     enum CodingKeys: String, CodingKey {
         case id

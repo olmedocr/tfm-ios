@@ -11,13 +11,8 @@ import FirebaseFirestoreSwift
 
 struct User: Identifiable, Codable {
     @DocumentID public var id: String?
-    let name: String
-    let points: Int
-
-    init(name: String, points: Int = 0) {
-        self.name = name
-        self.points = points
-    }
+    var name: String = ""
+    var points: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case id
