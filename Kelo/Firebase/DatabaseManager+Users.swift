@@ -17,7 +17,7 @@ extension DatabaseManager {
             let userReference = try groupReference.collection(Constants.usersCollectionKey)
                 .addDocument(from: user) { (err) in
                     if let err = err {
-                        log.error(err)
+                        log.error(err.localizedDescription)
                         result(.failure(err))
                     }
                 }
@@ -27,7 +27,7 @@ extension DatabaseManager {
             returnedUser.id = userReference.documentID
             result(.success(returnedUser))
         } catch let err {
-            log.error(err)
+            log.error(err.localizedDescription)
             result(.failure(err))
         }
     }
@@ -38,7 +38,7 @@ extension DatabaseManager {
 
         userReference.getDocument { (userSnapshot, err) in
             if let err = err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             }
 
@@ -48,7 +48,7 @@ extension DatabaseManager {
                     result(.success(user))
                 }
             } catch let err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             }
         }
@@ -61,7 +61,7 @@ extension DatabaseManager {
         groupsReference.document(groupId!).collection(Constants.usersCollectionKey)
             .getDocuments { (usersSnapshot, err) in
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
 
@@ -75,7 +75,7 @@ extension DatabaseManager {
                             group.leave()
                         }
                     } catch let err {
-                        log.error(err)
+                        log.error(err.localizedDescription)
                         result(.failure(err))
                         group.leave()
                     }
@@ -97,7 +97,7 @@ extension DatabaseManager {
             let encodedUser = try Firestore.Encoder().encode(user)
             userReference.updateData(encodedUser) { (err) in
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
 
@@ -105,7 +105,7 @@ extension DatabaseManager {
                 result(.success(()))
             }
         } catch let err {
-            log.error(err)
+            log.error(err.localizedDescription)
             result(.failure(err))
         }
     }
@@ -116,7 +116,7 @@ extension DatabaseManager {
 
         usersReference.document(userId).delete { (err) in
             if let err = err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             }
 
@@ -131,7 +131,7 @@ extension DatabaseManager {
         groupsReference.document(groupId!).collection(Constants.usersCollectionKey)
             .getDocuments { (usersSnapshot, err) in
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
 
@@ -153,7 +153,7 @@ extension DatabaseManager {
                             }
                         }
                     } catch let err {
-                        log.error(err)
+                        log.error(err.localizedDescription)
                         result(.failure(err))
                     }
                 })
@@ -170,7 +170,7 @@ extension DatabaseManager {
 
         groupReference.getDocument { (groupDocument, err) in
             if let err = err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             }
 
@@ -178,13 +178,13 @@ extension DatabaseManager {
                 self.checkUserNameAvilability(userName: user.name) { (isAvailable) in
                     switch isAvailable {
                     case let .failure(err):
-                        log.error(err)
+                        log.error(err.localizedDescription)
                         result(.failure(err))
                     case .success:
                         self.createUser(user: user) { (joiningResult) in
                             switch joiningResult {
                             case .failure(let err):
-                                log.error(err)
+                                log.error(err.localizedDescription)
                                 result(.failure(err))
                             case .success(let createdUser):
                                 log.info("Successfully joined user")
@@ -207,7 +207,7 @@ extension DatabaseManager {
         usersReference.order(by: User.CodingKeys.points.stringValue, descending: false).limit(to: 1)
             .getDocuments { (usersSnapshot, err) in
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
 
@@ -217,9 +217,33 @@ extension DatabaseManager {
                         result(.success(user))
                     }
                 } catch let err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
             }
+    }
+
+    func getRandomUser(result: @escaping (Result<User, Error>) -> Void) {
+        let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
+        let usersReference: CollectionReference = groupReference.collection(Constants.usersCollectionKey)
+
+        usersReference.getDocuments { (usersSnapshot, err) in
+            if let err = err {
+                log.error(err.localizedDescription)
+                result(.failure(err))
+            }
+            let numberOfUsers = usersSnapshot?.documents.count
+            let randomIndex = Int.random(in: 0...numberOfUsers! - 1)
+
+            do {
+                if let user = try usersSnapshot?.documents[randomIndex].data(as: User.self) {
+                    log.info("Retrieved random user")
+                    result(.success(user))
+                }
+            } catch let err {
+                log.error(err.localizedDescription)
+                result(.failure(err))
+            }
+        }
     }
 }

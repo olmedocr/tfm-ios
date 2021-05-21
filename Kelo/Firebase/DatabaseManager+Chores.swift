@@ -17,7 +17,7 @@ extension DatabaseManager {
             let choreReference = try groupReference.collection(Constants.choresCollectionKey)
                 .addDocument(from: chore) { (err) in
                     if let err = err {
-                        log.error(err)
+                        log.error(err.localizedDescription)
                         result(.failure(err))
                     }
                 }
@@ -27,7 +27,7 @@ extension DatabaseManager {
             returnedChore.id = choreReference.documentID
             result(.success(returnedChore))
         } catch let err {
-            log.error(err)
+            log.error(err.localizedDescription)
             result(.failure(err))
         }
     }
@@ -40,7 +40,7 @@ extension DatabaseManager {
 
         choreReference.getDocument { (choreSnapshot, err) in
             if let err = err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             }
 
@@ -50,7 +50,7 @@ extension DatabaseManager {
                     result(.success(user))
                 }
             } catch let err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             }
         }
@@ -65,7 +65,7 @@ extension DatabaseManager {
             let encodedChore = try Firestore.Encoder().encode(chore)
             choreReference.updateData(encodedChore) { (err) in
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
 
@@ -73,7 +73,7 @@ extension DatabaseManager {
                 result(.success(()))
             }
         } catch let err {
-            log.error(err)
+            log.error(err.localizedDescription)
             result(.failure(err))
         }
 
@@ -85,7 +85,7 @@ extension DatabaseManager {
 
         choresReference.document(choreId).delete { (err) in
             if let err = err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             }
 
@@ -100,7 +100,7 @@ extension DatabaseManager {
         groupsReference.document(groupId!).collection(Constants.choresCollectionKey)
             .getDocuments { (choresSnapshot, err) in
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
 
@@ -122,7 +122,7 @@ extension DatabaseManager {
                             }
                         }
                     } catch let err {
-                        log.error(err)
+                        log.error(err.localizedDescription)
                         result(.failure(err))
                     }
                 })
@@ -138,7 +138,7 @@ extension DatabaseManager {
         DatabaseManager.shared.retrieveUser(userId: chore.assignee) { (retrievalResult) in
             switch retrievalResult {
             case .failure(let err):
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             case .success(let user):
                 var updatedUser = User(name: user.name, points: user.points + chore.points)
@@ -146,13 +146,13 @@ extension DatabaseManager {
                 DatabaseManager.shared.updateUser(user: updatedUser) { (updateResult) in
                     switch updateResult {
                     case .failure(let err):
-                        log.error(err)
+                        log.error(err.localizedDescription)
                         result(.failure(err))
                     case .success:
                         DatabaseManager.shared.deleteChore(choreId: chore.id!) { (deletionResult) in
                             switch deletionResult {
                             case .failure(let err):
-                                log.error(err)
+                                log.error(err.localizedDescription)
                                 result(.failure(err))
                             case .success:
                                 log.info("Correctly completed chore")
@@ -175,7 +175,7 @@ extension DatabaseManager {
         let listener = choresReference.addSnapshotListener { (choresSnapshot, err) in
             guard let choresSnapshot = choresSnapshot else {
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 } else {
                     log.error("Unknown error")
@@ -203,7 +203,7 @@ extension DatabaseManager {
                     }
 
                 } catch let err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
             }
