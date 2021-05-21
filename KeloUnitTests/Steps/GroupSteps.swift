@@ -22,7 +22,12 @@ final class CreateGroupSteps: StepDefiner {
         }
 
         step("the user validates its group name") {
-            self.isGroupNameValid = Constants.groupNameRegex.matches(self.groupName!)
+            switch Validations.groupName(self.groupName!) {
+            case .failure(_):
+                self.isGroupNameValid = false
+            case .success:
+                self.isGroupNameValid = true
+            }
         }
 
         step("the group name length must be less or equal than 32") {

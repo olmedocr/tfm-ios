@@ -1,5 +1,5 @@
 //
-//  CurrencyUITests.swift
+//  CurrencyTests.swift
 //  KeloUITests
 //
 //  Created by Raul Olmedo on 7/5/21.
@@ -7,33 +7,47 @@
 
 import XCTest
 
-class CurrencyUITests: XCTestCase {
+private let groupName = "Hobo Crib"
 
-    var app: XCUIApplication!
+class CurrencyTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        continueAfterFailure = false
+    static var app: XCUIApplication!
 
+    override class func setUp() {
         app = XCUIApplication()
         app.launchArguments += ["-hasBeenLaunchedBefore", "NO"]
 
         app.launch()
         app.buttons["Create Group"].tap()
         app.textFields.element.tap()
-        app.textFields.element.typeText("Hobo Crib")
+        app.textFields.element.typeText(groupName)
         app.keyboards.buttons["Done"].tap()
     }
 
-    override func tearDownWithError() throws {
+    override func setUp() {
+        continueAfterFailure = false
+    }
+
+    override class func tearDown() {
         // TODO: delete group from settings
     }
 
     func testCurrencyEURIsDefault() throws {
+        guard let app = CurrencyTests.app else {
+            XCTFail("Unknown error")
+            return
+        }
+
         XCTAssert(app.staticTexts["EUR"].exists)
         XCTAssert(app.images["Currency Flag"].exists)
     }
 
     func testSelectedCurrencyAppears() throws {
+        guard let app = CurrencyTests.app else {
+            XCTFail("Unknown error")
+            return
+        }
+
         app.buttons["🤑"].tap()
         app.swipeUp()
         app.tables.cells.element(boundBy: 7).tap()

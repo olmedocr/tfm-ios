@@ -1,5 +1,5 @@
 //
-//  UserIntegrationTests.swift
+//  UserTests.swift
 //  KeloIntegrationTests
 //
 //  Created by Raul Olmedo on 22/4/21.
@@ -8,9 +8,11 @@
 import XCTest
 @testable import Kelo
 
-class UserIntegrationTests: XCTestCase {
+class UserTests: XCTestCase {
 
-    override func setUpWithError() throws {
+    static var group: Group!
+
+    override func setUp() {
         let expectation = XCTestExpectation(description: "Wait for the creation of the group")
         let testGroup = Group(name: "GroupName", currency: "USD")
 
@@ -26,7 +28,7 @@ class UserIntegrationTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         let expectation = XCTestExpectation(description: "Wait for the creation of the group")
 
         DatabaseManager.shared.deleteGroup(groupId: DatabaseManager.shared.groupId!) { (result) in
@@ -42,7 +44,7 @@ class UserIntegrationTests: XCTestCase {
 
     func testUserCreation() throws {
         let expectation = XCTestExpectation(description: "Wait for the creation of the user")
-        let testUser = User(name: "UserCreation", points: 0)
+        let testUser = User(name: "UserCreation")
 
         DatabaseManager.shared.createUser(user: testUser) { (creationResult) in
             switch creationResult {
@@ -64,7 +66,7 @@ class UserIntegrationTests: XCTestCase {
 
     func testUserRetrieval() throws {
         let expectation = XCTestExpectation(description: "Wait for the retrieval of the user")
-        let testUser = User(name: "UserRetrieval", points: 0)
+        let testUser = User(name: "UserRetrieval")
 
         DatabaseManager.shared.createUser(user: testUser) { (creationResult) in
             switch creationResult {
@@ -92,32 +94,46 @@ class UserIntegrationTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
 
-    func testAllUsersRetrieval() throws {
-        let expectation = XCTestExpectation(description: "Wait for the retrieval of all users")
-        let testUser1 = User(name: "AllUsersRetrieval1", points: 0)
-        let testUser2 = User(name: "AllUsersRetrieval2", points: 0)
+    func testMostLazyUserRetrieval() throws {
+        let expectation = XCTestExpectation(description: "Wait for the retrieval of the most lazy user")
+        let normalUser = User(name: "LazyUserRetrieval1", points: 30)
+        let lazyUser = User(name: "LazyUserRetrieval2", points: 10)
 
-        DatabaseManager.shared.createUser(user: testUser1) { (creationResult1) in
+        DatabaseManager.shared.createUser(user: normalUser) { (creationResult1) in
             switch creationResult1 {
             case .failure(let err):
                 XCTFail(err.localizedDescription)
-            case .success:
+            case .success(let createdUser1):
                 DatabaseManager.shared
-                    .createUser(user: testUser2) { (creationResult2) in
+                    .createUser(user: lazyUser) { (creationResult2) in
                         switch creationResult2 {
                         case .failure(let err):
                             XCTFail(err.localizedDescription)
-                        case .success:
-                            DatabaseManager.shared
-                                .retrieveAllUsers { (retrievalResult) in
-                                    switch retrievalResult {
-                                    case .failure(let err):
-                                        XCTFail(err.localizedDescription)
-                                    case .success(let retrievedUsers):
-                                        XCTAssert(retrievedUsers.count == 2)
-                                        expectation.fulfill()
+                        case .success(let createdUser2):
+                            DatabaseManager.shared.getMostLazyUser { (result) in
+                                switch result {
+                                case .failure(let err):
+                                    XCTFail(err.localizedDescription)
+                                case .success(let user):
+                                    XCTAssertTrue(user.id == createdUser2.id)
+                                    DatabaseManager.shared.deleteUser(userId: createdUser1.id!) { (deletionResult1) in
+                                        switch deletionResult1 {
+                                        case .failure(let err):
+                                            XCTFail("Failed to do cleanup with error: \(err)")
+                                        case .success:
+                                            DatabaseManager.shared
+                                                .deleteUser(userId: createdUser2.id!) { (deletionResult2) in
+                                                    switch deletionResult2 {
+                                                    case .failure(let err):
+                                                        XCTFail("Failed to do cleanup with error: \(err)")
+                                                    case .success:
+                                                        expectation.fulfill()
+                                                    }
+                                                }
+                                        }
                                     }
                                 }
+                            }
                         }
                     }
             }
@@ -125,10 +141,90 @@ class UserIntegrationTests: XCTestCase {
         wait(for: [expectation], timeout: 3)
     }
 
+    func testRandomUserRetrieval() throws {
+        let expectation = XCTestExpectation(description: "Wait for the retrieval of a random user")
+        let testUser1 = User(name: "RandomUserRetrieval1", points: 30)
+        let testUser2 = User(name: "RandomUserRetrieval2", points: 10)
+
+        DatabaseManager.shared.createUser(user: testUser1) { (creationResult1) in
+            switch creationResult1 {
+            case .failure(let err):
+                XCTFail(err.localizedDescription)
+            case .success(let createdUser1):
+                DatabaseManager.shared
+                    .createUser(user: testUser2) { (creationResult2) in
+                        switch creationResult2 {
+                        case .failure(let err):
+                            XCTFail(err.localizedDescription)
+                        case .success(let createdUser2):
+                            DatabaseManager.shared.getRandomUser { (result) in
+                                switch result {
+                                case .failure(let err):
+                                    XCTFail(err.localizedDescription)
+                                case .success(let user):
+                                    XCTAssertTrue(user.id == createdUser2.id || user.id == createdUser1.id)
+                                    DatabaseManager.shared.deleteUser(userId: createdUser1.id!) { (deletionResult1) in
+                                        switch deletionResult1 {
+                                        case .failure(let err):
+                                            XCTFail("Failed to do cleanup with error: \(err)")
+                                        case .success:
+                                            DatabaseManager.shared
+                                                .deleteUser(userId: createdUser2.id!) { (deletionResult2) in
+                                                    switch deletionResult2 {
+                                                    case .failure(let err):
+                                                        XCTFail("Failed to do cleanup with error: \(err)")
+                                                    case .success:
+                                                        expectation.fulfill()
+                                                    }
+                                                }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+        }
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func testAllUsersRetrieval() throws {
+        let expectation = XCTestExpectation(description: "Wait for the retrieval of all users")
+        let testUser1 = User(name: "AllUsersRetrieval1")
+        let testUser2 = User(name: "AllUsersRetrieval2")
+
+        DatabaseManager.shared.createUser(user: testUser1) { (creationResult1) in
+            switch creationResult1 {
+            case .failure(let err):
+                XCTFail(err.localizedDescription)
+            case .success:
+                DatabaseManager.shared
+                        .createUser(user: testUser2) { (creationResult2) in
+                    switch creationResult2 {
+                    case .failure(let err):
+                        XCTFail(err.localizedDescription)
+                    case .success:
+                        DatabaseManager.shared
+                                .retrieveAllUsers { (retrievalResult) in
+                            switch retrievalResult {
+                            case .failure(let err):
+                                XCTFail(err.localizedDescription)
+                            case .success(let retrievedUsers):
+                                XCTAssert(retrievedUsers.count == 2)
+                                expectation.fulfill()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        wait(for: [expectation], timeout: 3)
+    }
+
     func testUserUpdate() throws {
         let expectation = XCTestExpectation(description: "Wait for the update of the user")
-        let testUser = User(name: "UserUpdate", points: 0)
-        var updatedUser = User(name: "UpdatedUserName", points: 0)
+        let testUser = User(name: "UserUpdate")
+        var updatedUser = User(name: "UpdatedUserName")
 
         DatabaseManager.shared.createUser(user: testUser) { (creationResult) in
             switch creationResult {
@@ -159,7 +255,7 @@ class UserIntegrationTests: XCTestCase {
 
     func testUserDeletion() throws {
         let expectation = XCTestExpectation(description: "Wait for the deletion of the user")
-        let testUser = User(name: "UserDeletion", points: 0)
+        let testUser = User(name: "UserDeletion")
 
         DatabaseManager.shared.createUser(user: testUser) { (creationResult) in
             switch creationResult {
@@ -181,8 +277,8 @@ class UserIntegrationTests: XCTestCase {
 
     func testAllUsersDeletion() throws {
         let expectation = XCTestExpectation(description: "Wait for the deletion of all users")
-        let testUser1 = User(name: "AllUsersDeletion1", points: 0)
-        let testUser2 = User(name: "AllUsersDeletion2", points: 0)
+        let testUser1 = User(name: "AllUsersDeletion1")
+        let testUser2 = User(name: "AllUsersDeletion2")
 
         DatabaseManager.shared.retrieveGroup(groupId: DatabaseManager.shared.groupId!) { (retrievalResult) in
             switch retrievalResult {
@@ -200,14 +296,14 @@ class UserIntegrationTests: XCTestCase {
                                 XCTFail(err.localizedDescription)
                             case .success:
                                 DatabaseManager.shared
-                                    .deleteAllUsers { (deletionResult) in
-                                        switch deletionResult {
-                                        case .failure(let err):
-                                            XCTFail(err.localizedDescription)
-                                        case .success:
-                                            expectation.fulfill()
-                                        }
+                                        .deleteAllUsers { (deletionResult) in
+                                    switch deletionResult {
+                                    case .failure(let err):
+                                        XCTFail(err.localizedDescription)
+                                    case .success:
+                                        expectation.fulfill()
                                     }
+                                }
                             }
                         }
                     }
@@ -219,7 +315,7 @@ class UserIntegrationTests: XCTestCase {
 
     func testGroupJoining() throws {
         let expectation = XCTestExpectation(description: "Wait for the user to join the group")
-        let testUser = User(name: "UserJoin", points: 0)
+        let testUser = User(name: "UserJoin")
 
         DatabaseManager.shared.retrieveGroup(groupId: DatabaseManager.shared.groupId!) { (retrievalResult) in
             switch retrievalResult {
@@ -241,7 +337,7 @@ class UserIntegrationTests: XCTestCase {
 
     func testUserNameAvilabilityCheck() throws {
         let expectation = XCTestExpectation(description: "Wait for the availability check of the user")
-        let testUser = User(name: "NewUserName", points: 0)
+        let testUser = User(name: "NewUserName")
 
         DatabaseManager.shared.checkUserNameAvilability(userName: testUser.name) { (result) in
             switch result {

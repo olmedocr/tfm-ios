@@ -1,6 +1,6 @@
 Feature: Create User
 
-  @CreateUser
+  @User
   Scenario Outline: Valid Length 1
     Given the user that enters its username "<name>"
     When the user validates its username
@@ -10,7 +10,7 @@ Feature: Create User
       | Gabriel                                    |
       | Sergio Valdivieso Gomezos Garcia           |
 
-  @CreateUser
+  @User
   Scenario Outline: Valid Length 2
     Given the user that enters its username "<name>"
     When the user validates its username
@@ -20,17 +20,16 @@ Feature: Create User
       | Gabriel                                    |
       | Aya                                        |
 
-  @CreateUser
+  @User
   Scenario Outline: Invalid Length 1
     Given the user that enters its username "<name>"
     When the user validates its username
     Then the username length must not be greater than 32
     Examples:
       | name                                         |
-      | RaulOlmedoChecaEsEspecialYMuyInteligente     |
       | Sergio Valdivieso Gomez Garcia de los Santos |
 
-  @CreateUser
+  @User
   Scenario Outline: Invalid Length 2
     Given the user that enters its username "<name>"
     When the user validates its username
@@ -38,31 +37,26 @@ Feature: Create User
     Examples:
       | name |
       | Po   |
-      | X    |
 
-  @CreateUser
+  @User
   Scenario Outline: Emptiness
     Given the user that enters its username "<name>"
     When the user validates its username
     Then the username must not be empty
     Examples:
       | name              |
-      | \0                |
+      |        \0         |
 
-  @CreateUser
+  @User
   Scenario Outline: Valid Characters
     Given the user that enters its username "<name>"
     When the user validates its username
     Then the username must only contain alphabetical characters with spaces
     Examples:
       | name |
-      | Gabriel García López |
-      | Paloma Cañizares     |
-      | Álvaro               |
-      | Agustín Yagüe        |
-      | Rubén Visca Barça    |
+      | Gabriel Garçía López |
 
-  @CreateUser
+  @User
   Scenario Outline: Invalid Characters 1
     Given the user that enters its username "<name>"
     When the user validates its username
@@ -70,14 +64,12 @@ Feature: Create User
     Examples:
       | name          |
       | 1997 Raul     |
-      | 69XxGaboxX69  |
 
-  @CreateUser
+  @User
   Scenario Outline: Invalid Characters 2
     Given the user that enters its username "<name>"
     When the user validates its username
     Then the username must not contain special characters
     Examples:
-      | name              |
-      | (Olmedo) - El Amo |
-      | Connan O'brian    |
+      | name                    |
+      | (**Olmedo**) - ¡El Amo? |
