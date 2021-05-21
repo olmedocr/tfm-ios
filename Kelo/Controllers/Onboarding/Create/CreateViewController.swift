@@ -32,21 +32,22 @@ class CreateViewController: UIViewController {
     }
 
     @IBAction func didTapContinue(_ sender: Any) {
-        if groupNameTextField.validate(regex: Constants.groupNameRegex, errorLabel: groupErrorLabel) {
+        switch Validations.groupName(groupNameTextField.text!) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            groupNameTextField.showError(err.localizedDescription, in: groupErrorLabel)
+        case .success:
+            log.info("Validated group name")
+            groupNameTextField.hideError(groupErrorLabel)
             let group = Group(name: groupNameTextField.text!, currency: currencyLabel.text!)
 
-            if !currencyLabel.isHidden {
-                DatabaseManager.shared.createGroup(group: group) { (result) in
-                    switch result {
-                    case .success(let group):
-                        self.presentFinalViewController(withGroup: group)
-                    case .failure(let err):
-                        log.error(err)
-                    }
+            DatabaseManager.shared.createGroup(group: group) { (result) in
+                switch result {
+                case .success(let group):
+                    self.presentFinalViewController(withGroup: group)
+                case .failure(let err):
+                    log.error(err.localizedDescription)
                 }
-            } else {
-                currencyErrorLabel.isHidden = false
-                log.error("Invalid currency")
             }
         }
     }

@@ -22,7 +22,7 @@ class ChoresTableViewController: UITableViewController {
         DatabaseManager.shared.subscribeToChoreList { (result) in
             switch result {
             case .failure(let err):
-                log.error(err)
+                log.error(err.localizedDescription)
             case .success:
                 break
             }
@@ -53,6 +53,8 @@ class ChoresTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "choreTableViewCell", for: indexPath)
 
         if let cell = cell as? ChoreTableViewCell {
+            // For UI testing purposes
+            cell.choreTitle.accessibilityIdentifier = chores[indexPath.row].name
 
             cell.choreTitle.text = chores[indexPath.row].name
             cell.choreTitle.type = .continuous
@@ -65,12 +67,14 @@ class ChoresTableViewController: UITableViewController {
                 DatabaseManager.shared.retrieveUser(userId: self.chores[indexPath.row].assignee) { (result) in
                     switch result {
                     case .failure(let err):
-                        log.error(err)
+                        log.error(err.localizedDescription)
                     case .success(let user):
                         if user.id == DatabaseManager.shared.userId {
                             cell.assigneeName.text = user.name + " (You)"
+                            cell.assigneeName.accessibilityIdentifier = user.name + " (You)"
                         } else {
                             cell.assigneeName.text = user.name
+                            cell.assigneeName.accessibilityIdentifier = user.name
                         }
                     }
                 }
@@ -82,16 +86,20 @@ class ChoresTableViewController: UITableViewController {
             formatter.timeZone = TimeZone.current
 
             cell.dueDate.text = formatter.string(from: chores[indexPath.row].expiration)
+            cell.dueDate.accessibilityIdentifier = formatter.string(from: chores[indexPath.row].expiration)
 
             cell.layoutSubviews()
 
             switch chores[indexPath.row].points {
-            case Constants.ChoreImportance.low.rawValue:
+            case Chore.Importance.low.rawValue:
                 cell.importanceIndicator.image = UIImage(color: .systemGreen)
-            case Constants.ChoreImportance.medium.rawValue:
+                cell.importanceIndicator.accessibilityIdentifier = "Green"
+            case Chore.Importance.medium.rawValue:
                 cell.importanceIndicator.image = UIImage(color: .systemYellow)
-            case Constants.ChoreImportance.high.rawValue:
+                cell.importanceIndicator.accessibilityIdentifier = "Yellow"
+            case Chore.Importance.high.rawValue:
                 cell.importanceIndicator.image = UIImage(color: .systemRed)
+                cell.importanceIndicator.accessibilityIdentifier = "Red"
             default:
                 log.warning("Unknown importance value")
             }
@@ -114,6 +122,7 @@ class ChoresTableViewController: UITableViewController {
             self?.handleMarkAsComplete(chore: (self?.chores[indexPath.row])!, onComplete: completionHandler)
         }
         completeAction.backgroundColor = UIColor.systemBlue
+        completeAction.image = UIImage(named: "checkmark.circle.fill")
 
         let configuration = UISwipeActionsConfiguration(actions: [completeAction])
         return configuration
@@ -128,6 +137,7 @@ class ChoresTableViewController: UITableViewController {
             self?.handleMarkAsDelete(chore: (self?.chores[indexPath.row])!, onComplete: completionHandler)
         }
         deleteAction.backgroundColor = UIColor.systemRed
+        deleteAction.image = UIImage(named: "trash.fill")
 
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         return configuration
@@ -138,7 +148,7 @@ class ChoresTableViewController: UITableViewController {
         DatabaseManager.shared.completeChore(chore: chore) { (result) in
             switch result {
             case .failure(let err):
-                log.error(err)
+                log.error(err.localizedDescription)
                 completion(false)
             case .success:
                 log.info("Correctly completed chore with id \(chore.id ?? "null")")
@@ -151,7 +161,7 @@ class ChoresTableViewController: UITableViewController {
         DatabaseManager.shared.deleteChore(choreId: chore.id!) { (result) in
             switch result {
             case .failure(let err):
-                log.error(err)
+                log.error(err.localizedDescription)
                 completion(false)
             case .success:
                 log.info("Correctly deleted chore with id \(chore.id ?? "null")")

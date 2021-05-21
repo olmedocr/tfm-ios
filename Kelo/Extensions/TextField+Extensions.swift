@@ -8,32 +8,21 @@
 import UIKit
 
 extension UITextField {
-    func showError(_ errorLabel: UILabel? = nil) {
+    func showError(_ message: String, in label: UILabel) {
         layer.borderColor = UIColor.red.cgColor
         layer.borderWidth = 1.0
         layer.cornerRadius = 5
 
-        errorLabel?.isHidden = false
+        label.isHidden = false
+        label.text = message
     }
 
-    func hideError(_ errorLabel: UILabel? = nil) {
+    func hideError(_ label: UILabel) {
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0
         layer.cornerRadius = 5
 
-        errorLabel?.isHidden = true
-    }
-
-    func validate(regex: NSRegularExpression, errorLabel: UILabel) -> Bool {
-        if regex.matches(text!) {
-            log.info("Validated textField")
-            hideError(errorLabel)
-            return true
-        } else {
-            log.error("Invalid textField")
-            showError(errorLabel)
-            return false
-        }
+        label.isHidden = true
     }
 
 }
