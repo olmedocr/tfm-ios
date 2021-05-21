@@ -78,8 +78,8 @@ class CurrencyTableViewController: UITableViewController {
         do {
             currencies = try JSONDecoder().decode([Currency].self, from: jsonData)
             log.info("Correctly decoded json with currencies")
-        } catch let error {
-            log.error(error)
+        } catch let err {
+            log.error(err.localizedDescription)
         }
     }
 }

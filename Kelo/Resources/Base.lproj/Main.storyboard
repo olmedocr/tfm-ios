@@ -299,7 +299,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-EF-ghY" customClass="ChoreTableViewCell" customModule="Kelo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-EF-ghY" customClass="ChoreTableViewCell" customModule="Kelo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yyu-EF-ghY" id="js6-xD-d5b">
@@ -320,6 +320,7 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Lorem ipsum dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyb-5K-KnO" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                                             <rect key="frame" x="0.0" y="0.0" width="205.66666666666666" height="20.333333333333332"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="choreName"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -376,7 +377,7 @@
                                 <action selector="didTapShareButton:" destination="pbi-T0-mAe" id="HpK-0D-LR3"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="eCx-1N-6Hy">
+                        <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="eCx-1N-6Hy">
                             <connections>
                                 <action selector="didTapAddButton:" destination="pbi-T0-mAe" id="HUA-8V-3eh"/>
                             </connections>
@@ -538,8 +539,8 @@
                     <connections>
                         <outlet property="assigneeButton" destination="UZ9-ug-67I" id="CfO-gg-XRI"/>
                         <outlet property="assigneeErrorLabel" destination="ZDK-1L-D3b" id="iDc-mI-00t"/>
+                        <outlet property="choreTextField" destination="tuy-rh-Mis" id="rzm-P5-b5N"/>
                         <outlet property="choreTitleErrorLabel" destination="gDf-hj-Bqb" id="l2C-VX-0rS"/>
-                        <outlet property="choreTitleLabel" destination="tuy-rh-Mis" id="Vgu-GT-lPa"/>
                         <outlet property="expirationDate" destination="tRm-QG-q3Y" id="TgB-ht-SqD"/>
                         <outlet property="importanceLevel" destination="cjU-zl-oKZ" id="pYO-3N-shb"/>
                     </connections>

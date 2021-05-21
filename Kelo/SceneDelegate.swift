@@ -86,9 +86,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func appCleanup() {
-        let hasBeenLaunchedBefore = defaults.bool(forKey: UserDefaults.Keys.hasBeenLaunchedBefore.rawValue)
-
-        if hasBeenLaunchedBefore {
+        if defaults.bool(forKey: UserDefaults.Keys.hasBeenLaunchedBefore.rawValue) {
             if let groupId = defaults.string(forKey: UserDefaults.Keys.groupId.rawValue),
                let userId = defaults.string(forKey: UserDefaults.Keys.userId.rawValue) {
                 DatabaseManager.shared.groupId = groupId
@@ -98,7 +96,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     switch result {
                     case .failure(let err):
                         log.error("Failed to delete the user while joining other group")
-                        log.error(err)
+                        log.error(err.localizedDescription)
                     case .success:
                         log.info("Correctly deleted user from existing group while joining another one")
                         log.info("Deleting now current user defaults")

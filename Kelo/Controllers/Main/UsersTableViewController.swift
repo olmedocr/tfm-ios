@@ -26,7 +26,7 @@ class UsersTableViewController: UITableViewController {
             DatabaseManager.shared.retrieveAllUsers { (result) in
                 switch result {
                 case .failure(let err):
-                    log.error(err)
+                    log.error(err.localizedDescription)
                 case .success(let users):
                     self.users = users
                     self.tableView.reloadData()
