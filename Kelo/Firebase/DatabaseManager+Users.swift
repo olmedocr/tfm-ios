@@ -42,6 +42,11 @@ extension DatabaseManager {
                 result(.failure(err))
             }
 
+            if let exists = userSnapshot?.exists, !exists {
+                log.error(CustomError.userNotFound)
+                result(.failure(CustomError.userNotFound))
+            }
+
             do {
                 if let user = try userSnapshot?.data(as: User.self) {
                     log.info("Successfully retrieved user")

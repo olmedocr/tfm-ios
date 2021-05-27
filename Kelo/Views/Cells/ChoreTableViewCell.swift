@@ -15,6 +15,7 @@ class ChoreTableViewCell: UITableViewCell {
     @IBOutlet weak var assigneeName: UILabel!
     @IBOutlet weak var dueDate: UILabel!
     @IBOutlet weak var importanceIndicator: UIImageView!
+    @IBOutlet weak var coreImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

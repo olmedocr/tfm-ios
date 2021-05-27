@@ -19,10 +19,7 @@ extension DatabaseManager {
                     result(.failure(err))
                 }
             }
-            /*
-             FIXME: Check that these operations are not executed when there is an error,
-             does the try always return non-nil groupReferences?
-             */
+
             log.info("Successfully created group")
 
             var returnedGroup = group
@@ -36,10 +33,16 @@ extension DatabaseManager {
 
     func retrieveGroup(groupId: String, result: @escaping (Result<Group, Error>) -> Void) {
         let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId)
+
         groupReference.getDocument { (groupSnapshot, err) in
             if let err = err {
                 log.error(err.localizedDescription)
                 result(.failure(err))
+            }
+
+            if let exists = groupSnapshot?.exists, !exists {
+                log.error(CustomError.groupNotFound)
+                result(.failure(CustomError.groupNotFound))
             }
 
             do {

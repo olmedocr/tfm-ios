@@ -20,7 +20,7 @@ class AssignChoreViewController: UIViewController {
             case .failure(let err):
                 log.error(err.localizedDescription)
             case .success(let user):
-                let index = self.embeddedTableView?.users?.firstIndex(where: { $0.id == user.id })
+                let index = self.embeddedTableView?.dataSource?.models.firstIndex(where: { $0.id == user.id })
                 let indexPath = IndexPath(row: index!, section: 0)
                 self.embeddedTableView?.tableView.delegate?.tableView?((self.embeddedTableView?.tableView)!,
                                                                        didSelectRowAt: indexPath)
@@ -34,7 +34,7 @@ class AssignChoreViewController: UIViewController {
             case .failure(let err):
                 log.error(err.localizedDescription)
             case .success(let user):
-                let index = self.embeddedTableView?.users?.firstIndex(where: { $0.id == user.id })
+                let index = self.embeddedTableView?.dataSource?.models.firstIndex(where: { $0.id == user.id })
                 let indexPath = IndexPath(row: index!, section: 0)
                 self.embeddedTableView?.tableView.delegate?.tableView?((self.embeddedTableView?.tableView)!,
                                                                        didSelectRowAt: indexPath)

@@ -146,6 +146,15 @@
         }
       },
       {
+        "package": "SwipeableTabBarController",
+        "repositoryURL": "git@github.com:marcosgriselli/SwipeableTabBarController.git",
+        "state": {
+          "branch": null,
+          "revision": "5ca1e788056369eeb5cf0957ebe9df284c535793",
+          "version": "3.4.1"
+        }
+      },
+      {
         "package": "XCTest_Gherkin",
         "repositoryURL": "https://github.com/net-a-porter-mobile/XCTest-Gherkin.git",
         "state": {

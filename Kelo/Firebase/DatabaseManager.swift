@@ -10,18 +10,24 @@ import Firebase
 extension DatabaseManager {
     enum CustomError: LocalizedError {
         case groupNotFound
+        case userNotFound
         case userNameAlreadyTaken
         case groupIsFull
+        case bundleError
         case unknown
 
         var errorDescription: String? {
             switch self {
             case .groupNotFound:
                 return "Group not found"
+            case .userNotFound:
+                return "User not found"
             case .userNameAlreadyTaken:
                 return "Username already taken"
             case .groupIsFull:
-            return "Group is full"
+                return "Group is full"
+            case .bundleError :
+                return "No CurrencyList Bundle Access"
             case .unknown:
                 return "Uknown error"
             }

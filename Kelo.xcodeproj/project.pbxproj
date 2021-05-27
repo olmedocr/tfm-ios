@@ -33,6 +33,13 @@
 		C4360A4126289DDB009852F3 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4360A3B26289DDB009852F3 /* MainTabViewController.swift */; };
 		C445B4F3262F3F8D008EADCA /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445B4F2262F3F8D008EADCA /* InitialViewController.swift */; };
 		C445B5C826316EA8008EADCA /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445B5C726316EA8008EADCA /* GroupTests.swift */; };
+		C45F1B18265E698200538956 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B17265E698200538956 /* PointsTableViewCell.swift */; };
+		C45F1B1A265E699D00538956 /* RewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B19265E699D00538956 /* RewardTableViewCell.swift */; };
+		C45F1B1C265E69B600538956 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1B265E69B600538956 /* SettingsTableViewCell.swift */; };
+		C45F1B1F265E87C600538956 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1E265E87C600538956 /* TableViewDataSource.swift */; };
+		C45F1B2A265EA78E00538956 /* SectionedTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */; };
+		C45F1B2C265FA02100538956 /* DatabaseManager+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */; };
+		C45F1B2F265FEA5E00538956 /* SwipeableTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = C45F1B2E265FEA5E00538956 /* SwipeableTabBarController */; };
 		C470CCB826413CDE0074FCE1 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C470CCB726413CDE0074FCE1 /* UserTests.swift */; };
 		C470CCBF26413CF70074FCE1 /* UserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4222DD926283E8100D31296 /* UserSteps.swift */; };
 		C470CCC026413CF90074FCE1 /* GroupSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43609FC26286138009852F3 /* GroupSteps.swift */; };
@@ -61,6 +68,7 @@
 		C49040A02649939F0058E636 /* ShareGroupCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C490409F2649939F0058E636 /* ShareGroupCodeViewController.swift */; };
 		C49040A22649977C0058E636 /* SelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49040A12649977C0058E636 /* SelectableLabel.swift */; };
 		C49040B7264A7F110058E636 /* AssignChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49040B6264A7F110058E636 /* AssignChoreViewController.swift */; };
+		C49A605E265E636000298A6C /* RewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A605D265E636000298A6C /* RewardViewController.swift */; };
 		C4A3396726567B9C00D29D0C /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3396626567B9C00D29D0C /* Validations.swift */; };
 		C4A9B3DE260E419500D1E770 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9B3DD260E419500D1E770 /* Constants.swift */; };
 		C4A9B3EF2611D81600D1E770 /* UIVIewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9B3EE2611D81600D1E770 /* UIVIewController+Extensions.swift */; };
@@ -135,6 +143,12 @@
 		C445B5C526316EA8008EADCA /* KeloIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeloIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C445B5C726316EA8008EADCA /* GroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
 		C445B5C926316EA8008EADCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C45F1B17265E698200538956 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
+		C45F1B19265E699D00538956 /* RewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableViewCell.swift; sourceTree = "<group>"; };
+		C45F1B1B265E69B600538956 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		C45F1B1E265E87C600538956 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedTableViewDataSource.swift; sourceTree = "<group>"; };
+		C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseManager+Currencies.swift"; sourceTree = "<group>"; };
 		C470CCB526413CDE0074FCE1 /* KeloUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeloUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C470CCB726413CDE0074FCE1 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		C470CCB926413CDE0074FCE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -151,6 +165,7 @@
 		C490409F2649939F0058E636 /* ShareGroupCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareGroupCodeViewController.swift; sourceTree = "<group>"; };
 		C49040A12649977C0058E636 /* SelectableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableLabel.swift; sourceTree = "<group>"; };
 		C49040B6264A7F110058E636 /* AssignChoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignChoreViewController.swift; sourceTree = "<group>"; };
+		C49A605D265E636000298A6C /* RewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewController.swift; sourceTree = "<group>"; };
 		C4A3396626567B9C00D29D0C /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		C4A9B3DD260E419500D1E770 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C4A9B3EE2611D81600D1E770 /* UIVIewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -179,6 +194,7 @@
 				C47EE9702657C21300A8F525 /* MarqueeLabel in Frameworks */,
 				C47EE96E2657C21300A8F525 /* FittedSheets in Frameworks */,
 				C47EE96A2657C21300A8F525 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				C45F1B2F265FEA5E00538956 /* SwipeableTabBarController in Frameworks */,
 				C47EE9682657C21300A8F525 /* SwiftyBeaver in Frameworks */,
 				C47EE9692657C21300A8F525 /* FirebaseFunctions in Frameworks */,
 				C47EE96F2657C21300A8F525 /* LetterAvatarKit in Frameworks */,
@@ -218,6 +234,7 @@
 				C470CCCC2642E3CA0074FCE1 /* DatabaseManager+Groups.swift */,
 				C470CCCA2642E38E0074FCE1 /* DatabaseManager+Users.swift */,
 				C470CCC82642E37B0074FCE1 /* DatabaseManager+Chores.swift */,
+				C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -270,6 +287,7 @@
 			children = (
 				C42F5E2E2609F3DB00818229 /* AppDelegate.swift */,
 				C42F5E302609F3DB00818229 /* SceneDelegate.swift */,
+				C45F1B1D265E878100538956 /* Tables */,
 				C4360A1B26289DAB009852F3 /* Models */,
 				C4360A2A26289DC7009852F3 /* Views */,
 				C4360A3426289DDB009852F3 /* Controllers */,
@@ -321,6 +339,9 @@
 				C4360A2C26289DC7009852F3 /* CurrencyTableViewCell.swift */,
 				C42A80C5263871C000D9468F /* ChoreTableViewCell.swift */,
 				C4B7514F2643FFD9002888FC /* UserTableViewCell.swift */,
+				C45F1B1B265E69B600538956 /* SettingsTableViewCell.swift */,
+				C45F1B17265E698200538956 /* PointsTableViewCell.swift */,
+				C45F1B19265E699D00538956 /* RewardTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -328,6 +349,7 @@
 		C4360A3426289DDB009852F3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C4360A3A26289DDB009852F3 /* CurrencyTableViewController.swift */,
 				C4360A3526289DDB009852F3 /* Onboarding */,
 				C4B7514A2642FBAA002888FC /* Main */,
 			);
@@ -391,6 +413,15 @@
 			path = KeloIntegrationTests;
 			sourceTree = "<group>";
 		};
+		C45F1B1D265E878100538956 /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				C45F1B1E265E87C600538956 /* TableViewDataSource.swift */,
+				C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */,
+			);
+			path = Tables;
+			sourceTree = "<group>";
+		};
 		C470CCB626413CDE0074FCE1 /* KeloUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +433,15 @@
 				C470CCB926413CDE0074FCE1 /* Info.plist */,
 			);
 			path = KeloUnitTests;
+			sourceTree = "<group>";
+		};
+		C49A605C265E632000298A6C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C4F1C2662638662500E2AD7E /* SettingsTableViewController.swift */,
+				C49A605D265E636000298A6C /* RewardViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		C4A9B3DB260E411B00D1E770 /* Resources */ = {
@@ -428,14 +468,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C4B751492642FB8D002888FC /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				C4F1C2662638662500E2AD7E /* SettingsTableViewController.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		C4B7514A2642FBAA002888FC /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,7 +475,7 @@
 				C4B7514D2643FF57002888FC /* UsersTableViewController.swift */,
 				C490409F2649939F0058E636 /* ShareGroupCodeViewController.swift */,
 				C4360A4826289E49009852F3 /* Chores */,
-				C4B751492642FB8D002888FC /* Settings */,
+				C49A605C265E632000298A6C /* Settings */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -452,7 +484,6 @@
 			isa = PBXGroup;
 			children = (
 				C4360A3826289DDB009852F3 /* CreateViewController.swift */,
-				C4360A3A26289DDB009852F3 /* CurrencyTableViewController.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -502,6 +533,7 @@
 				C41F3B86261E038600121956 /* FittedSheets */,
 				C4B751542644386D002888FC /* LetterAvatarKit */,
 				C4D9D1BB264A96F800EF0732 /* MarqueeLabel */,
+				C45F1B2E265FEA5E00538956 /* SwipeableTabBarController */,
 			);
 			productName = Kelo;
 			productReference = C42F5E2B2609F3DB00818229 /* Kelo.app */;
@@ -608,6 +640,7 @@
 				C470CCC326413FF90074FCE1 /* XCRemoteSwiftPackageReference "XCTest-Gherkin" */,
 				C4B751532644386D002888FC /* XCRemoteSwiftPackageReference "LetterAvatarKit" */,
 				C4D9D1BA264A96F800EF0732 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
+				C45F1B2D265FEA5E00538956 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */,
 			);
 			productRefGroup = C42F5E2C2609F3DB00818229 /* Products */;
 			projectDirPath = "";
@@ -691,12 +724,15 @@
 				C4360A2326289DAC009852F3 /* User.swift in Sources */,
 				C4360A4126289DDB009852F3 /* MainTabViewController.swift in Sources */,
 				C4360A2226289DAC009852F3 /* Reward.swift in Sources */,
+				C45F1B1A265E699D00538956 /* RewardTableViewCell.swift in Sources */,
 				C4A9B3EF2611D81600D1E770 /* UIVIewController+Extensions.swift in Sources */,
 				C47D293C2611E5E600F824F6 /* NSRegularExpression+Extensions.swift in Sources */,
 				C49040B7264A7F110058E636 /* AssignChoreViewController.swift in Sources */,
 				C470CCC92642E37B0074FCE1 /* DatabaseManager+Chores.swift in Sources */,
 				C42F5E2F2609F3DB00818229 /* AppDelegate.swift in Sources */,
+				C45F1B2C265FA02100538956 /* DatabaseManager+Currencies.swift in Sources */,
 				C4360A3D26289DDB009852F3 /* JoinViewController.swift in Sources */,
+				C49A605E265E636000298A6C /* RewardViewController.swift in Sources */,
 				C4360A2526289DAC009852F3 /* Chore.swift in Sources */,
 				C42A80C6263871C000D9468F /* ChoreTableViewCell.swift in Sources */,
 				C41F3841261B5C7900121956 /* DatabaseManager.swift in Sources */,
@@ -705,6 +741,7 @@
 				C4F1C2672638662500E2AD7E /* SettingsTableViewController.swift in Sources */,
 				C490409E26494B2A0058E636 /* UIImage+Extensions.swift in Sources */,
 				C4360A3E26289DDB009852F3 /* CreateViewController.swift in Sources */,
+				C45F1B2A265EA78E00538956 /* SectionedTableViewDataSource.swift in Sources */,
 				C4360A2126289DAC009852F3 /* Currency.swift in Sources */,
 				C445B4F3262F3F8D008EADCA /* InitialViewController.swift in Sources */,
 				C470CCCB2642E38E0074FCE1 /* DatabaseManager+Users.swift in Sources */,
@@ -716,11 +753,14 @@
 				C4360A2426289DAC009852F3 /* Group.swift in Sources */,
 				C4E8CE76264BBF8C004A9F04 /* UserDefaults+Extensions.swift in Sources */,
 				C4360A4026289DDB009852F3 /* CurrencyTableViewController.swift in Sources */,
+				C45F1B1C265E69B600538956 /* SettingsTableViewCell.swift in Sources */,
 				C47D29412611E8E800F824F6 /* UIAlertController+Extension.swift in Sources */,
+				C45F1B1F265E87C600538956 /* TableViewDataSource.swift in Sources */,
 				C42F5E312609F3DB00818229 /* SceneDelegate.swift in Sources */,
 				C4360A2F26289DC7009852F3 /* RoundedButton.swift in Sources */,
 				C49040A22649977C0058E636 /* SelectableLabel.swift in Sources */,
 				C4F1C2652638608900E2AD7E /* ChoresTableViewController.swift in Sources */,
+				C45F1B18265E698200538956 /* PointsTableViewCell.swift in Sources */,
 				C4A9B3DE260E419500D1E770 /* Constants.swift in Sources */,
 				C470CCCD2642E3CA0074FCE1 /* DatabaseManager+Groups.swift in Sources */,
 				C4360A2E26289DC7009852F3 /* CurrencyTableViewCell.swift in Sources */,
@@ -1156,6 +1196,14 @@
 				minimumVersion = 1.9.3;
 			};
 		};
+		C45F1B2D265FEA5E00538956 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:marcosgriselli/SwipeableTabBarController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.4.1;
+			};
+		};
 		C470CCC326413FF90074FCE1 /* XCRemoteSwiftPackageReference "XCTest-Gherkin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/net-a-porter-mobile/XCTest-Gherkin.git";
@@ -1200,6 +1248,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C42F614E260A161C00818229 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
 			productName = SwiftyBeaver;
+		};
+		C45F1B2E265FEA5E00538956 /* SwipeableTabBarController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C45F1B2D265FEA5E00538956 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */;
+			productName = SwipeableTabBarController;
 		};
 		C470CCC426413FF90074FCE1 /* XCTest_Gherkin */ = {
 			isa = XCSwiftPackageProductDependency;

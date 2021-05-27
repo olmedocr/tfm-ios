@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import LetterAvatarKit
 
 protocol UsersTableViewDelegate: AnyObject {
     func didSelectUser(user: User)
@@ -16,7 +15,7 @@ class UsersTableViewController: UITableViewController {
 
     // MARK: Properties
     weak var delegate: UsersTableViewDelegate?
-    var users: [User]?
+    var dataSource: TableViewDataSource<User>?
 
     // MARK: View lifecycle
     override func viewDidLoad() {
@@ -28,7 +27,8 @@ class UsersTableViewController: UITableViewController {
                 case .failure(let err):
                     log.error(err.localizedDescription)
                 case .success(let users):
-                    self.users = users
+                    self.dataSource = .make(for: users)
+                    self.tableView.dataSource = self.dataSource
                     self.tableView.reloadData()
                 }
             }
@@ -41,48 +41,8 @@ class UsersTableViewController: UITableViewController {
         sheetViewController?.handleScrollView(tableView)
     }
 
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let users = users else {
-            log.warning("Cannot get number of rows, users list is nil")
-            return 0
-        }
-        return users.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userTableViewCell", for: indexPath)
-
-        if let cell = cell as? UserTableViewCell {
-            let circleAvatarImage = LetterAvatarMaker()
-                .setCircle(true)
-                .setUsername(users![indexPath.row].name)
-                .setBorderWidth(1.0)
-                .useSingleLetter(true)
-                .build()
-
-            cell.userImage.image = circleAvatarImage
-
-            let user = users![indexPath.row]
-
-            if user.id == DatabaseManager.shared.userId {
-                cell.userNameLabel.text = user.name + " (You)"
-            } else {
-                cell.userNameLabel.text = user.name
-            }
-
-        }
-
-        return cell
-    }
-
-    // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedUser = users?[indexPath.row] {
+        if let selectedUser = dataSource?.models[indexPath.row] {
             delegate?.didSelectUser(user: selectedUser)
             dismiss(animated: true, completion: nil)
         } else {
