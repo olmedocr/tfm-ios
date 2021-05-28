@@ -72,6 +72,12 @@ class SettingsTableViewController: UITableViewController {
             return false
         }
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // TODO: delete user from group
+        }
+    }
 
     // MARK: - Internal
     @objc private func fetchData() {

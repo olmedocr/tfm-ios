@@ -473,30 +473,30 @@
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-EF-ghY" customClass="ChoreTableViewCell" customModule="Kelo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24" width="375" height="87"/>
+                                <rect key="frame" x="0.0" y="24" width="375" height="83"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yyu-EF-ghY" id="js6-xD-d5b">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.666664123535156"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Vcq-Ld-Rql">
-                                            <rect key="frame" x="16" y="15.999999999999996" width="342" height="54.666666666666657"/>
+                                            <rect key="frame" x="16" y="16" width="342" height="51"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="CNA-ou-mHl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="54.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="51"/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2j1-05-FGS">
-                                                    <rect key="frame" x="65.999999999999986" y="0.0" width="198.66666666666663" height="54.666666666666664"/>
+                                                    <rect key="frame" x="79.999999999999986" y="0.0" width="184.66666666666663" height="51"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Lorem ipsum dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyb-5K-KnO" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                                            <rect key="frame" x="0.0" y="0.0" width="198.66666666666666" height="26"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="184.66666666666666" height="24.333333333333332"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="choreName"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pc0-IC-35y">
-                                                            <rect key="frame" x="0.0" y="34" width="198.66666666666666" height="20.666666666666671"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Not assigned" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pc0-IC-35y">
+                                                            <rect key="frame" x="0.0" y="32.333333333333336" width="184.66666666666666" height="18.666666666666664"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -504,7 +504,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1/1/1970" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="257-5I-Y00">
-                                                    <rect key="frame" x="280.66666666666669" y="0.0" width="61.333333333333314" height="54.666666666666664"/>
+                                                    <rect key="frame" x="280.66666666666669" y="0.0" width="61.333333333333314" height="51"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -512,7 +512,7 @@
                                             </subviews>
                                         </stackView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kqO-U4-Ht8">
-                                            <rect key="frame" x="366" y="8" width="8" height="70.666666666666671"/>
+                                            <rect key="frame" x="366" y="8" width="8" height="67"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="8" id="6YK-aA-7XN"/>
                                             </constraints>
