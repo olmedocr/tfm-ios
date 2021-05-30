@@ -63,7 +63,9 @@ extension DatabaseManager {
         let groupsReference: CollectionReference = database.collection(Constants.groupsCollectionKey)
         var users: [User] = []
 
-        groupsReference.document(groupId!).collection(Constants.usersCollectionKey)
+        groupsReference.document(groupId!)
+            .collection(Constants.usersCollectionKey)
+            .order(by: User.CodingKeys.name.rawValue)
             .getDocuments { (usersSnapshot, err) in
                 if let err = err {
                     log.error(err.localizedDescription)
@@ -250,5 +252,87 @@ extension DatabaseManager {
                 result(.failure(err))
             }
         }
+    }
+
+    func setAdminRandomly(result: @escaping (Result<Void, Error>) -> Void) {
+        let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
+        let usersReference: CollectionReference = groupReference.collection(Constants.usersCollectionKey)
+
+        usersReference.getDocuments { (usersSnapshot, err) in
+            if let err = err {
+                log.error(err.localizedDescription)
+                result(.failure(err))
+            }
+            let numberOfUsers = usersSnapshot?.documents.count
+            let randomIndex = Int.random(in: 0...numberOfUsers! - 1)
+
+            do {
+                let userDocument = usersSnapshot?.documents[randomIndex]
+                if var user = try userDocument?.data(as: User.self) {
+                    log.info("Retrieved random user")
+                    user.isAdmin = true
+
+                    self.updateUser(user: user) { updateResult in
+                        switch updateResult {
+                        case .failure(let err):
+                            log.error(err.localizedDescription)
+                            result(.failure(err))
+                        case .success(let user):
+                            result(.success(user))
+                        }
+                    }
+                }
+            } catch let err {
+                log.error(err.localizedDescription)
+                result(.failure(err))
+            }
+        }
+    }
+    
+    // MARK: - Listeners
+    func subscribeToUserChanges(user: User, result: @escaping (Result<Void, Error>) -> Void) {
+        let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
+        let userReference: DocumentReference = groupReference.collection(Constants.choresCollectionKey).document(user.id!)
+        
+        let listener = userReference.addSnapshotListener { (choresSnapshot, err) in
+            guard let choresSnapshot = choresSnapshot else {
+                if let err = err {
+                    log.error(err.localizedDescription)
+                    result(.failure(err))
+                } else {
+                    log.error("Unknown error")
+                    result(.failure(CustomError.unknown))
+                }
+                
+                return
+            }
+            
+            choresSnapshot.documentChanges.forEach { diff in
+                do {
+                    let chore = try diff.document.data(as: Chore.self)
+                    
+                    if diff.type == .added {
+                        log.info("New chore: \(chore?.id ?? "nil")")
+                        self.delegate?.didAddChore(chore: chore!)
+                    }
+                    if diff.type == .modified {
+                        log.info("Modified chore: \(chore?.id ?? "nil")")
+                        self.delegate?.didModifyChore(chore: chore!)
+                    }
+                    if diff.type == .removed {
+                        log.info("Removed chore: \(chore?.id ?? "nil")")
+                        self.delegate?.didDeleteChore(chore: chore!)
+                    }
+                    
+                } catch let err {
+                    log.error(err.localizedDescription)
+                    result(.failure(err))
+                }
+            }
+        }
+        
+        log.info("Correctly subscribed to chore list")
+        listeners.append(listener)
+        result(.success(()))
     }
 }
