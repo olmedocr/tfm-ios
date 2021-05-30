@@ -13,9 +13,17 @@ class SettingsTableViewController: UITableViewController {
     // MARK: Properties
     let sectionTitles = ["Your points", "Roommates", "Rewards", "Currency", "Danger zone"]
     var dataSources: SectionedTableViewDataSource?
-    var group: Group?
-    var user: User?
     var users: [User]?
+    var group: Group?
+    var user: User? {
+        didSet {
+            if let user = user, user.isAdmin {
+                navigationItem.leftBarButtonItem = self.editButtonItem
+            } else {
+                log.warning("Error while settings user value")
+            }
+        }
+    }
 
     // MARK: @IBActions
     @IBAction func didTapShareButton(_ sender: Any) {
@@ -25,9 +33,6 @@ class SettingsTableViewController: UITableViewController {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // TODO: Allow only edition if admin (?) 
-        navigationItem.rightBarButtonItem = self.editButtonItem
 
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -72,10 +77,31 @@ class SettingsTableViewController: UITableViewController {
             return false
         }
     }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+
         if editingStyle == .delete {
-            // TODO: delete user from group
+            guard let userId = users?[indexPath.row].id else {
+                log.warning("Failed to unwrap id of the user to be deleted")
+                return
+            }
+
+            DatabaseManager.shared.deleteUser(userId: userId) { (result) in
+                switch result {
+                case .failure(let err):
+                    log.error(err.localizedDescription)
+
+                    let alert = self.setAlert(title: "Error!",
+                                              message: err.localizedDescription,
+                                              actionTitle: "OK")
+
+                    self.present(alert, animated: true)
+                case .success:
+                    log.info("Deleted user from group")
+                }
+            }
         }
     }
 
@@ -150,7 +176,8 @@ class SettingsTableViewController: UITableViewController {
                         cell.delegate = self
                     }
                 }],
-            sectionTitles: self.sectionTitles)
+            sectionTitles: self.sectionTitles,
+            allowEditInSections: [1])
 
         self.tableView.dataSource = self.dataSources
         self.tableView.reloadData()
@@ -264,7 +291,15 @@ extension SettingsTableViewController: SettingsCellDelegate {
                     log.error(err.localizedDescription)
                 case .success:
                     log.info("Leaving group")
-                    self.restartApp()
+                    DatabaseManager.shared.setAdminRandomly { adminResult in
+                        switch adminResult {
+                        case .failure(let err):
+                            log.error(err.localizedDescription)
+                        case .success:
+                            log.info("Assigned random admin correctly")
+                            self.restartApp()
+                        }
+                    }
                 }
             }
         }

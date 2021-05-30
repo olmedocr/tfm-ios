@@ -83,6 +83,7 @@ class CreateViewController: UIViewController {
         if let viewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "FinalViewController") as? FinalViewController {
             viewController.group = group
+            viewController.isAdmin = true
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

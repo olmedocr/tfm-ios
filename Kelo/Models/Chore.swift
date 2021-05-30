@@ -16,6 +16,7 @@ struct Chore: Identifiable, Codable {
     var assignee: String = ""
     var expiration: Date = Date()
     var points: Int = Importance.low.rawValue
+    var creator: String = ""
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,6 +25,7 @@ struct Chore: Identifiable, Codable {
         case assignee
         case expiration
         case points
+        case creator
     }
 
     enum Importance: Int {
@@ -31,4 +33,11 @@ struct Chore: Identifiable, Codable {
         case medium = 20
         case high = 30
     }
+}
+
+extension Chore: Comparable {
+    static func < (lhs: Chore, rhs: Chore) -> Bool {
+        return lhs.name < rhs.name
+    }
+
 }

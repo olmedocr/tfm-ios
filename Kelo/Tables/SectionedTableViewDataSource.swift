@@ -10,10 +10,12 @@ import UIKit
 class SectionedTableViewDataSource: NSObject {
     private let dataSources: [UITableViewDataSource]
     private let sectionTitles: [String]
+    private let allowEditInSections: [Int]
 
-    init(dataSources: [UITableViewDataSource], sectionTitles: [String]) {
+    init(dataSources: [UITableViewDataSource], sectionTitles: [String], allowEditInSections: [Int]) {
         self.dataSources = dataSources
         self.sectionTitles = sectionTitles
+        self.allowEditInSections = allowEditInSections
     }
 }
 
@@ -36,7 +38,7 @@ extension SectionedTableViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 1 {
+        if allowEditInSections.firstIndex(of: indexPath.section) != nil {
             return true
         } else {
             return false

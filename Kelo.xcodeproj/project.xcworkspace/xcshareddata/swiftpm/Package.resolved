@@ -128,6 +128,15 @@
         }
       },
       {
+        "package": "SortedArray",
+        "repositoryURL": "https://github.com/ole/SortedArray.git",
+        "state": {
+          "branch": null,
+          "revision": "a521f750fccb0743ad082b7cb890a62e132c4fbf",
+          "version": "0.7.0"
+        }
+      },
+      {
         "package": "SwiftProtobuf",
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
@@ -143,15 +152,6 @@
           "branch": null,
           "revision": "2c513a2e8fbfbd6495afc4a05941d8e3fdba68e9",
           "version": "1.9.3"
-        }
-      },
-      {
-        "package": "SwipeableTabBarController",
-        "repositoryURL": "https://github.com/marcosgriselli/SwipeableTabBarController.git",
-        "state": {
-          "branch": null,
-          "revision": "5ca1e788056369eeb5cf0957ebe9df284c535793",
-          "version": "3.4.1"
         }
       },
       {

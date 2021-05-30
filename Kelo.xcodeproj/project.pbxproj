@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C40DF43C2660DF9900314F3F /* SwipeableTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = C40DF43B2660DF9900314F3F /* SwipeableTabBarController */; };
 		C41F37B9261B27B900121956 /* Currencies.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C41F3707261B27B900121956 /* Currencies.bundle */; };
 		C41F3841261B5C7900121956 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F3840261B5C7900121956 /* DatabaseManager.swift */; };
 		C41F3845261B720F00121956 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C41F3844261B720F00121956 /* GoogleService-Info.plist */; };
 		C41F385B261CB99A00121956 /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F385A261CB99A00121956 /* TextField+Extensions.swift */; };
 		C42A80C6263871C000D9468F /* ChoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A80C5263871C000D9468F /* ChoreTableViewCell.swift */; };
+		C42AA3EA2662A32800270FD2 /* OrderedTableViewDataSource+Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42AA3E92662A32800270FD2 /* OrderedTableViewDataSource+Chore.swift */; };
+		C42AA3EC2662A36800270FD2 /* TableViewDataSource+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42AA3EB2662A36800270FD2 /* TableViewDataSource+User.swift */; };
+		C42AA3EF2662A3A300270FD2 /* TableViewDataSource+Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42AA3EE2662A3A300270FD2 /* TableViewDataSource+Reward.swift */; };
+		C42AA3F12662A3BF00270FD2 /* TableViewDataSource+Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42AA3F02662A3BF00270FD2 /* TableViewDataSource+Currency.swift */; };
+		C42AA3F42662ABC100270FD2 /* SortedArray in Frameworks */ = {isa = PBXBuildFile; productRef = C42AA3F32662ABC100270FD2 /* SortedArray */; };
+		C42AA3F62662AE2D00270FD2 /* OrderedTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42AA3F52662AE2D00270FD2 /* OrderedTableViewDataSource.swift */; };
 		C42F5E2F2609F3DB00818229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42F5E2E2609F3DB00818229 /* AppDelegate.swift */; };
 		C42F5E312609F3DB00818229 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42F5E302609F3DB00818229 /* SceneDelegate.swift */; };
 		C42F5E362609F3DB00818229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42F5E342609F3DB00818229 /* Main.storyboard */; };
@@ -116,6 +121,11 @@
 		C4222DC926283E3D00D31296 /* User.feature */ = {isa = PBXFileReference; lastKnownFileType = text; path = User.feature; sourceTree = "<group>"; };
 		C4222DD926283E8100D31296 /* UserSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSteps.swift; sourceTree = "<group>"; };
 		C42A80C5263871C000D9468F /* ChoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreTableViewCell.swift; sourceTree = "<group>"; };
+		C42AA3E92662A32800270FD2 /* OrderedTableViewDataSource+Chore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedTableViewDataSource+Chore.swift"; sourceTree = "<group>"; };
+		C42AA3EB2662A36800270FD2 /* TableViewDataSource+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewDataSource+User.swift"; sourceTree = "<group>"; };
+		C42AA3EE2662A3A300270FD2 /* TableViewDataSource+Reward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewDataSource+Reward.swift"; sourceTree = "<group>"; };
+		C42AA3F02662A3BF00270FD2 /* TableViewDataSource+Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewDataSource+Currency.swift"; sourceTree = "<group>"; };
+		C42AA3F52662AE2D00270FD2 /* OrderedTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedTableViewDataSource.swift; sourceTree = "<group>"; };
 		C42F5E2B2609F3DB00818229 /* Kelo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kelo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42F5E2E2609F3DB00818229 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C42F5E302609F3DB00818229 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,7 +204,7 @@
 				C47EE9702657C21300A8F525 /* MarqueeLabel in Frameworks */,
 				C47EE96E2657C21300A8F525 /* FittedSheets in Frameworks */,
 				C47EE96A2657C21300A8F525 /* FirebaseFirestoreSwift-Beta in Frameworks */,
-				C40DF43C2660DF9900314F3F /* SwipeableTabBarController in Frameworks */,
+				C42AA3F42662ABC100270FD2 /* SortedArray in Frameworks */,
 				C47EE9682657C21300A8F525 /* SwiftyBeaver in Frameworks */,
 				C47EE9692657C21300A8F525 /* FirebaseFunctions in Frameworks */,
 				C47EE96F2657C21300A8F525 /* LetterAvatarKit in Frameworks */,
@@ -227,7 +237,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C41F383F261B5BF600121956 /* Firebase */ = {
+		C41F383F261B5BF600121956 /* Database */ = {
 			isa = PBXGroup;
 			children = (
 				C41F3840261B5C7900121956 /* DatabaseManager.swift */,
@@ -236,7 +246,7 @@
 				C470CCC82642E37B0074FCE1 /* DatabaseManager+Chores.swift */,
 				C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */,
 			);
-			path = Firebase;
+			path = Database;
 			sourceTree = "<group>";
 		};
 		C4222DC826283E2200D31296 /* Features */ = {
@@ -292,7 +302,7 @@
 				C4360A2A26289DC7009852F3 /* Views */,
 				C4360A3426289DDB009852F3 /* Controllers */,
 				C4360A4626289E1C009852F3 /* Transitions */,
-				C41F383F261B5BF600121956 /* Firebase */,
+				C41F383F261B5BF600121956 /* Database */,
 				C4360A4726289E30009852F3 /* Utils */,
 				C4A9B3ED2611D7D700D1E770 /* Extensions */,
 				C4A9B3DB260E411B00D1E770 /* Resources */,
@@ -417,7 +427,12 @@
 			isa = PBXGroup;
 			children = (
 				C45F1B1E265E87C600538956 /* TableViewDataSource.swift */,
+				C42AA3EB2662A36800270FD2 /* TableViewDataSource+User.swift */,
+				C42AA3EE2662A3A300270FD2 /* TableViewDataSource+Reward.swift */,
+				C42AA3F02662A3BF00270FD2 /* TableViewDataSource+Currency.swift */,
 				C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */,
+				C42AA3F52662AE2D00270FD2 /* OrderedTableViewDataSource.swift */,
+				C42AA3E92662A32800270FD2 /* OrderedTableViewDataSource+Chore.swift */,
 			);
 			path = Tables;
 			sourceTree = "<group>";
@@ -533,7 +548,7 @@
 				C41F3B86261E038600121956 /* FittedSheets */,
 				C4B751542644386D002888FC /* LetterAvatarKit */,
 				C4D9D1BB264A96F800EF0732 /* MarqueeLabel */,
-				C40DF43B2660DF9900314F3F /* SwipeableTabBarController */,
+				C42AA3F32662ABC100270FD2 /* SortedArray */,
 			);
 			productName = Kelo;
 			productReference = C42F5E2B2609F3DB00818229 /* Kelo.app */;
@@ -640,7 +655,7 @@
 				C470CCC326413FF90074FCE1 /* XCRemoteSwiftPackageReference "XCTest-Gherkin" */,
 				C4B751532644386D002888FC /* XCRemoteSwiftPackageReference "LetterAvatarKit" */,
 				C4D9D1BA264A96F800EF0732 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
-				C40DF43A2660DF9900314F3F /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */,
+				C42AA3F22662ABC100270FD2 /* XCRemoteSwiftPackageReference "SortedArray" */,
 			);
 			productRefGroup = C42F5E2C2609F3DB00818229 /* Products */;
 			projectDirPath = "";
@@ -721,6 +736,7 @@
 			files = (
 				C4360A3C26289DDB009852F3 /* OnboardingNavigationController.swift in Sources */,
 				C4B751482642FA4E002888FC /* DetailChoreViewController.swift in Sources */,
+				C42AA3EF2662A3A300270FD2 /* TableViewDataSource+Reward.swift in Sources */,
 				C4360A2326289DAC009852F3 /* User.swift in Sources */,
 				C4360A4126289DDB009852F3 /* MainTabViewController.swift in Sources */,
 				C4360A2226289DAC009852F3 /* Reward.swift in Sources */,
@@ -729,8 +745,10 @@
 				C47D293C2611E5E600F824F6 /* NSRegularExpression+Extensions.swift in Sources */,
 				C49040B7264A7F110058E636 /* AssignChoreViewController.swift in Sources */,
 				C470CCC92642E37B0074FCE1 /* DatabaseManager+Chores.swift in Sources */,
+				C42AA3EA2662A32800270FD2 /* OrderedTableViewDataSource+Chore.swift in Sources */,
 				C42F5E2F2609F3DB00818229 /* AppDelegate.swift in Sources */,
 				C45F1B2C265FA02100538956 /* DatabaseManager+Currencies.swift in Sources */,
+				C42AA3F62662AE2D00270FD2 /* OrderedTableViewDataSource.swift in Sources */,
 				C4360A3D26289DDB009852F3 /* JoinViewController.swift in Sources */,
 				C49A605E265E636000298A6C /* RewardViewController.swift in Sources */,
 				C4360A2526289DAC009852F3 /* Chore.swift in Sources */,
@@ -741,9 +759,11 @@
 				C4F1C2672638662500E2AD7E /* SettingsTableViewController.swift in Sources */,
 				C490409E26494B2A0058E636 /* UIImage+Extensions.swift in Sources */,
 				C4360A3E26289DDB009852F3 /* CreateViewController.swift in Sources */,
+				C42AA3EC2662A36800270FD2 /* TableViewDataSource+User.swift in Sources */,
 				C45F1B2A265EA78E00538956 /* SectionedTableViewDataSource.swift in Sources */,
 				C4360A2126289DAC009852F3 /* Currency.swift in Sources */,
 				C445B4F3262F3F8D008EADCA /* InitialViewController.swift in Sources */,
+				C42AA3F12662A3BF00270FD2 /* TableViewDataSource+Currency.swift in Sources */,
 				C470CCCB2642E38E0074FCE1 /* DatabaseManager+Users.swift in Sources */,
 				C4B7514E2643FF57002888FC /* UsersTableViewController.swift in Sources */,
 				C4B751502643FFD9002888FC /* UserTableViewCell.swift in Sources */,
@@ -1180,20 +1200,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C40DF43A2660DF9900314F3F /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/marcosgriselli/SwipeableTabBarController.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.4.1;
-			};
-		};
 		C41F3B85261E038600121956 /* XCRemoteSwiftPackageReference "FittedSheets" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gordontucker/FittedSheets.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.4.0;
+			};
+		};
+		C42AA3F22662ABC100270FD2 /* XCRemoteSwiftPackageReference "SortedArray" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ole/SortedArray.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
 			};
 		};
 		C42F614E260A161C00818229 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
@@ -1239,15 +1259,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C40DF43B2660DF9900314F3F /* SwipeableTabBarController */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C40DF43A2660DF9900314F3F /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */;
-			productName = SwipeableTabBarController;
-		};
 		C41F3B86261E038600121956 /* FittedSheets */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C41F3B85261E038600121956 /* XCRemoteSwiftPackageReference "FittedSheets" */;
 			productName = FittedSheets;
+		};
+		C42AA3F32662ABC100270FD2 /* SortedArray */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C42AA3F22662ABC100270FD2 /* XCRemoteSwiftPackageReference "SortedArray" */;
+			productName = SortedArray;
 		};
 		C42F614F260A161C00818229 /* SwiftyBeaver */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -12,6 +12,7 @@ class FinalViewController: UIViewController {
     // MARK: Properties
     let defaults = UserDefaults.standard
     var group: Group?
+    var isAdmin: Bool?
 
     // MARK: IBOutlets
     @IBOutlet weak var userNameTextField: UITextField!
@@ -22,7 +23,7 @@ class FinalViewController: UIViewController {
 
     // MARK: IBActions
     @IBAction func didTapContinue(_ sender: Any) {
-        let user = User(name: userNameTextField.text!)
+        let user = User(name: userNameTextField.text!, isAdmin: isAdmin!)
 
         switch Validations.userName(userNameTextField.text!) {
         case .failure(let err):

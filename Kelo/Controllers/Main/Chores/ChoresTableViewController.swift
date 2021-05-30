@@ -11,7 +11,13 @@ import FittedSheets
 class ChoresTableViewController: UITableViewController {
 
     // MARK: Properties
-    var dataSource: TableViewDataSource<Chore>?
+    var currentUser: User!
+    var dataSource: OrderedTableViewDataSource<Chore>?
+
+    // MARK: IBActions
+    @IBAction func didTapAddButton(_ sender: Any) {
+        self.presentDetailChoreViewController()
+    }
 
     // MARK: View lifecycle
     override func viewDidLoad() {
@@ -28,22 +34,39 @@ class ChoresTableViewController: UITableViewController {
 
                 self.dataSource = .make(for: [Chore].init())
                 self.tableView.dataSource = self.dataSource
+
+                DatabaseManager.shared.retrieveUser(userId: DatabaseManager.shared.userId!) { (result) in
+                    switch result {
+                    case .failure(let err):
+                        log.error(err.localizedDescription)
+                    case .success(let user):
+                        self.currentUser = user
+                    }
+                }
             }
         }
     }
 
-    // MARK: IBActions
-    @IBAction func didTapAddButton(_ sender: Any) {
-        self.presentDetailChoreViewController()
-    }
-
-    @IBAction func didTapShareButton(_ sender: Any) {
-        self.presentShareGroupCodeViewController()
-    }
-
     // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
+        if !tableView.isEditing {
+            if currentUser.id == dataSource?.models[indexPath.row].creator || currentUser.isAdmin {
+                self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
+            } else {
+                log.info("Tried to edit a chore without being the creator")
+
+                tableView.deselectRow(at: indexPath, animated: true)
+
+                let alert = self.setAlert(title: "Error!",
+                                          message: """
+                                        Only the creator of the chore and the group admin are able to
+                                        edit this element
+                                        """,
+                                          actionTitle: "OK")
+
+                self.present(alert, animated: true)
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView,
@@ -78,50 +101,58 @@ class ChoresTableViewController: UITableViewController {
 
     // MARK: - Internal
     private func handleMarkAsComplete(chore: Chore, onComplete completion: @escaping (Bool) -> Void) {
-        DatabaseManager.shared.completeChore(chore: chore) { (result) in
-            switch result {
-            case .failure(let err):
-                log.error(err.localizedDescription)
-                completion(false)
-            case .success:
-                log.info("Correctly completed chore with id \(chore.id ?? "null")")
-                completion(true)
+        if currentUser.id == chore.assignee || currentUser.id == chore.creator || currentUser.isAdmin {
+            DatabaseManager.shared.completeChore(chore: chore) { (result) in
+                switch result {
+                case .failure(let err):
+                    log.error(err.localizedDescription)
+                    completion(false)
+                case .success:
+                    log.info("Correctly completed chore with id \(chore.id ?? "null")")
+                    completion(true)
+                }
             }
+        } else {
+            log.info("Tried to complete the chore without being the assigned user or the creator")
+
+            let alert = self.setAlert(title: "Error!",
+                                      message: """
+                                        Only the group admin, the creator of the chore or the user assigned to it
+                                        can complete this element
+                                        """,
+                                      actionTitle: "OK")
+
+            self.present(alert, animated: true)
         }
     }
 
     private func handleMarkAsDelete(chore: Chore, onComplete completion: @escaping (Bool) -> Void) {
-        DatabaseManager.shared.deleteChore(choreId: chore.id!) { (result) in
-            switch result {
-            case .failure(let err):
-                log.error(err.localizedDescription)
-                completion(false)
-            case .success:
-                log.info("Correctly deleted chore with id \(chore.id ?? "null")")
-                completion(true)
+        if currentUser.id == chore.creator || currentUser.isAdmin {
+            DatabaseManager.shared.deleteChore(choreId: chore.id!) { (result) in
+                switch result {
+                case .failure(let err):
+                    log.error(err.localizedDescription)
+                    completion(false)
+                case .success:
+                    log.info("Correctly deleted chore with id \(chore.id ?? "null")")
+                    completion(true)
+                }
             }
+        } else {
+            log.info("Tried to remove the chore without being the creator")
+
+            let alert = self.setAlert(title: "Error!",
+                                      message: """
+                                        Only the creator of the chore or the group admin are able to
+                                        remove this element
+                                        """,
+                                      actionTitle: "OK")
+
+            self.present(alert, animated: true)
         }
     }
 
     // MARK: - Navigation
-    private func presentShareGroupCodeViewController() {
-        guard let controller = UIStoryboard(name: "Main", bundle: nil)
-                .instantiateViewController(withIdentifier: "ShareGroupCodeViewController")
-                as? ShareGroupCodeViewController
-        else {
-            log.error("Could not instantiate ShareGroupCodeViewController")
-            return
-        }
-
-        let options = SheetOptions(shrinkPresentingViewController: false)
-        let sheetController = SheetViewController(
-            controller: controller,
-            sizes: [.percent(0.25)],
-            options: options)
-
-        navigationController?.present(sheetController, animated: true, completion: nil)
-    }
-
     private func presentDetailChoreViewController(_ chore: Chore? = nil) {
         if let viewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "DetailChoreViewController") as? DetailChoreViewController {
@@ -144,7 +175,7 @@ class ChoresTableViewController: UITableViewController {
 // MARK: - Database delegate
 extension ChoresTableViewController: DatabaseManagerDelegate {
     func didAddChore(chore: Chore) {
-        dataSource?.models.append(chore)
+        dataSource?.models.insert(chore)
         log.info("Reloading table view")
         tableView.reloadData()
     }
@@ -153,7 +184,8 @@ extension ChoresTableViewController: DatabaseManagerDelegate {
         if let index = dataSource?.models.firstIndex(where: { $0.id == chore.id }) {
             let indexPath = IndexPath(row: index, section: 0)
 
-            dataSource?.models[index] = chore
+            dataSource?.models.remove(at: index)
+            dataSource?.models.insert(chore)
             log.info("Reloading rows at \(indexPath)")
             tableView.reloadRows(at: [indexPath], with: .automatic)
         } else {

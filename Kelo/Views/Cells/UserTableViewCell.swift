@@ -12,6 +12,8 @@ class UserTableViewCell: UITableViewCell {
     // MARK: IBOutlets
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var adminLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

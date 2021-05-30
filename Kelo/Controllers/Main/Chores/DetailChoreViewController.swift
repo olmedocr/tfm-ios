@@ -53,7 +53,6 @@ class DetailChoreViewController: UIViewController {
             .setCircle(true)
             .setUsername(" ")
             .setBackgroundColors([UIColor.white])
-            .setBorderWidth(1.0)
             .build()
 
         choreImage.image = circleAvatarImage
@@ -120,7 +119,6 @@ class DetailChoreViewController: UIViewController {
             let circleAvatarImage = LetterAvatarMaker()
                 .setCircle(true)
                 .setUsername(chore.name)
-                .setBorderWidth(1.0)
                 .build()
 
             choreImage.image = circleAvatarImage
@@ -138,6 +136,7 @@ class DetailChoreViewController: UIViewController {
         let title = choreTextField.text!
         let icon = ""
         let assigneeId = selectedAssignee!.id!
+        let assignerId = DatabaseManager.shared.userId!
         let expiration = expirationDate.date
         var points: Int {
             var returnValue: Int?
@@ -160,7 +159,8 @@ class DetailChoreViewController: UIViewController {
                                 icon: icon,
                                 assignee: assigneeId,
                                 expiration: expiration,
-                                points: points)
+                                points: points,
+                                creator: assignerId)
 
         choreToSave.id = chore?.id
 
@@ -232,7 +232,7 @@ class DetailChoreViewController: UIViewController {
         let options = SheetOptions(shrinkPresentingViewController: false)
         let sheetController = SheetViewController(
             controller: controller,
-            sizes: [.percent(0.35), .percent(0.5), .fullscreen],
+            sizes: [.percent(0.5), .fullscreen],
             options: options)
 
         navigationController?.present(sheetController, animated: true, completion: nil)

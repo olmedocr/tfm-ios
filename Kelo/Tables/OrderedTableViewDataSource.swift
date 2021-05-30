@@ -1,16 +1,17 @@
 //
-//  TableViewDataSource.swift
+//  OrderedTableViewDataSource.swift
 //  Kelo
 //
-//  Created by Raul Olmedo on 26/5/21.
+//  Created by Raul Olmedo on 29/5/21.
 //
 
 import UIKit
+import SortedArray
 
-class TableViewDataSource<Model>: NSObject, UITableViewDataSource {
+class OrderedTableViewDataSource<Model: Comparable>: NSObject, UITableViewDataSource {
     typealias CellConfigurator = (Model, UITableViewCell) -> Void
 
-    var models: [Model]
+    var models: SortedArray<Model>
 
     private let reuseIdentifier: String
     private let cellConfigurator: CellConfigurator
@@ -18,7 +19,8 @@ class TableViewDataSource<Model>: NSObject, UITableViewDataSource {
     init(models: [Model],
          reuseIdentifier: String,
          cellConfigurator: @escaping CellConfigurator) {
-        self.models = models
+        let sortedModels = SortedArray(unsorted: models)
+        self.models = sortedModels
         self.reuseIdentifier = reuseIdentifier
         self.cellConfigurator = cellConfigurator
     }
