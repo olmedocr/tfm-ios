@@ -297,7 +297,6 @@
 			children = (
 				C42F5E2E2609F3DB00818229 /* AppDelegate.swift */,
 				C42F5E302609F3DB00818229 /* SceneDelegate.swift */,
-				C45F1B1D265E878100538956 /* Tables */,
 				C4360A1B26289DAB009852F3 /* Models */,
 				C4360A2A26289DC7009852F3 /* Views */,
 				C4360A3426289DDB009852F3 /* Controllers */,
@@ -329,6 +328,7 @@
 				C4360A1E26289DAB009852F3 /* User.swift */,
 				C4360A1F26289DAB009852F3 /* Group.swift */,
 				C4360A2026289DAB009852F3 /* Chore.swift */,
+				C45F1B1D265E878100538956 /* Tables */,
 			);
 			path = Models;
 			sourceTree = "<group>";
