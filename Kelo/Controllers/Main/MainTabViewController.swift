@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import SwipeableTabBarController
 
-class MainTabViewController: SwipeableTabBarController {
+class MainTabViewController: UITabBarController {
 
     // MARK: Properties
     let defaults = UserDefaults.standard
