@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FittedSheets
 
 class MainTabViewController: UITabBarController {
 
@@ -48,5 +49,43 @@ class MainTabViewController: UITabBarController {
             log.error("No userId found")
         }
 
+        DatabaseManager.shared.userDelegate = self
+        DatabaseManager.shared.subscribeToUserList { result in
+            switch result {
+            case .failure(let err):
+                log.error(err.localizedDescription)
+            case .success:
+                log.info("Subscribed to user changes")
+            }
+        }
+    }
+
+    // MARK: - Navigation
+    func presentShareGroupCodeViewController(context: UIViewController) {
+        guard let controller = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "ShareGroupCodeViewController")
+                as? ShareGroupCodeViewController
+        else {
+            log.error("Could not instantiate ShareGroupCodeViewController")
+            return
+        }
+
+        let options = SheetOptions(shrinkPresentingViewController: false)
+        let sheetController = SheetViewController(
+            controller: controller,
+            sizes: [.percent(0.25)],
+            options: options)
+
+        context.present(sheetController, animated: true, completion: nil)
+
+    }
+}
+
+extension MainTabViewController: DatabaseManagerUserDelegate {
+    func didDeleteUser(user: User) {
+        if user.id == DatabaseManager.shared.userId {
+            log.warning("This user was deleted remotely by the admin")
+            self.restartApp()
+        }
     }
 }

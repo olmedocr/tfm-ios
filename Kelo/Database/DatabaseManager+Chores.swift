@@ -191,15 +191,15 @@ extension DatabaseManager {
 
                     if diff.type == .added {
                         log.info("New chore: \(chore?.id ?? "nil")")
-                        self.delegate?.didAddChore(chore: chore!)
+                        self.choreDelegate?.didAddChore(chore: chore!)
                     }
                     if diff.type == .modified {
                         log.info("Modified chore: \(chore?.id ?? "nil")")
-                        self.delegate?.didModifyChore(chore: chore!)
+                        self.choreDelegate?.didModifyChore(chore: chore!)
                     }
                     if diff.type == .removed {
                         log.info("Removed chore: \(chore?.id ?? "nil")")
-                        self.delegate?.didDeleteChore(chore: chore!)
+                        self.choreDelegate?.didDeleteChore(chore: chore!)
                     }
 
                 } catch let err {

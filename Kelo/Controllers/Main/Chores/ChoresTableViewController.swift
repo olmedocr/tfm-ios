@@ -19,6 +19,12 @@ class ChoresTableViewController: UITableViewController {
         self.presentDetailChoreViewController()
     }
 
+    @IBAction func didTapShareButton(_ sender: Any) {
+        if let tabBarController = tabBarController as? MainTabViewController {
+            tabBarController.presentShareGroupCodeViewController(context: self)
+        }
+    }
+
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +36,7 @@ class ChoresTableViewController: UITableViewController {
             case .failure(let err):
                 log.error(err.localizedDescription)
             case .success:
-                DatabaseManager.shared.delegate = self
+                DatabaseManager.shared.choreDelegate = self
 
                 self.dataSource = .make(for: [Chore].init())
                 self.tableView.dataSource = self.dataSource
@@ -173,7 +179,7 @@ class ChoresTableViewController: UITableViewController {
 }
 
 // MARK: - Database delegate
-extension ChoresTableViewController: DatabaseManagerDelegate {
+extension ChoresTableViewController: DatabaseManagerChoreDelegate {
     func didAddChore(chore: Chore) {
         dataSource?.models.insert(chore)
         log.info("Reloading table view")

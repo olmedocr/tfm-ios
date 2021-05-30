@@ -323,7 +323,7 @@ class ChoreTests: XCTestCase {
 
 }
 
-extension ChoreTests: DatabaseManagerDelegate {
+extension ChoreTests: DatabaseManagerChoreDelegate {
     func didAddChore(chore: Chore) {
         isAddListenerTriggered = true
     }

@@ -288,14 +288,15 @@ extension DatabaseManager {
             }
         }
     }
-    
+
     // MARK: - Listeners
-    func subscribeToUserChanges(user: User, result: @escaping (Result<Void, Error>) -> Void) {
+    func subscribeToUserList(result: @escaping (Result<ListenerRegistration, Error>) -> Void) {
+
         let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
-        let userReference: DocumentReference = groupReference.collection(Constants.choresCollectionKey).document(user.id!)
-        
-        let listener = userReference.addSnapshotListener { (choresSnapshot, err) in
-            guard let choresSnapshot = choresSnapshot else {
+        let usersReference: CollectionReference = groupReference.collection(Constants.usersCollectionKey)
+
+        let listener = usersReference.addSnapshotListener { (usersSnapshot, err) in
+            guard let usersSnapshot = usersSnapshot else {
                 if let err = err {
                     log.error(err.localizedDescription)
                     result(.failure(err))
@@ -303,36 +304,36 @@ extension DatabaseManager {
                     log.error("Unknown error")
                     result(.failure(CustomError.unknown))
                 }
-                
+
                 return
             }
-            
-            choresSnapshot.documentChanges.forEach { diff in
+
+            usersSnapshot.documentChanges.forEach { diff in
                 do {
-                    let chore = try diff.document.data(as: Chore.self)
-                    
+                    let user = try diff.document.data(as: User.self)
+
                     if diff.type == .added {
-                        log.info("New chore: \(chore?.id ?? "nil")")
-                        self.delegate?.didAddChore(chore: chore!)
+                        log.info("New user: \(user?.id ?? "nil")")
+                        self.userDelegate?.didAddUser(user: user!)
                     }
                     if diff.type == .modified {
-                        log.info("Modified chore: \(chore?.id ?? "nil")")
-                        self.delegate?.didModifyChore(chore: chore!)
+                        log.info("Modified user: \(user?.id ?? "nil")")
+                        self.userDelegate?.didAddUser(user: user!)
                     }
                     if diff.type == .removed {
-                        log.info("Removed chore: \(chore?.id ?? "nil")")
-                        self.delegate?.didDeleteChore(chore: chore!)
+                        log.info("Removed user: \(user?.id ?? "nil")")
+                        self.userDelegate?.didDeleteUser(user: user!)
                     }
-                    
+
                 } catch let err {
                     log.error(err.localizedDescription)
                     result(.failure(err))
                 }
             }
         }
-        
-        log.info("Correctly subscribed to chore list")
+
+        log.info("Correctly subscribed to user list")
         listeners.append(listener)
-        result(.success(()))
+        result(.success(listener))
     }
 }

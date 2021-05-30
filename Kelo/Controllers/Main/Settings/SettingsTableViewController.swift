@@ -18,7 +18,7 @@ class SettingsTableViewController: UITableViewController {
     var user: User? {
         didSet {
             if let user = user, user.isAdmin {
-                navigationItem.leftBarButtonItem = self.editButtonItem
+                navigationItem.rightBarButtonItem = self.editButtonItem
             } else {
                 log.warning("Error while settings user value")
             }
@@ -27,7 +27,9 @@ class SettingsTableViewController: UITableViewController {
 
     // MARK: @IBActions
     @IBAction func didTapShareButton(_ sender: Any) {
-        self.presentShareGroupCodeViewController()
+        if let tabBarController = tabBarController as? MainTabViewController {
+            tabBarController.presentShareGroupCodeViewController(context: self)
+        }
     }
 
     // MARK: View lifecycle
@@ -185,24 +187,6 @@ class SettingsTableViewController: UITableViewController {
     }
 
     // MARK: - Navigation
-    private func presentShareGroupCodeViewController() {
-        guard let controller = UIStoryboard(name: "Main", bundle: nil)
-                .instantiateViewController(withIdentifier: "ShareGroupCodeViewController")
-                as? ShareGroupCodeViewController
-        else {
-            log.error("Could not instantiate ShareGroupCodeViewController")
-            return
-        }
-
-        let options = SheetOptions(shrinkPresentingViewController: false)
-        let sheetController = SheetViewController(
-            controller: controller,
-            sizes: [.percent(0.25)],
-            options: options)
-
-        navigationController?.present(sheetController, animated: true, completion: nil)
-    }
-
     private func presentCurrencyTableViewController() {
         guard let controller = UIStoryboard(name: "Main", bundle: nil)
                 .instantiateViewController(withIdentifier: "CurrencyTableViewController")
