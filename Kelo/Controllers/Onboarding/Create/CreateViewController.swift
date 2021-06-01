@@ -14,10 +14,9 @@ class CreateViewController: UIViewController {
 
     // MARK: IBOutlets
     @IBOutlet weak var groupNameTextField: UITextField!
-    @IBOutlet weak var currencyFlagImageView: UIImageView!
-    @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var groupErrorLabel: UILabel!
     @IBOutlet weak var currencyErrorLabel: UILabel!
+    @IBOutlet weak var currencyButton: RoundedButton!
 
     // MARK: IBOutlet Collections
     @IBOutlet var viewsToAnimate: [UIView]!
@@ -39,7 +38,7 @@ class CreateViewController: UIViewController {
         case .success:
             log.info("Validated group name")
             groupNameTextField.hideError(groupErrorLabel)
-            let group = Group(name: groupNameTextField.text!, currency: currencyLabel.text!)
+            let group = Group(name: groupNameTextField.text!, currency: (currencyButton.titleLabel?.text)!)
 
             DatabaseManager.shared.createGroup(group: group) { (result) in
                 switch result {
@@ -126,8 +125,8 @@ extension CreateViewController: UITextFieldDelegate {
 // MARK: - CurrencyTable delegate
 extension CreateViewController: CurrencyTableViewDelegate {
     func didSelectCurrency(currency: Currency) {
-        currencyLabel.text = currency.code
-        currencyFlagImageView.image = currency.flag
+        currencyButton.setImage(currency.flag, for: .normal)
+        currencyButton.setTitle(currency.code, for: .normal)
     }
 }
 
