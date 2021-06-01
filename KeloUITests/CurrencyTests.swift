@@ -29,7 +29,9 @@ class CurrencyTests: XCTestCase {
     }
 
     override class func tearDown() {
-        // TODO: delete group from settings
+        app.tabBars.buttons["Settings"].tap()
+        app.buttons["Leave Group"].tap()
+        app.alerts["Are you sure?"].buttons["Leave"].tap()
     }
 
     func testCurrencyEURIsDefault() throws {

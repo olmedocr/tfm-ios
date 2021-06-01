@@ -16,6 +16,7 @@ struct Chore: Identifiable, Codable {
     var assignee: String = ""
     var expiration: Date = Date()
     var points: Int = Importance.low.rawValue
+    var creator: String = ""
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,6 +25,7 @@ struct Chore: Identifiable, Codable {
         case assignee
         case expiration
         case points
+        case creator
     }
 
     enum Importance: Int {
