@@ -26,7 +26,13 @@ class JoinViewController: UIViewController {
     }
 
     @IBAction func didTapContinue(_ sender: Any) {
-        if groupCodeTextField.validate(regex: Constants.groupCodeRegex, errorLabel: errorLabel) {
+        switch Validations.groupCode(groupCodeTextField.text!) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            groupCodeTextField.showError(err.localizedDescription, in: errorLabel)
+        case .success:
+            log.info("Validated chore name")
+            groupCodeTextField.hideError(errorLabel)
             let groupId = groupCodeTextField.text!
 
             DatabaseManager.shared.checkGroupAvailability(groupId: groupId) { (result) in
@@ -35,7 +41,7 @@ class JoinViewController: UIViewController {
                     log.info("Group available")
                     self.presentFinalViewController(withGroup: group)
                 case .failure(let err):
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     let alert = self.setAlert(title: "Error!",
                                               message: err.localizedDescription,
                                               actionTitle: "OK")
@@ -82,6 +88,7 @@ class JoinViewController: UIViewController {
         if let viewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "FinalViewController") as? FinalViewController {
             viewController.group = group
+            viewController.isAdmin = false
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

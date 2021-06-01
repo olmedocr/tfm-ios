@@ -15,19 +15,26 @@ class AssignChoreViewController: UIViewController {
 
     // MARK: IBActions
     @IBAction func didTapRandomButton(_ sender: Any) {
-        let numberOfUsers = Int((embeddedTableView?.users!.count)!)
-        let randomRow = Int.random(in: 0...numberOfUsers - 1)
-        let indexPath = IndexPath(row: randomRow, section: 0)
-        embeddedTableView?.tableView.delegate?.tableView?((embeddedTableView?.tableView)!, didSelectRowAt: indexPath)
+        DatabaseManager.shared.getRandomUser { (result) in
+            switch result {
+            case .failure(let err):
+                log.error(err.localizedDescription)
+            case .success(let user):
+                let index = self.embeddedTableView?.dataSource?.models.firstIndex(where: { $0.id == user.id })
+                let indexPath = IndexPath(row: index!, section: 0)
+                self.embeddedTableView?.tableView.delegate?.tableView?((self.embeddedTableView?.tableView)!,
+                                                                       didSelectRowAt: indexPath)
+            }
+        }
     }
 
     @IBAction func didTapMostLazyButton(_ sender: Any) {
         DatabaseManager.shared.getMostLazyUser { (result) in
             switch result {
             case .failure(let err):
-                log.error(err)
+                log.error(err.localizedDescription)
             case .success(let user):
-                let index = self.embeddedTableView?.users?.firstIndex(where: { $0.id == user.id })
+                let index = self.embeddedTableView?.dataSource?.models.firstIndex(where: { $0.id == user.id })
                 let indexPath = IndexPath(row: index!, section: 0)
                 self.embeddedTableView?.tableView.delegate?.tableView?((self.embeddedTableView?.tableView)!,
                                                                        didSelectRowAt: indexPath)

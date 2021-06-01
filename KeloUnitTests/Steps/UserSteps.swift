@@ -20,7 +20,12 @@ final class CreateUserSteps: StepDefiner {
         }
 
         step("the user validates its username") {
-            self.isUsernameValid = Constants.userNameRegex.matches(self.userName!)
+            switch Validations.userName(self.userName!) {
+            case .failure(_):
+                self.isUsernameValid = false
+            case .success:
+                self.isUsernameValid = true
+            }
         }
 
         step("the username length must be less or equal than 32") {

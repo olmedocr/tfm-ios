@@ -15,31 +15,34 @@ extension DatabaseManager {
         do {
             let groupReference = try groupsReference.addDocument(from: group) { (err) in
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
             }
-            /*
-             FIXME: Check that these operations are not executed when there is an error,
-             does the try always return non-nil groupReferences?
-             */
+
             log.info("Successfully created group")
 
             var returnedGroup = group
             returnedGroup.id = groupReference.documentID
             result(.success(returnedGroup))
         } catch let err {
-            log.error(err)
+            log.error(err.localizedDescription)
             result(.failure(err))
         }
     }
 
     func retrieveGroup(groupId: String, result: @escaping (Result<Group, Error>) -> Void) {
         let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId)
+
         groupReference.getDocument { (groupSnapshot, err) in
             if let err = err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
+            }
+
+            if let exists = groupSnapshot?.exists, !exists {
+                log.error(CustomError.groupNotFound)
+                result(.failure(CustomError.groupNotFound))
             }
 
             do {
@@ -48,7 +51,7 @@ extension DatabaseManager {
                     result(.success(group))
                 }
             } catch let err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             }
         }
@@ -60,7 +63,7 @@ extension DatabaseManager {
             let encodedGroup = try Firestore.Encoder().encode(group)
             groupReference.updateData(encodedGroup) { (err) in
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
 
@@ -68,7 +71,7 @@ extension DatabaseManager {
                 result(.success(()))
             }
         } catch let err {
-            log.error(err)
+            log.error(err.localizedDescription)
             result(.failure(err))
         }
     }
@@ -81,13 +84,13 @@ extension DatabaseManager {
         deleteAllUsers { (deleteResult) in
             switch deleteResult {
             case .failure(let err):
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             case .success:
                 log.info("Correctly deleted all users from group")
                 groupsReference.document(groupId).delete { (err) in
                     if let err = err {
-                        log.error(err)
+                        log.error(err.localizedDescription)
                         result(.failure(err))
                         group.leave()
                     }
@@ -101,13 +104,13 @@ extension DatabaseManager {
         deleteAllChores { (deleteResult) in
             switch deleteResult {
             case .failure(let err):
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             case .success:
                 log.info("Correctly deleted all chores from group")
                 groupsReference.document(groupId).delete { (err) in
                     if let err = err {
-                        log.error(err)
+                        log.error(err.localizedDescription)
                         result(.failure(err))
                         group.leave()
                     }
@@ -129,7 +132,7 @@ extension DatabaseManager {
 
         groupReference.getDocument { (groupSnapshot, err) in
             if let err = err {
-                log.error(err)
+                log.error(err.localizedDescription)
                 result(.failure(err))
             }
 
@@ -139,7 +142,7 @@ extension DatabaseManager {
                     .collection(Constants.usersCollectionKey)
                     .getDocuments { (usersSnapshot, err) in
                         if let err = err {
-                            log.error(err)
+                            log.error(err.localizedDescription)
                             result(.failure(err))
                         }
 
@@ -154,7 +157,7 @@ extension DatabaseManager {
                                         result(.success(group))
                                     }
                                 } catch let err {
-                                    log.error(err)
+                                    log.error(err.localizedDescription)
                                     result(.failure(err))
                                 }
                             }
@@ -176,7 +179,7 @@ extension DatabaseManager {
             .whereField(User.CodingKeys.name.stringValue, isEqualTo: userName)
             .getDocuments { (querySnapshot, err) in
                 if let err = err {
-                    log.error(err)
+                    log.error(err.localizedDescription)
                     result(.failure(err))
                 }
 

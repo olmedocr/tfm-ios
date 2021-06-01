@@ -14,10 +14,9 @@ class CreateViewController: UIViewController {
 
     // MARK: IBOutlets
     @IBOutlet weak var groupNameTextField: UITextField!
-    @IBOutlet weak var currencyFlagImageView: UIImageView!
-    @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var groupErrorLabel: UILabel!
     @IBOutlet weak var currencyErrorLabel: UILabel!
+    @IBOutlet weak var currencyButton: RoundedButton!
 
     // MARK: IBOutlet Collections
     @IBOutlet var viewsToAnimate: [UIView]!
@@ -32,21 +31,22 @@ class CreateViewController: UIViewController {
     }
 
     @IBAction func didTapContinue(_ sender: Any) {
-        if groupNameTextField.validate(regex: Constants.groupNameRegex, errorLabel: groupErrorLabel) {
-            let group = Group(name: groupNameTextField.text!, currency: currencyLabel.text!)
+        switch Validations.groupName(groupNameTextField.text!) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            groupNameTextField.showError(err.localizedDescription, in: groupErrorLabel)
+        case .success:
+            log.info("Validated group name")
+            groupNameTextField.hideError(groupErrorLabel)
+            let group = Group(name: groupNameTextField.text!, currency: (currencyButton.titleLabel?.text)!)
 
-            if !currencyLabel.isHidden {
-                DatabaseManager.shared.createGroup(group: group) { (result) in
-                    switch result {
-                    case .success(let group):
-                        self.presentFinalViewController(withGroup: group)
-                    case .failure(let err):
-                        log.error(err)
-                    }
+            DatabaseManager.shared.createGroup(group: group) { (result) in
+                switch result {
+                case .success(let group):
+                    self.presentFinalViewController(withGroup: group)
+                case .failure(let err):
+                    log.error(err.localizedDescription)
                 }
-            } else {
-                currencyErrorLabel.isHidden = false
-                log.error("Invalid currency")
             }
         }
     }
@@ -82,6 +82,7 @@ class CreateViewController: UIViewController {
         if let viewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "FinalViewController") as? FinalViewController {
             viewController.group = group
+            viewController.isAdmin = true
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
@@ -124,8 +125,8 @@ extension CreateViewController: UITextFieldDelegate {
 // MARK: - CurrencyTable delegate
 extension CreateViewController: CurrencyTableViewDelegate {
     func didSelectCurrency(currency: Currency) {
-        currencyLabel.text = currency.code
-        currencyFlagImageView.image = currency.flag
+        currencyButton.setImage(currency.flag, for: .normal)
+        currencyButton.setTitle(currency.code, for: .normal)
     }
 }
 

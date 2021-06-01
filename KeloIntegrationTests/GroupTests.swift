@@ -1,5 +1,5 @@
 //
-//  KeloIntegrationTests.swift
+//  GroupTests.swift
 //  KeloIntegrationTests
 //
 //  Created by Raul Olmedo on 22/4/21.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Kelo
 
-class GroupIntegrationTests: XCTestCase {
+class GroupTests: XCTestCase {
 
     func testGroupCreation() throws {
         let expectation = XCTestExpectation(description: "Wait for the creation of the group")

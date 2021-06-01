@@ -1,18 +1,15 @@
 //
-//  UserTableViewCell.swift
+//  PointsTableViewCell.swift
 //  Kelo
 //
-//  Created by Raul Olmedo on 6/5/21.
+//  Created by Raul Olmedo on 26/5/21.
 //
 
 import UIKit
 
-class UserTableViewCell: UITableViewCell {
+class PointsTableViewCell: UITableViewCell {
 
     // MARK: IBOutlets
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var adminLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
 
     override func awakeFromNib() {

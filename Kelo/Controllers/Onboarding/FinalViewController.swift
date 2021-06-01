@@ -12,6 +12,7 @@ class FinalViewController: UIViewController {
     // MARK: Properties
     let defaults = UserDefaults.standard
     var group: Group?
+    var isAdmin: Bool?
 
     // MARK: IBOutlets
     @IBOutlet weak var userNameTextField: UITextField!
@@ -22,19 +23,24 @@ class FinalViewController: UIViewController {
 
     // MARK: IBActions
     @IBAction func didTapContinue(_ sender: Any) {
-        let user = User(name: userNameTextField.text!, points: 0)
+        let user = User(name: userNameTextField.text!, isAdmin: isAdmin!)
 
-        if userNameTextField.validate(regex: Constants.userNameRegex, errorLabel: errorLabel) {
+        switch Validations.userName(userNameTextField.text!) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            userNameTextField.showError(err.localizedDescription, in: errorLabel)
+        case .success:
+            log.info("Validated username")
+            userNameTextField.hideError(errorLabel)
+
             DatabaseManager.shared.groupId = group!.id
             self.defaults.setValue(group?.id, forKey: UserDefaults.Keys.groupId.rawValue)
 
             DatabaseManager.shared.joinGroup(user: user, group: group!) { (result) in
                 switch result {
                 case .failure(let err):
-                    log.error(err)
-                    if err as! DatabaseManager.CustomError == DatabaseManager.CustomError.userNameAlreadyTaken {
-                        self.userNameTextField.showError(self.errorLabel)
-                    }
+                    log.error(err.localizedDescription)
+                    self.userNameTextField.showError(err.localizedDescription, in: self.errorLabel)
                 case .success(let userId):
                     log.info("Correctly joined group")
                     DatabaseManager.shared.userId = userId

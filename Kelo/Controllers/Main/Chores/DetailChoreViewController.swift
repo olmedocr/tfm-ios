@@ -7,6 +7,7 @@
 
 import UIKit
 import FittedSheets
+import LetterAvatarKit
 
 class DetailChoreViewController: UIViewController {
 
@@ -25,11 +26,12 @@ class DetailChoreViewController: UIViewController {
     }
 
     // MARK: IBOutlets
-    @IBOutlet weak var choreTitleLabel: UITextField!
+    @IBOutlet weak var choreTextField: UITextField!
     @IBOutlet weak var assigneeButton: RoundedButton!
     @IBOutlet weak var importanceLevel: UISegmentedControl!
     @IBOutlet weak var expirationDate: UIDatePicker!
     @IBOutlet weak var choreTitleErrorLabel: UILabel!
+    @IBOutlet weak var choreImage: UIImageView!
     @IBOutlet weak var assigneeErrorLabel: UILabel!
 
     // MARK: IBActions
@@ -43,8 +45,17 @@ class DetailChoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        choreTitleLabel.delegate = self
+        choreTextField.delegate = self
         hideKeyboardWhenTappedAround()
+
+        // Set placeholder image
+        let circleAvatarImage = LetterAvatarMaker()
+            .setCircle(true)
+            .setUsername(" ")
+            .setBackgroundColors([UIColor.systemBackground])
+            .build()
+
+        choreImage.image = circleAvatarImage
 
         fillFormIfEditingChore()
 
@@ -55,7 +66,7 @@ class DetailChoreViewController: UIViewController {
                                                             action: #selector(didTapSaveButton(_:)))
 
         // Change expiration date color
-        expirationDate.tintColor = .white
+        expirationDate.tintColor = UIColor(named: "AccentColor")
         expirationDate.backgroundColor = UIColor(named: "AccentColor")
 
         // Change segmented control tint color
@@ -70,6 +81,7 @@ class DetailChoreViewController: UIViewController {
 
         // Force the date picker to have the same background as the other items
         if let viewPicker = expirationDate.subviews.first?.subviews.first {
+            viewPicker.subviews.last?.tintColor = UIColor.white
             if let bgViewPicker = viewPicker.subviews.first {
                 bgViewPicker.backgroundColor = .clear
             }
@@ -81,30 +93,35 @@ class DetailChoreViewController: UIViewController {
     // MARK: - Internal
     private func fillFormIfEditingChore() {
         if let chore = chore {
-            // TODO: image
-
-            choreTitleLabel.text = chore.name
+            choreTextField.text = chore.name
 
             DispatchQueue.global(qos: .userInitiated).async {
                 DatabaseManager.shared.retrieveUser(userId: chore.assignee) { (result) in
                     switch result {
                     case .failure(let err):
-                        log.error(err)
+                        log.error(err.localizedDescription)
                     case .success(let user):
                         self.selectedAssignee = user
                     }
                 }
             }
 
-            if chore.points == Constants.ChoreImportance.low.rawValue {
+            if chore.points == Chore.Importance.low.rawValue {
                 importanceLevel.selectedSegmentIndex = 0
-            } else if chore.points == Constants.ChoreImportance.medium.rawValue {
+            } else if chore.points == Chore.Importance.medium.rawValue {
                 importanceLevel.selectedSegmentIndex = 1
-            } else if chore.points == Constants.ChoreImportance.high.rawValue {
+            } else if chore.points == Chore.Importance.high.rawValue {
                 importanceLevel.selectedSegmentIndex = 2
             } else {
                 log.warning("Unknown chore importance value")
             }
+
+            let circleAvatarImage = LetterAvatarMaker()
+                .setCircle(true)
+                .setUsername(chore.name)
+                .build()
+
+            choreImage.image = circleAvatarImage
 
             expirationDate.date = chore.expiration
         }
@@ -115,21 +132,22 @@ class DetailChoreViewController: UIViewController {
         expirationDate.maximumDate = Date().addingTimeInterval(63072000) // 2 years
     }
 
-    private func storeChoreInDatabase() {
-        let title = choreTitleLabel.text!
+    private func validateAndStoreInDatabase() {
+        let title = choreTextField.text!
         let icon = ""
         let assigneeId = selectedAssignee!.id!
+        let assignerId = DatabaseManager.shared.userId!
         let expiration = expirationDate.date
         var points: Int {
             var returnValue: Int?
 
             switch self.importanceLevel.selectedSegmentIndex {
             case 0:
-                returnValue = Constants.ChoreImportance.low.rawValue
+                returnValue = Chore.Importance.low.rawValue
             case 1:
-                returnValue = Constants.ChoreImportance.medium.rawValue
+                returnValue = Chore.Importance.medium.rawValue
             case 2:
-                returnValue = Constants.ChoreImportance.high.rawValue
+                returnValue = Chore.Importance.high.rawValue
             default:
                 assertionFailure("Unknown value for the importance")
             }
@@ -141,40 +159,59 @@ class DetailChoreViewController: UIViewController {
                                 icon: icon,
                                 assignee: assigneeId,
                                 expiration: expiration,
-                                points: points)
+                                points: points,
+                                creator: assignerId)
 
         choreToSave.id = chore?.id
 
-        if chore != nil {
-            DatabaseManager.shared.updateChore(chore: choreToSave) { result in
-                switch result {
-                case .failure(let err):
-                    log.error(err)
-                case .success:
-                    log.info("Dismissing after updating chore")
-                    self.navigationController?.popViewController(animated: true)
-                }
+        switch Validations.chore(choreToSave) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            assigneeButton.showError(assigneeErrorLabel)
+        case .success:
+            log.info("Validated chore")
+            if chore != nil {
+                updateInDatabase(choreToSave)
+            } else {
+                storeInDatabase(choreToSave)
             }
-        } else {
-            DatabaseManager.shared.createChore(chore: choreToSave) { result in
-                switch result {
-                case .failure(let err):
-                    log.error(err)
-                case .success:
-                    log.info("Dismissing after creating chore")
-                    self.navigationController?.popViewController(animated: true)
-                }
+        }
+    }
+
+    private func storeInDatabase(_ chore: Chore) {
+        DatabaseManager.shared.createChore(chore: chore) { result in
+            switch result {
+            case .failure(let err):
+                log.error(err.localizedDescription)
+            case .success:
+                log.info("Dismissing after creating chore")
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+
+    private func updateInDatabase(_ chore: Chore) {
+        DatabaseManager.shared.updateChore(chore: chore) { result in
+            switch result {
+            case .failure(let err):
+                log.error(err.localizedDescription)
+            case .success:
+                log.info("Dismissing after updating chore")
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
 
     @objc private func didTapSaveButton(_ sender: Any) {
-        if choreTitleLabel.validate(regex: Constants.choreNameRegex, errorLabel: choreTitleErrorLabel) {
-            if selectedAssignee != nil {
-                storeChoreInDatabase()
-            } else {
-                assigneeButton.showError(assigneeErrorLabel)
-            }
+        switch Validations.choreName(choreTextField.text!) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            choreTextField.showError(err.localizedDescription, in: choreTitleErrorLabel)
+        case .success:
+            log.info("Validated chore name")
+            choreTextField.hideError(choreTitleErrorLabel)
+
+            validateAndStoreInDatabase()
         }
     }
 
@@ -195,7 +232,7 @@ class DetailChoreViewController: UIViewController {
         let options = SheetOptions(shrinkPresentingViewController: false)
         let sheetController = SheetViewController(
             controller: controller,
-            sizes: [.percent(0.35), .percent(0.5), .fullscreen],
+            sizes: [.percent(0.5), .fullscreen],
             options: options)
 
         navigationController?.present(sheetController, animated: true, completion: nil)
@@ -210,7 +247,7 @@ extension DetailChoreViewController: UITextFieldDelegate {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        choreTitleLabel.hideError(choreTitleErrorLabel)
+        choreTextField.hideError(choreTitleErrorLabel)
     }
 }
 

@@ -10,18 +10,24 @@ import Firebase
 extension DatabaseManager {
     enum CustomError: LocalizedError {
         case groupNotFound
+        case userNotFound
         case userNameAlreadyTaken
         case groupIsFull
+        case bundleError
         case unknown
 
         var errorDescription: String? {
             switch self {
             case .groupNotFound:
                 return "Group not found"
+            case .userNotFound:
+                return "User not found"
             case .userNameAlreadyTaken:
                 return "Username already taken"
             case .groupIsFull:
-            return "Group is full"
+                return "Group is full"
+            case .bundleError :
+                return "No CurrencyList Bundle Access"
             case .unknown:
                 return "Uknown error"
             }
@@ -29,10 +35,14 @@ extension DatabaseManager {
     }
 }
 
-protocol DatabaseManagerDelegate: AnyObject {
-    func didAddChore(chore: Chore)
-    func didModifyChore(chore: Chore)
-    func didDeleteChore(chore: Chore)
+protocol  DatabaseManagerDelegate: AnyObject {
+    func didDeleteUser(user: User)
+}
+
+// Optional delegate methods
+extension DatabaseManagerDelegate {
+    func didAddUser(user: User) {}
+    func didModifyUser(user: User) {}
 }
 
 class DatabaseManager {
@@ -54,6 +64,10 @@ class DatabaseManager {
     private init() {}
 
     deinit {
+        removeAllListeners()
+    }
+
+    func removeAllListeners() {
         listeners.forEach { listener in
             listener.remove()
         }
