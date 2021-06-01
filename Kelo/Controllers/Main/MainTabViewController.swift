@@ -49,7 +49,7 @@ class MainTabViewController: UITabBarController {
             log.error("No userId found")
         }
 
-        DatabaseManager.shared.userDelegate = self
+        DatabaseManager.shared.delegate = self
         DatabaseManager.shared.subscribeToUserList { result in
             switch result {
             case .failure(let err):

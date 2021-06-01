@@ -31,47 +31,45 @@ class ChoresTableViewController: UITableViewController {
 
         tableView.tableFooterView = UIView()
 
-        DatabaseManager.shared.subscribeToChoreList { (result) in
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
+
+        fetchData()
+
+        DatabaseManager.shared.retrieveUser(userId: DatabaseManager.shared.userId!) { (result) in
             switch result {
             case .failure(let err):
                 log.error(err.localizedDescription)
-            case .success:
-                DatabaseManager.shared.choreDelegate = self
-
-                self.dataSource = .make(for: [Chore].init())
-                self.tableView.dataSource = self.dataSource
-
-                DatabaseManager.shared.retrieveUser(userId: DatabaseManager.shared.userId!) { (result) in
-                    switch result {
-                    case .failure(let err):
-                        log.error(err.localizedDescription)
-                    case .success(let user):
-                        self.currentUser = user
-                    }
-                }
+            case .success(let user):
+                self.currentUser = user
             }
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        fetchData()
+    }
+
     // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !tableView.isEditing {
-            if currentUser.id == dataSource?.models[indexPath.row].creator || currentUser.isAdmin {
-                self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
-            } else {
-                log.info("Tried to edit a chore without being the creator")
+        if currentUser.id == dataSource?.models[indexPath.row].creator || currentUser.isAdmin {
+            self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
+        } else {
+            log.info("Tried to edit a chore without being the creator")
 
-                tableView.deselectRow(at: indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
 
-                let alert = self.setAlert(title: "Error!",
-                                          message: """
+            let alert = self.setAlert(title: "Error!",
+                                      message: """
                                         Only the creator of the chore and the group admin are able to
                                         edit this element
                                         """,
-                                          actionTitle: "OK")
+                                      actionTitle: "OK")
 
-                self.present(alert, animated: true)
-            }
+            self.present(alert, animated: true)
         }
     }
 
@@ -81,7 +79,9 @@ class ChoresTableViewController: UITableViewController {
 
         let completeAction = UIContextualAction(style: .normal,
                                                 title: "Complete") { [weak self] (_, _, completionHandler) in
-            self?.handleMarkAsComplete(chore: (self?.dataSource?.models[indexPath.row])!, onComplete: completionHandler)
+            self?.handleMarkAsComplete(chore: (self?.dataSource?.models[indexPath.row])!,
+                                       index: indexPath.row,
+                                       onComplete: completionHandler)
         }
         completeAction.backgroundColor = UIColor.systemBlue
         completeAction.image = UIImage(systemName: "checkmark.circle.fill")
@@ -96,7 +96,9 @@ class ChoresTableViewController: UITableViewController {
 
         let deleteAction = UIContextualAction(style: .destructive,
                                                 title: "Delete") { [weak self] (_, _, completionHandler) in
-            self?.handleMarkAsDelete(chore: (self?.dataSource?.models[indexPath.row])!, onComplete: completionHandler)
+            self?.handleMarkAsDelete(chore: (self?.dataSource?.models[indexPath.row])!,
+                                     index: indexPath.row,
+                                     onComplete: completionHandler)
         }
         deleteAction.backgroundColor = UIColor.systemRed
         deleteAction.image = UIImage(systemName: "trash.fill")
@@ -106,7 +108,21 @@ class ChoresTableViewController: UITableViewController {
     }
 
     // MARK: - Internal
-    private func handleMarkAsComplete(chore: Chore, onComplete completion: @escaping (Bool) -> Void) {
+    @objc private func fetchData() {
+        DatabaseManager.shared.retrieveAllChores { result in
+            switch result {
+            case .failure(let err):
+                log.error(err.localizedDescription)
+            case .success(let chores):
+                self.dataSource = TableViewDataSource.make(for: chores)
+                self.tableView.dataSource = self.dataSource
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }
+        }
+    }
+
+    private func handleMarkAsComplete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
         if currentUser.id == chore.assignee || currentUser.id == chore.creator || currentUser.isAdmin {
             DatabaseManager.shared.completeChore(chore: chore) { (result) in
                 switch result {
@@ -134,7 +150,7 @@ class ChoresTableViewController: UITableViewController {
         }
     }
 
-    private func handleMarkAsDelete(chore: Chore, onComplete completion: @escaping (Bool) -> Void) {
+    private func handleMarkAsDelete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
         if currentUser.id == chore.creator || currentUser.isAdmin {
             DatabaseManager.shared.deleteChore(choreId: chore.id!) { (result) in
                 switch result {
@@ -180,39 +196,4 @@ class ChoresTableViewController: UITableViewController {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
-}
-
-// MARK: - Database delegate
-extension ChoresTableViewController: DatabaseManagerChoreDelegate {
-    func didAddChore(chore: Chore) {
-        dataSource?.models.insert(chore)
-        log.info("Reloading table view")
-        tableView.reloadData()
-    }
-
-    func didModifyChore(chore: Chore) {
-        if let index = dataSource?.models.firstIndex(where: { $0.id == chore.id }) {
-            let indexPath = IndexPath(row: index, section: 0)
-
-            dataSource?.models.remove(at: index)
-            dataSource?.models.insert(chore)
-            log.info("Reloading rows at \(indexPath)")
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-        } else {
-            log.warning("Unable to modify updated chore in list")
-        }
-    }
-
-    func didDeleteChore(chore: Chore) {
-        if let index = dataSource?.models.firstIndex(where: { $0.id == chore.id }) {
-            let indexPath = IndexPath(row: index, section: 0)
-
-            dataSource?.models.remove(at: index)
-            log.info("Deleting rows at \(indexPath)")
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        } else {
-            log.warning("Unable to delete removed chore in list")
-        }
-    }
-
 }

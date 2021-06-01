@@ -56,6 +56,41 @@ extension DatabaseManager {
         }
     }
 
+    func retrieveAllChores(result: @escaping (Result<[Chore], Error>) -> Void) {
+        let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
+        let choresReference: CollectionReference = groupReference.collection(Constants.choresCollectionKey)
+        var chores: [Chore] = []
+
+        choresReference.order(by: Chore.CodingKeys.expiration.rawValue)
+            .getDocuments { (choresSnapshot, err) in
+                if let err = err {
+                    log.error(err.localizedDescription)
+                    result(.failure(err))
+                }
+
+                let group = DispatchGroup()
+
+                choresSnapshot?.documents.forEach({ (choreSnapshot) in
+                    group.enter()
+                    do {
+                        if let chore = try choreSnapshot.data(as: Chore.self) {
+                            chores.append(chore)
+                            group.leave()
+                        }
+                    } catch let err {
+                        log.error(err.localizedDescription)
+                        result(.failure(err))
+                        group.leave()
+                    }
+                })
+
+                group.notify(queue: .main) {
+                    log.info("Successfully retrieved all chores")
+                    result(.success(chores))
+                }
+            }
+    }
+
     func updateChore(chore: Chore, result: @escaping (Result<Void, Error>) -> Void) {
         let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
         let choreReference: DocumentReference =
@@ -164,53 +199,5 @@ extension DatabaseManager {
             }
 
         }
-    }
-
-    // MARK: - Listeners
-    func subscribeToChoreList(result: @escaping (Result<Void, Error>) -> Void) {
-
-        let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
-        let choresReference: CollectionReference = groupReference.collection(Constants.choresCollectionKey)
-
-        let listener = choresReference.addSnapshotListener { (choresSnapshot, err) in
-            guard let choresSnapshot = choresSnapshot else {
-                if let err = err {
-                    log.error(err.localizedDescription)
-                    result(.failure(err))
-                } else {
-                    log.error("Unknown error")
-                    result(.failure(CustomError.unknown))
-                }
-
-                return
-            }
-
-            choresSnapshot.documentChanges.forEach { diff in
-                do {
-                    let chore = try diff.document.data(as: Chore.self)
-
-                    if diff.type == .added {
-                        log.info("New chore: \(chore?.id ?? "nil")")
-                        self.choreDelegate?.didAddChore(chore: chore!)
-                    }
-                    if diff.type == .modified {
-                        log.info("Modified chore: \(chore?.id ?? "nil")")
-                        self.choreDelegate?.didModifyChore(chore: chore!)
-                    }
-                    if diff.type == .removed {
-                        log.info("Removed chore: \(chore?.id ?? "nil")")
-                        self.choreDelegate?.didDeleteChore(chore: chore!)
-                    }
-
-                } catch let err {
-                    log.error(err.localizedDescription)
-                    result(.failure(err))
-                }
-            }
-        }
-
-        log.info("Correctly subscribed to chore list")
-        listeners.append(listener)
-        result(.success(()))
     }
 }
