@@ -264,27 +264,33 @@ extension DatabaseManager {
                 result(.failure(err))
             }
             let numberOfUsers = usersSnapshot?.documents.count
-            let randomIndex = Int.random(in: 0...numberOfUsers! - 1)
 
-            do {
-                let userDocument = usersSnapshot?.documents[randomIndex]
-                if var user = try userDocument?.data(as: User.self) {
-                    log.info("Retrieved random user")
-                    user.isAdmin = true
+            if numberOfUsers != 1 {
+                let randomIndex = Int.random(in: 0...numberOfUsers! - 1)
 
-                    self.updateUser(user: user) { updateResult in
-                        switch updateResult {
-                        case .failure(let err):
-                            log.error(err.localizedDescription)
-                            result(.failure(err))
-                        case .success(let user):
-                            result(.success(user))
+                do {
+                    let userDocument = usersSnapshot?.documents[randomIndex]
+                    if var user = try userDocument?.data(as: User.self) {
+                        log.info("Retrieved random user")
+                        user.isAdmin = true
+
+                        self.updateUser(user: user) { updateResult in
+                            switch updateResult {
+                            case .failure(let err):
+                                log.error(err.localizedDescription)
+                                result(.failure(err))
+                            case .success(let user):
+                                result(.success(user))
+                            }
                         }
                     }
+                } catch let err {
+                    log.error(err.localizedDescription)
+                    result(.failure(err))
                 }
-            } catch let err {
-                log.error(err.localizedDescription)
-                result(.failure(err))
+            } else {
+                log.info("Last user in the group, skipped admin selection")
+                result(.success(()))
             }
         }
     }
@@ -314,15 +320,15 @@ extension DatabaseManager {
 
                     if diff.type == .added {
                         log.info("New user: \(user?.id ?? "nil")")
-                        self.userDelegate?.didAddUser(user: user!)
+                        self.delegate?.didAddUser(user: user!)
                     }
                     if diff.type == .modified {
                         log.info("Modified user: \(user?.id ?? "nil")")
-                        self.userDelegate?.didAddUser(user: user!)
+                        self.delegate?.didModifyUser(user: user!)
                     }
                     if diff.type == .removed {
                         log.info("Removed user: \(user?.id ?? "nil")")
-                        self.userDelegate?.didDeleteUser(user: user!)
+                        self.delegate?.didDeleteUser(user: user!)
                     }
 
                 } catch let err {
