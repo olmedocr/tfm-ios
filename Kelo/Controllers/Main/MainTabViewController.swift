@@ -23,7 +23,7 @@ class MainTabViewController: UITabBarController {
                 switch result {
                 case .failure(let err):
                     log.error(err.localizedDescription)
-                    self.restartApp()
+                    self.restartApp(withMessage: "It appears that this group no longer exists")
                 case .success(let group):
                     self.children.forEach({ navigationController in
                         navigationController.children.first?.navigationItem.prompt = group.name
@@ -40,7 +40,7 @@ class MainTabViewController: UITabBarController {
                 switch result {
                 case .failure(let err):
                     log.error(err.localizedDescription)
-                    self.restartApp()
+                    self.restartApp(withMessage: "You no longer have access to the group")
                 case .success:
                     break
                 }
@@ -81,11 +81,11 @@ class MainTabViewController: UITabBarController {
     }
 }
 
-extension MainTabViewController: DatabaseManagerUserDelegate {
+extension MainTabViewController: DatabaseManagerDelegate {
     func didDeleteUser(user: User) {
         if user.id == DatabaseManager.shared.userId {
             log.warning("This user was deleted remotely by the admin")
-            self.restartApp()
+            self.restartApp(withMessage: "The admin removed you from the group")
         }
     }
 }

@@ -39,7 +39,7 @@ extension UIViewController {
         view.frame.origin.y = 0
     }
 
-    func restartApp() {
+    func restartApp(withMessage message: String) {
         log.info("Restarting app")
 
         UserDefaults.standard.reset()
@@ -54,6 +54,12 @@ extension UIViewController {
 
             UIApplication.shared.windows.first?.rootViewController = navigationController
             UIApplication.shared.windows.first?.makeKeyAndVisible()
+
+            let alert = self.setAlert(title: "Attention!",
+                                      message: message,
+                                      actionTitle: "OK")
+
+            navigationController.present(alert, animated: true)
         }
     }
 }

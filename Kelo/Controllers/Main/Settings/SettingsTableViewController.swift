@@ -15,15 +15,7 @@ class SettingsTableViewController: UITableViewController {
     var dataSources: SectionedTableViewDataSource?
     var users: [User]?
     var group: Group?
-    var user: User? {
-        didSet {
-            if let user = user, user.isAdmin {
-                navigationItem.rightBarButtonItem = self.editButtonItem
-            } else {
-                log.warning("Error while settings user value")
-            }
-        }
-    }
+    var currentUser: User?
 
     // MARK: @IBActions
     @IBAction func didTapShareButton(_ sender: Any) {
@@ -54,61 +46,54 @@ class SettingsTableViewController: UITableViewController {
         if indexPath.section == 2 {
             self.presentRewardViewController()
         } else if indexPath.section == 3 {
-            self.presentCurrencyTableViewController()
+            if let user = currentUser, user.isAdmin {
+                self.presentCurrencyTableViewController()
+            } else {
+                log.info("Tried to edit the currency without being the group admin")
+
+                tableView.deselectRow(at: indexPath, animated: true)
+
+                let alert = self.setAlert(title: "Error!",
+                                          message: """
+                                        Only the group admin is able to edit the currency
+                                        """,
+                                          actionTitle: "OK")
+
+                self.present(alert, animated: true)
+            }
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func tableView(_ tableView: UITableView,
-                            editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+                            trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+    -> UISwipeActionsConfiguration? {
 
-        if users?[indexPath.row].id == user?.id {
-            return .none
-        } else {
-            return .delete
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let index = users?.firstIndex { $0.id == user?.id }
+        let index = users?.firstIndex { $0.id == currentUser?.id }
 
         if indexPath.row == index {
-            return true
+            return nil
         } else {
-            return false
-        }
-    }
+            let deleteAction = UIContextualAction(style: .destructive,
+                                                  title: "Delete") { [weak self] (_, _, completionHandler) in
 
-    override func tableView(_ tableView: UITableView,
-                            commit editingStyle: UITableViewCell.EditingStyle,
-                            forRowAt indexPath: IndexPath) {
+                self?.handleMarkAsDelete(user: (self?.users?[indexPath.row])!,
+                                         index: indexPath.row,
+                                         onComplete: completionHandler)
 
-        if editingStyle == .delete {
-            guard let userId = users?[indexPath.row].id else {
-                log.warning("Failed to unwrap id of the user to be deleted")
-                return
             }
+            deleteAction.backgroundColor = UIColor.systemRed
+            deleteAction.image = UIImage(systemName: "trash.fill")
 
-            DatabaseManager.shared.deleteUser(userId: userId) { (result) in
-                switch result {
-                case .failure(let err):
-                    log.error(err.localizedDescription)
-
-                    let alert = self.setAlert(title: "Error!",
-                                              message: err.localizedDescription,
-                                              actionTitle: "OK")
-
-                    self.present(alert, animated: true)
-                case .success:
-                    log.info("Deleted user from group")
-                }
-            }
+            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+            return configuration
         }
     }
 
     // MARK: - Internal
     @objc private func fetchData() {
+        // TODO: update each section asynchronously
         DatabaseManager.shared.retrieveGroup(groupId: DatabaseManager.shared.groupId!) { (fetchedGroup) in
             switch fetchedGroup {
             case .failure(let err):
@@ -123,16 +108,15 @@ class SettingsTableViewController: UITableViewController {
                         let currency = currencies.filter { $0.code == group.currency }.first
                         let reward = Reward()
                         // TODO: fetch reward
-
                         DatabaseManager.shared.retrieveAllUsers { (fetchedUsers) in
                             switch fetchedUsers {
                             case .failure(let err):
                                 log.error(err.localizedDescription)
                             case .success(let users):
                                 self.users = users
-                                self.user = users.filter { $0.id == DatabaseManager.shared.userId }.first
+                                self.currentUser = users.filter { $0.id == DatabaseManager.shared.userId }.first
 
-                                self.updateDataSource(withUser: self.user!,
+                                self.updateDataSource(withUser: self.currentUser!,
                                                       withUsers: users,
                                                       withCurrency: currency!,
                                                       withReward: reward)
@@ -184,6 +168,38 @@ class SettingsTableViewController: UITableViewController {
         self.tableView.dataSource = self.dataSources
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
+    }
+
+    private func handleMarkAsDelete(user: User, index: Int, onComplete completion: @escaping (Bool) -> Void) {
+        if currentUser != nil && currentUser!.isAdmin {
+            DatabaseManager.shared.deleteUser(userId: user.id!) { (result) in
+                switch result {
+                case .failure(let err):
+                    log.error(err.localizedDescription)
+
+                    let alert = self.setAlert(title: "Error!",
+                                              message: err.localizedDescription,
+                                              actionTitle: "OK")
+
+                    self.present(alert, animated: true)
+                case .success:
+                    log.info("Deleted user from group")
+                    self.fetchData()
+                    completion(true)
+                }
+            }
+        } else {
+            log.info("Tried to remove a user without being the admin")
+
+            let alert = self.setAlert(title: "Error!",
+                                      message: """
+                                        Only the group admin is able to
+                                        remove this element
+                                        """,
+                                      actionTitle: "OK")
+
+            self.present(alert, animated: true)
+        }
     }
 
     // MARK: - Navigation
@@ -240,26 +256,39 @@ extension SettingsTableViewController: CurrencyTableViewDelegate {
 
 extension SettingsTableViewController: SettingsCellDelegate {
     func didTapOnDeleteGroup() {
-        let alert = self.setAlert(title: "Are you sure?",
-                                  message: "This action will erase every data in the group",
-                                  actionTitle: "Cancel")
+        if currentUser!.isAdmin {
+            DatabaseManager.shared.removeAllListeners()
 
-        let action = UIAlertAction(title: "Delete",
-                                   style: .destructive) { _ in
-            DatabaseManager.shared.deleteGroup(groupId: DatabaseManager.shared.groupId!) { (result) in
-                switch result {
-                case .failure(let err):
-                    log.error(err.localizedDescription)
-                case .success:
-                    log.info("Deleted group from db")
-                    self.restartApp()
+            let alert = self.setAlert(title: "Are you sure?",
+                                      message: "This action will erase every data in the group",
+                                      actionTitle: "Cancel")
+
+            let action = UIAlertAction(title: "Delete",
+                                       style: .destructive) { _ in
+                DatabaseManager.shared.deleteGroup(groupId: DatabaseManager.shared.groupId!) { (result) in
+                    switch result {
+                    case .failure(let err):
+                        log.error(err.localizedDescription)
+                    case .success:
+                        log.info("Deleted group from db")
+                        self.restartApp(withMessage: "The group has been successfully deleted")
+                    }
                 }
             }
+
+            alert.addAction(action)
+
+            self.present(alert, animated: true)
+        } else {
+            let alert = self.setAlert(title: "Attention!",
+                                      message: """
+                                        Only the admin of the group can delete it
+                                        """,
+                                      actionTitle: "OK")
+
+            self.present(alert, animated: true)
         }
 
-        alert.addAction(action)
-
-        self.present(alert, animated: true)
     }
 
     func didTapOnLeaveGroup() {
@@ -269,6 +298,7 @@ extension SettingsTableViewController: SettingsCellDelegate {
 
         let action = UIAlertAction(title: "Leave",
                                    style: .destructive) { _ in
+            DatabaseManager.shared.removeAllListeners()
             DatabaseManager.shared.deleteUser(userId: DatabaseManager.shared.userId!) { (result) in
                 switch result {
                 case .failure(let err):
@@ -281,7 +311,7 @@ extension SettingsTableViewController: SettingsCellDelegate {
                             log.error(err.localizedDescription)
                         case .success:
                             log.info("Assigned random admin correctly")
-                            self.restartApp()
+                            self.restartApp(withMessage: "You left the group successfully")
                         }
                     }
                 }
