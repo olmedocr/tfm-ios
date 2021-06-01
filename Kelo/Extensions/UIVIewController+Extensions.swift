@@ -44,6 +44,8 @@ extension UIViewController {
 
         UserDefaults.standard.reset()
 
+        DatabaseManager.shared.removeAllListeners()
+
         DatabaseManager.shared.userId = nil
         DatabaseManager.shared.groupId = nil
 

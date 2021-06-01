@@ -265,7 +265,7 @@ extension DatabaseManager {
             }
             let numberOfUsers = usersSnapshot?.documents.count
 
-            if numberOfUsers != 1 {
+            if numberOfUsers! > 1 {
                 let randomIndex = Int.random(in: 0...numberOfUsers! - 1)
 
                 do {
