@@ -502,11 +502,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-EF-ghY" customClass="ChoreTableViewCell" customModule="Kelo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24" width="375" height="83"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-EF-ghY" customClass="ChoreTableViewCell" customModule="Kelo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="83"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yyu-EF-ghY" id="js6-xD-d5b">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="82.333335876464844"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Vcq-Ld-Rql">
@@ -836,7 +836,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kf2-KZ-gRc" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
-                                <rect key="frame" x="37.666666666666657" y="685.33333333333337" width="300" height="50"/>
+                                <rect key="frame" x="37.666666666666657" y="706.66666666666663" width="300" height="50"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" secondItem="Kf2-KZ-gRc" secondAttribute="width" multiplier="1:6" id="f7z-dh-0Nl"/>
@@ -853,8 +853,8 @@
                                     <action selector="didTapContinue:" destination="uIy-Yb-QlD" eventType="touchUpInside" id="1vL-vG-yIx"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YPN-0C-W6E">
-                                <rect key="frame" x="37.666666666666657" y="548.33333333333337" width="300" height="73"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YPN-0C-W6E">
+                                <rect key="frame" x="37.666666666666657" y="548.33333333333337" width="300" height="94.333333333333371"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FpP-tF-tcV">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="20.333333333333332"/>
@@ -873,44 +873,25 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="Imi-ZI-MST">
-                                        <rect key="frame" x="0.0" y="30.333333333333254" width="212.66666666666666" height="42.666666666666657"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5p-kr-W4j" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="42.666666666666664"/>
-                                                <color key="backgroundColor" name="AccentColor"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="🤑"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="didTapCurrencyButton:" destination="uIy-Yb-QlD" eventType="touchUpInside" id="5VS-Cv-Qjk"/>
-                                                </connections>
-                                            </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k8W-Yr-E3Y">
-                                                <rect key="frame" x="139" y="0.0" width="73.666666666666686" height="42.666666666666664"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EUR" translatesAutoresizingMaskIntoConstraints="NO" id="6Kd-uE-EW8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="42.666666666666664"/>
-                                                        <accessibility key="accessibilityConfiguration" label="Currency Flag"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="32" id="Vwk-Ep-yhY"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9em-CM-Pgy">
-                                                        <rect key="frame" x="48" y="0.0" width="25.666666666666671" height="42.666666666666664"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5p-kr-W4j" customClass="CurrencyButton" customModule="Kelo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="30.333333333333258" width="300" height="64"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="6ZU-Wy-44g"/>
+                                        </constraints>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <state key="normal" title="EUR" image="EUR.png">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapCurrencyButton:" destination="uIy-Yb-QlD" eventType="touchUpInside" id="5VS-Cv-Qjk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="FpP-tF-tcV" secondAttribute="trailing" id="Zew-Wj-7av"/>
@@ -937,18 +918,17 @@
                         <constraints>
                             <constraint firstItem="YPN-0C-W6E" firstAttribute="centerX" secondItem="fG6-co-i5D" secondAttribute="centerX" id="6iP-H6-rhD"/>
                             <constraint firstItem="hDV-7m-c1E" firstAttribute="width" secondItem="fG6-co-i5D" secondAttribute="width" multiplier="0.8" id="Exe-4N-51F"/>
+                            <constraint firstItem="O5p-kr-W4j" firstAttribute="width" secondItem="CSF-Uo-5Z6" secondAttribute="width" id="Ezr-FQ-YGZ"/>
                             <constraint firstItem="Kf2-KZ-gRc" firstAttribute="top" secondItem="YPN-0C-W6E" secondAttribute="bottom" priority="249" constant="64" id="FSP-nA-KNk"/>
                             <constraint firstItem="7FY-VT-V9I" firstAttribute="centerY" secondItem="yFE-Gu-bez" secondAttribute="centerY" id="I7h-Re-fmJ"/>
                             <constraint firstItem="yFE-Gu-bez" firstAttribute="top" secondItem="nWl-H2-ed6" secondAttribute="top" constant="24" id="MLf-y6-f9r"/>
                             <constraint firstItem="hDV-7m-c1E" firstAttribute="top" secondItem="jXo-bF-y1c" secondAttribute="bottom" priority="250" constant="64" id="RMm-Uv-o9m"/>
                             <constraint firstItem="YPN-0C-W6E" firstAttribute="top" secondItem="hDV-7m-c1E" secondAttribute="bottom" priority="750" constant="32" id="V8u-bU-Omo"/>
-                            <constraint firstItem="O5p-kr-W4j" firstAttribute="width" secondItem="Kf2-KZ-gRc" secondAttribute="width" multiplier="1:4" id="VL6-ug-Gxf"/>
                             <constraint firstItem="nWl-H2-ed6" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Kf2-KZ-gRc" secondAttribute="bottom" constant="16" id="XK9-Ik-lwp"/>
                             <constraint firstItem="Kf2-KZ-gRc" firstAttribute="centerX" secondItem="fG6-co-i5D" secondAttribute="centerX" id="Zme-E1-9ub"/>
                             <constraint firstItem="7FY-VT-V9I" firstAttribute="leading" secondItem="nWl-H2-ed6" secondAttribute="leading" constant="24" id="b7C-Jy-RBZ"/>
                             <constraint firstItem="jXo-bF-y1c" firstAttribute="top" secondItem="yFE-Gu-bez" secondAttribute="bottom" constant="24" id="d6Y-dF-dcz"/>
                             <constraint firstItem="jXo-bF-y1c" firstAttribute="centerX" secondItem="fG6-co-i5D" secondAttribute="centerX" id="erx-7q-f5d"/>
-                            <constraint firstItem="O5p-kr-W4j" firstAttribute="height" secondItem="CSF-Uo-5Z6" secondAttribute="height" id="fDv-PW-Ozf"/>
                             <constraint firstItem="hDV-7m-c1E" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jXo-bF-y1c" secondAttribute="bottom" constant="8" id="fOW-qv-O9z"/>
                             <constraint firstItem="YPN-0C-W6E" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hDV-7m-c1E" secondAttribute="bottom" constant="8" id="hf0-jA-8b1"/>
                             <constraint firstItem="Kf2-KZ-gRc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YPN-0C-W6E" secondAttribute="bottom" priority="750" constant="32" id="kjO-ba-ZIe"/>
@@ -963,9 +943,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="gg0-az-uK4"/>
                     <connections>
+                        <outlet property="currencyButton" destination="O5p-kr-W4j" id="uTs-c2-Us4"/>
                         <outlet property="currencyErrorLabel" destination="Xvp-01-jmm" id="6nA-fg-eeO"/>
-                        <outlet property="currencyFlagImageView" destination="6Kd-uE-EW8" id="fkw-Wm-e6Y"/>
-                        <outlet property="currencyLabel" destination="9em-CM-Pgy" id="7dS-DT-C0q"/>
                         <outlet property="groupErrorLabel" destination="I8q-gS-xwA" id="rHi-fv-xgm"/>
                         <outlet property="groupNameTextField" destination="CSF-Uo-5Z6" id="NXP-Ri-eGP"/>
                         <outletCollection property="viewsToAnimate" destination="hDV-7m-c1E" collectionClass="NSMutableArray" id="2Md-tU-Yuq"/>
@@ -1398,7 +1377,7 @@
     </designables>
     <resources>
         <image name="DesktopDoodle" width="897.30999755859375" height="800.92999267578125"/>
-        <image name="EUR" width="206" height="144"/>
+        <image name="EUR.png" width="206" height="144"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>

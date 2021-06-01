@@ -35,18 +35,12 @@ extension DatabaseManager {
     }
 }
 
-protocol DatabaseManagerChoreDelegate: AnyObject {
-    func didAddChore(chore: Chore)
-    func didModifyChore(chore: Chore)
-    func didDeleteChore(chore: Chore)
-}
-
-protocol  DatabaseManagerUserDelegate: AnyObject {
+protocol  DatabaseManagerDelegate: AnyObject {
     func didDeleteUser(user: User)
 }
 
 // Optional delegate methods
-extension DatabaseManagerUserDelegate {
+extension DatabaseManagerDelegate {
     func didAddUser(user: User) {}
     func didModifyUser(user: User) {}
 }
@@ -54,8 +48,7 @@ extension DatabaseManagerUserDelegate {
 class DatabaseManager {
     static let shared = DatabaseManager()
     let database = Firestore.firestore()
-    weak var choreDelegate: DatabaseManagerChoreDelegate?
-    weak var userDelegate: DatabaseManagerUserDelegate?
+    weak var delegate: DatabaseManagerDelegate?
     var listeners: [ListenerRegistration] = []
     var groupId: String? {
         didSet {
@@ -71,6 +64,10 @@ class DatabaseManager {
     private init() {}
 
     deinit {
+        removeAllListeners()
+    }
+
+    func removeAllListeners() {
         listeners.forEach { listener in
             listener.remove()
         }

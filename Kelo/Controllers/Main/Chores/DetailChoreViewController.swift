@@ -52,7 +52,7 @@ class DetailChoreViewController: UIViewController {
         let circleAvatarImage = LetterAvatarMaker()
             .setCircle(true)
             .setUsername(" ")
-            .setBackgroundColors([UIColor.white])
+            .setBackgroundColors([UIColor.systemBackground])
             .build()
 
         choreImage.image = circleAvatarImage
