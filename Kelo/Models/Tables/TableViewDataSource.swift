@@ -18,6 +18,7 @@ class TableViewDataSource<Model>: NSObject, UITableViewDataSource {
     init(models: [Model],
          reuseIdentifier: String,
          cellConfigurator: @escaping CellConfigurator) {
+
         self.models = models
         self.reuseIdentifier = reuseIdentifier
         self.cellConfigurator = cellConfigurator

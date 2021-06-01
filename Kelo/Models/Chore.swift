@@ -34,10 +34,3 @@ struct Chore: Identifiable, Codable {
         case high = 30
     }
 }
-
-extension Chore: Comparable {
-    static func < (lhs: Chore, rhs: Chore) -> Bool {
-        return lhs.name < rhs.name
-    }
-
-}

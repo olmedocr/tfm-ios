@@ -12,7 +12,7 @@ class ChoresTableViewController: UITableViewController {
 
     // MARK: Properties
     var currentUser: User!
-    var dataSource: OrderedTableViewDataSource<Chore>?
+    var dataSource: TableViewDataSource<Chore>?
 
     // MARK: IBActions
     @IBAction func didTapAddButton(_ sender: Any) {
@@ -115,6 +115,8 @@ class ChoresTableViewController: UITableViewController {
                     completion(false)
                 case .success:
                     log.info("Correctly completed chore with id \(chore.id ?? "null")")
+                    self.dataSource?.models.remove(at: index)
+                    self.tableView.reloadData()
                     completion(true)
                 }
             }
@@ -141,6 +143,8 @@ class ChoresTableViewController: UITableViewController {
                     completion(false)
                 case .success:
                     log.info("Correctly deleted chore with id \(chore.id ?? "null")")
+                    self.dataSource?.models.remove(at: index)
+                    self.tableView.reloadData()
                     completion(true)
                 }
             }

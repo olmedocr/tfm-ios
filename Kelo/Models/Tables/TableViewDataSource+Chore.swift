@@ -8,10 +8,10 @@
 import UIKit
 import LetterAvatarKit
 
-extension OrderedTableViewDataSource where Model == Chore {
+extension TableViewDataSource where Model == Chore {
     static func make(for chores: [Chore],
-                     reuseIdentifier: String = "choreTableViewCell") -> OrderedTableViewDataSource {
-        return OrderedTableViewDataSource(
+                     reuseIdentifier: String = "choreTableViewCell") -> TableViewDataSource {
+        return TableViewDataSource(
             models: chores,
             reuseIdentifier: reuseIdentifier
         ) { (chore, cell) in
@@ -44,7 +44,7 @@ extension OrderedTableViewDataSource where Model == Chore {
     }
 
     private static func setImage(_ cell: ChoreTableViewCell, choreName: String) {
-        // FIXME: the image fucks the space around the image, check user assignment to copy its IB settings
+        // FIXME: the avatar fucks the space around the image, check user assignment to copy its IB settings
         let circleAvatarImage = LetterAvatarMaker()
             .setCircle(true)
             .setUsername(choreName)

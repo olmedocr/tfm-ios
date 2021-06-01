@@ -128,15 +128,6 @@
         }
       },
       {
-        "package": "SortedArray",
-        "repositoryURL": "https://github.com/ole/SortedArray.git",
-        "state": {
-          "branch": null,
-          "revision": "a521f750fccb0743ad082b7cb890a62e132c4fbf",
-          "version": "0.7.0"
-        }
-      },
-      {
         "package": "SwiftProtobuf",
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
