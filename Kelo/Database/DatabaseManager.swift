@@ -41,11 +41,11 @@ protocol  DatabaseManagerDelegate: AnyObject {
 
 // Optional delegate methods
 extension DatabaseManagerDelegate {
-    
+
     func didAddUser(user: User) {}
-    
+
     func didModifyUser(user: User) {}
-    
+
 }
 
 class DatabaseManager {

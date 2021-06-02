@@ -232,6 +232,6 @@ final class CreateChoreSteps: StepDefiner {
 
             XCTAssertFalse(hasEnoughPermissions)
         }
-        
+
     }
 }

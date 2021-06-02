@@ -16,6 +16,8 @@ class GroupTests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUp() {
+        continueAfterFailure = true
+
         app = XCUIApplication()
         app.launchArguments += ["-hasBeenLaunchedBefore", "NO"]
 

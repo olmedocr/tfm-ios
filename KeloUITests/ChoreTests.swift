@@ -38,7 +38,7 @@ class ChoreTests: XCTestCase {
     }
 
     override func setUp() {
-        continueAfterFailure = false
+        continueAfterFailure = true
     }
 
     func testAddChore() throws {

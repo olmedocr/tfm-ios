@@ -74,7 +74,7 @@ extension DatabaseManager {
 
                 let group = DispatchGroup()
 
-                usersSnapshot?.documents.forEach{ (userSnapshot) in
+                usersSnapshot?.documents.forEach { (userSnapshot) in
                     group.enter()
                     do {
                         if let user = try userSnapshot.data(as: User.self) {
@@ -144,7 +144,7 @@ extension DatabaseManager {
 
                 let group = DispatchGroup()
 
-                usersSnapshot?.documents.forEach{ (userSnapshot) in
+                usersSnapshot?.documents.forEach { (userSnapshot) in
                     group.enter()
                     do {
                         if let user = try userSnapshot.data(as: User.self) {
