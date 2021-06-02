@@ -129,10 +129,10 @@ extension DatabaseManager {
         }
     }
 
-    func deleteAllChores(result: @escaping (Result<Void, Error>) -> Void) {
+    func deleteAllChores(groupId: String, result: @escaping (Result<Void, Error>) -> Void) {
         let groupsReference: CollectionReference = database.collection(Constants.groupsCollectionKey)
 
-        groupsReference.document(groupId!).collection(Constants.choresCollectionKey)
+        groupsReference.document(groupId).collection(Constants.choresCollectionKey)
             .getDocuments { (choresSnapshot, err) in
                 if let err = err {
                     log.error(err.localizedDescription)

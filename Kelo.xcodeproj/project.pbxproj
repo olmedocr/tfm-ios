@@ -11,6 +11,7 @@
 		C41F3841261B5C7900121956 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F3840261B5C7900121956 /* DatabaseManager.swift */; };
 		C41F3845261B720F00121956 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C41F3844261B720F00121956 /* GoogleService-Info.plist */; };
 		C41F385B261CB99A00121956 /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F385A261CB99A00121956 /* TextField+Extensions.swift */; };
+		C421AEBA2667833300EC0732 /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C421AEB92667833300EC0732 /* GroupTests.swift */; };
 		C42A80C6263871C000D9468F /* ChoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A80C5263871C000D9468F /* ChoreTableViewCell.swift */; };
 		C42AA3EA2662A32800270FD2 /* TableViewDataSource+Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42AA3E92662A32800270FD2 /* TableViewDataSource+Chore.swift */; };
 		C42AA3EC2662A36800270FD2 /* TableViewDataSource+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42AA3EB2662A36800270FD2 /* TableViewDataSource+User.swift */; };
@@ -117,6 +118,7 @@
 		C41F3840261B5C7900121956 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		C41F3844261B720F00121956 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C41F385A261CB99A00121956 /* TextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extensions.swift"; sourceTree = "<group>"; };
+		C421AEB92667833300EC0732 /* GroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
 		C4222DC926283E3D00D31296 /* User.feature */ = {isa = PBXFileReference; lastKnownFileType = text; path = User.feature; sourceTree = "<group>"; };
 		C4222DD926283E8100D31296 /* UserSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSteps.swift; sourceTree = "<group>"; };
 		C42A80C5263871C000D9468F /* ChoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreTableViewCell.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 		C4B75161264531AB002888FC /* KeloUITests */ = {
 			isa = PBXGroup;
 			children = (
+				C421AEB92667833300EC0732 /* GroupTests.swift */,
 				C4B7517326454A33002888FC /* ChoreTests.swift */,
 				C47EE9762657CB9B00A8F525 /* CurrencyTests.swift */,
 				C4B7516C264531D0002888FC /* Info.plist */,
@@ -811,6 +814,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C47EE9772657CB9B00A8F525 /* CurrencyTests.swift in Sources */,
+				C421AEBA2667833300EC0732 /* GroupTests.swift in Sources */,
 				C4B7517426454A33002888FC /* ChoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

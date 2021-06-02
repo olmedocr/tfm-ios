@@ -88,7 +88,6 @@ class JoinViewController: UIViewController {
         if let viewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "FinalViewController") as? FinalViewController {
             viewController.group = group
-            viewController.isAdmin = false
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

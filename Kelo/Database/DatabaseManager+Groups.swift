@@ -81,7 +81,7 @@ extension DatabaseManager {
         let groupsReference: CollectionReference = database.collection(Constants.groupsCollectionKey)
 
         group.enter()
-        deleteAllUsers { (deleteResult) in
+        deleteAllUsers(groupId: groupId) { (deleteResult) in
             switch deleteResult {
             case .failure(let err):
                 log.error(err.localizedDescription)
@@ -101,7 +101,7 @@ extension DatabaseManager {
         }
 
         group.enter()
-        deleteAllChores { (deleteResult) in
+        deleteAllChores(groupId: groupId) { (deleteResult) in
             switch deleteResult {
             case .failure(let err):
                 log.error(err.localizedDescription)

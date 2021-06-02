@@ -171,7 +171,21 @@ class SettingsTableViewController: UITableViewController {
     }
 
     private func handleMarkAsDelete(user: User, index: Int, onComplete completion: @escaping (Bool) -> Void) {
-        if currentUser != nil && currentUser!.isAdmin {
+        switch Validations.userPermission(user, currrentUser: currentUser!, operation: .remove) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            log.info("Tried to remove a user without being the admin")
+
+            let alert = self.setAlert(title: "Error!",
+                                      message: """
+                                        Only the group admin is able to
+                                        remove this element
+                                        """,
+                                      actionTitle: "OK")
+
+            self.present(alert, animated: true)
+
+        case .success:
             DatabaseManager.shared.deleteUser(userId: user.id!) { (result) in
                 switch result {
                 case .failure(let err):
@@ -188,17 +202,6 @@ class SettingsTableViewController: UITableViewController {
                     completion(true)
                 }
             }
-        } else {
-            log.info("Tried to remove a user without being the admin")
-
-            let alert = self.setAlert(title: "Error!",
-                                      message: """
-                                        Only the group admin is able to
-                                        remove this element
-                                        """,
-                                      actionTitle: "OK")
-
-            self.present(alert, animated: true)
         }
     }
 

@@ -132,10 +132,10 @@ extension DatabaseManager {
         }
     }
 
-    func deleteAllUsers(result: @escaping (Result<Void, Error>) -> Void) {
+    func deleteAllUsers(groupId: String, result: @escaping (Result<Void, Error>) -> Void) {
         let groupsReference: CollectionReference = database.collection(Constants.groupsCollectionKey)
 
-        groupsReference.document(groupId!).collection(Constants.usersCollectionKey)
+        groupsReference.document(groupId).collection(Constants.usersCollectionKey)
             .getDocuments { (usersSnapshot, err) in
                 if let err = err {
                     log.error(err.localizedDescription)
@@ -292,6 +292,21 @@ extension DatabaseManager {
                 log.info("Last user in the group, skipped admin selection")
                 result(.success(()))
             }
+        }
+    }
+
+    func checkIfNewUserIsAdmin(result: @escaping (Result<Bool, Error>) -> Void) {
+        let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
+        let usersReference: CollectionReference = groupReference.collection(Constants.usersCollectionKey)
+
+        usersReference.getDocuments { (usersSnapshot, err) in
+            if let err = err {
+                log.error(err.localizedDescription)
+                result(.failure(err))
+            }
+            let numberOfUsers = usersSnapshot?.documents.count
+
+            result(.success(numberOfUsers == 0))
         }
     }
 

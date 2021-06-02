@@ -52,4 +52,52 @@ class ChoreTests: XCTestCase {
                                  testCase: self)
     }
 
+    func testChoreUpdateHasPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "User Has Permissions For Updating a Chore",
+                                 testCase: self)
+    }
+
+    func testChoreUpdateHasNoPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "User Has Not Permissions For Updating a Chore",
+                                 testCase: self)
+    }
+
+    func testChoreRemovalHasAdminPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "(Admin) User Has Permissions For Removing a Chore",
+                                 testCase: self)
+    }
+
+    func testChoreRemovalHasPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "(Creator) User Has Permissions For Removing a Chore",
+                                 testCase: self)
+    }
+
+    func testChoreRemovalHasNoPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "User Has Not Permissions For Removing a Chore",
+                                 testCase: self)
+    }
+
+    func testChoreCompletionHasAdminPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "(Admin) User Has Permissions For Completing a Chore",
+                                 testCase: self)
+    }
+
+    func testChoreCompletionHasPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "(Creator/Assignee) User Has Permissions For Completing a Chore",
+                                 testCase: self)
+    }
+
+    func testChoreCompletionHasNoPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "User Has Not Permissions For Completing a Chore",
+                                 testCase: self)
+    }
+
 }

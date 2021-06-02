@@ -55,9 +55,13 @@ class ChoresTableViewController: UITableViewController {
 
     // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if currentUser.id == dataSource?.models[indexPath.row].creator || currentUser.isAdmin {
-            self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
-        } else {
+
+        switch Validations.chorePermission((dataSource?.models[indexPath.row])!,
+                                           user: currentUser,
+                                           operation: .update) {
+
+        case .failure(let err):
+            log.error(err.localizedDescription)
             log.info("Tried to edit a chore without being the creator")
 
             tableView.deselectRow(at: indexPath, animated: true)
@@ -70,6 +74,9 @@ class ChoresTableViewController: UITableViewController {
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
+
+        case .success():
+            self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
         }
     }
 
@@ -123,7 +130,22 @@ class ChoresTableViewController: UITableViewController {
     }
 
     private func handleMarkAsComplete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
-        if currentUser.id == chore.assignee || currentUser.id == chore.creator || currentUser.isAdmin {
+
+        switch Validations.chorePermission(chore, user: currentUser, operation: .update) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            log.info("Tried to complete the chore without being the assigned user or the creator")
+
+            let alert = self.setAlert(title: "Error!",
+                                      message: """
+                                        Only the group admin, the creator of the chore or the user assigned to it
+                                        can complete this element
+                                        """,
+                                      actionTitle: "OK")
+
+            self.present(alert, animated: true)
+
+        case .success:
             DatabaseManager.shared.completeChore(chore: chore) { (result) in
                 switch result {
                 case .failure(let err):
@@ -136,22 +158,26 @@ class ChoresTableViewController: UITableViewController {
                     completion(true)
                 }
             }
-        } else {
-            log.info("Tried to complete the chore without being the assigned user or the creator")
-
-            let alert = self.setAlert(title: "Error!",
-                                      message: """
-                                        Only the group admin, the creator of the chore or the user assigned to it
-                                        can complete this element
-                                        """,
-                                      actionTitle: "OK")
-
-            self.present(alert, animated: true)
         }
     }
 
     private func handleMarkAsDelete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
-        if currentUser.id == chore.creator || currentUser.isAdmin {
+
+        switch Validations.chorePermission(chore, user: currentUser, operation: .update) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            log.info("Tried to remove the chore without being the creator")
+
+            let alert = self.setAlert(title: "Error!",
+                                      message: """
+                                        Only the creator of the chore or the group admin are able to
+                                        remove this element
+                                        """,
+                                      actionTitle: "OK")
+
+            self.present(alert, animated: true)
+
+        case .success:
             DatabaseManager.shared.deleteChore(choreId: chore.id!) { (result) in
                 switch result {
                 case .failure(let err):
@@ -164,17 +190,6 @@ class ChoresTableViewController: UITableViewController {
                     completion(true)
                 }
             }
-        } else {
-            log.info("Tried to remove the chore without being the creator")
-
-            let alert = self.setAlert(title: "Error!",
-                                      message: """
-                                        Only the creator of the chore or the group admin are able to
-                                        remove this element
-                                        """,
-                                      actionTitle: "OK")
-
-            self.present(alert, animated: true)
         }
     }
 

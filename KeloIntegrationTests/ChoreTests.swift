@@ -143,7 +143,7 @@ class ChoreTests: XCTestCase {
                         XCTFail(err.localizedDescription)
                     case .success:
                         DatabaseManager.shared
-                            .deleteAllChores { (deletionResult) in
+                            .deleteAllChores(groupId: DatabaseManager.shared.groupId!) { (deletionResult) in
                                 switch deletionResult {
                                 case .failure(let err):
                                     XCTFail(err.localizedDescription)

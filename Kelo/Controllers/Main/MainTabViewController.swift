@@ -17,46 +17,33 @@ class MainTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let groupId = defaults.string(forKey: UserDefaults.Keys.groupId.rawValue) {
+        if let groupId = defaults.string(forKey: UserDefaults.Keys.groupId.rawValue),
+           let userId = defaults.string(forKey: UserDefaults.Keys.userId.rawValue) {
+
             DatabaseManager.shared.groupId = groupId
-            DatabaseManager.shared.retrieveGroup(groupId: groupId) { (result) in
-                switch result {
-                case .failure(let err):
-                    log.error(err.localizedDescription)
-                    self.restartApp(withMessage: "It appears that this group no longer exists")
-                case .success(let group):
-                    self.children.forEach({ navigationController in
-                        navigationController.children.first?.navigationItem.prompt = group.name
-                    })
-                }
-            }
-        } else {
-            log.error("No groupId found")
-        }
-
-        if let userId = defaults.string(forKey: UserDefaults.Keys.userId.rawValue) {
             DatabaseManager.shared.userId = userId
-            DatabaseManager.shared.retrieveUser(userId: userId) { (result) in
+
+            Validations.userInGroup(userId, groupId: groupId) { result in
                 switch result {
                 case .failure(let err):
                     log.error(err.localizedDescription)
-                    self.restartApp(withMessage: "You no longer have access to the group")
+                    self.restartApp(withMessage: err.localizedDescription)
                 case .success:
-                    break
+                    log.info("The group still exists and the user keeps belonging to it")
+
+                    DatabaseManager.shared.delegate = self
+                    DatabaseManager.shared.subscribeToUserList { result in
+                        switch result {
+                        case .failure(let err):
+                            log.error(err.localizedDescription)
+                        case .success:
+                            log.info("Subscribed to user changes")
+                        }
+                    }
                 }
             }
         } else {
-            log.error("No userId found")
-        }
-
-        DatabaseManager.shared.delegate = self
-        DatabaseManager.shared.subscribeToUserList { result in
-            switch result {
-            case .failure(let err):
-                log.error(err.localizedDescription)
-            case .success:
-                log.info("Subscribed to user changes")
-            }
+            log.error("No ids found on userDefaults")
         }
     }
 
