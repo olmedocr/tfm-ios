@@ -46,6 +46,8 @@ class CurrencyTests: XCTestCase {
         app.keyboards.buttons["Done"].tap()
         app.buttons["Continue"].tap()
         app.tabBars.buttons["Settings"].tap()
+        
+        app.tables.cells.element(boundBy: 2).waitForExistence(timeout: 5)
         app.tables.cells.element(boundBy: 2).tap()
 
         app.navigationBars.buttons.element(boundBy: 0).tap()
