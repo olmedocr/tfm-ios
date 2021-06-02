@@ -12,7 +12,6 @@ class FinalViewController: UIViewController {
     // MARK: Properties
     let defaults = UserDefaults.standard
     var group: Group?
-    var isAdmin: Bool?
 
     // MARK: IBOutlets
     @IBOutlet weak var userNameTextField: UITextField!
@@ -23,7 +22,7 @@ class FinalViewController: UIViewController {
 
     // MARK: IBActions
     @IBAction func didTapContinue(_ sender: Any) {
-        let user = User(name: userNameTextField.text!, isAdmin: isAdmin!)
+        var user = User(name: userNameTextField.text!)
 
         switch Validations.userName(userNameTextField.text!) {
         case .failure(let err):
@@ -36,17 +35,25 @@ class FinalViewController: UIViewController {
             DatabaseManager.shared.groupId = group!.id
             self.defaults.setValue(group?.id, forKey: UserDefaults.Keys.groupId.rawValue)
 
-            DatabaseManager.shared.joinGroup(user: user, group: group!) { (result) in
+            DatabaseManager.shared.checkIfNewUserIsAdmin { (result) in
                 switch result {
                 case .failure(let err):
                     log.error(err.localizedDescription)
-                    self.userNameTextField.showError(err.localizedDescription, in: self.errorLabel)
-                case .success(let userId):
-                    log.info("Correctly joined group")
-                    DatabaseManager.shared.userId = userId
-                    self.defaults.setValue(userId, forKey: UserDefaults.Keys.userId.rawValue)
+                case .success(let isAdmin):
+                    user.isAdmin = isAdmin
+                    DatabaseManager.shared.joinGroup(user: user, group: self.group!) { (result) in
+                        switch result {
+                        case .failure(let err):
+                            log.error(err.localizedDescription)
+                            self.userNameTextField.showError(err.localizedDescription, in: self.errorLabel)
+                        case .success(let userId):
+                            log.info("Correctly joined group")
+                            DatabaseManager.shared.userId = userId
+                            self.defaults.setValue(userId, forKey: UserDefaults.Keys.userId.rawValue)
 
-                    self.presentMainTableViewController(withGroup: self.group!)
+                            self.presentMainTableViewController(withGroup: self.group!)
+                        }
+                    }
                 }
             }
         }

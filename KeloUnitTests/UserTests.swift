@@ -57,4 +57,22 @@ class UserTests: XCTestCase {
                                  scenario: "Invalid Characters 2",
                                  testCase: self)
     }
+
+    func testRemovalByCurrentUser() {
+        NativeRunner.runScenario(featureFile: "User.feature",
+                                 scenario: "User Cannot Remove Itself from the User List",
+                                 testCase: self)
+    }
+
+    func testRemovalByOtherUser() {
+        NativeRunner.runScenario(featureFile: "User.feature",
+                                 scenario: "User Cannot Remove Another User from the User List",
+                                 testCase: self)
+    }
+
+    func testRemovalByAdmin() {
+        NativeRunner.runScenario(featureFile: "User.feature",
+                                 scenario: "User Can Remove Other User from the User List",
+                                 testCase: self)
+    }
 }

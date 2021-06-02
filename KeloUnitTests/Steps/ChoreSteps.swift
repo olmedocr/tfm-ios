@@ -18,8 +18,12 @@ final class CreateChoreSteps: StepDefiner {
     private var isChoreNameValid = false
     private var isChoreValid = false
 
-    // swiftlint:disable function_body_length
+    private var user = User()
+
+    // swiftlint:disable function_body_length cyclomatic_complexity
     override func defineSteps() {
+
+        // MARK: - Validate Chore
         step("the user that fills up a chore without an assignee") {
             self.chore = Chore(id: "", name: "Do the laundry")
         }
@@ -37,6 +41,7 @@ final class CreateChoreSteps: StepDefiner {
             XCTAssertFalse(self.isChoreValid)
         }
 
+        // MARK: - Selected Chore Date
         step("the user wants to create a new chore") {}
 
         step("the user enters the add chore page") {}
@@ -62,6 +67,7 @@ final class CreateChoreSteps: StepDefiner {
             XCTAssertTrue(self.chore.expiration == self.selectedDate)
         }
 
+        // MARK: - Validate Chore Name
         step("the user that enters a chore \"(.*)\"") { (choreName: String) in
             self.choreName = choreName
         }
@@ -101,6 +107,129 @@ final class CreateChoreSteps: StepDefiner {
 
         step("the chore name must not contain special characters") {
             XCTAssertFalse(self.isChoreNameValid)
+        }
+
+        // MARK: - Update Chore Permission
+        step("a user with id \"(.*)\" that wants to update a chore") { (userId: String) in
+            self.user.id = userId
+        }
+
+        step("the chore creator is \"(.*)\"") { (creatorId: String) in
+            self.chore.creator = creatorId
+        }
+
+        step("the user is permitted to update it") {
+            var hasEnoughPermissions = false
+
+            switch Validations.chorePermission(self.chore, user: self.user, operation: .update) {
+            case .failure(_):
+                hasEnoughPermissions = false
+            case .success:
+                hasEnoughPermissions = true
+            }
+
+            XCTAssertTrue(hasEnoughPermissions)
+        }
+
+        step("the user is not permitted to update it") {
+            var hasEnoughPermissions = false
+
+            switch Validations.chorePermission(self.chore, user: self.user, operation: .update) {
+            case .failure(_):
+                hasEnoughPermissions = false
+            case .success:
+                hasEnoughPermissions = true
+            }
+
+            XCTAssertFalse(hasEnoughPermissions)
+        }
+
+        // MARK: - Removal Chore Permission
+        step("a user with id \"(.*)\" that wants to remove a chore") { (userId: String) in
+            self.user.id = userId
+        }
+
+        step("the user is the admin of the group") {
+            self.user.isAdmin = true
+        }
+
+        step("the chore is not the creator \"(.*)\" of the chore nor the admin") { (creatorId: String) in
+            self.chore.creator = creatorId
+            self.user.isAdmin = false
+        }
+
+        step("the user is permitted to remove it") {
+            var hasEnoughPermissions = false
+
+            switch Validations.chorePermission(self.chore, user: self.user, operation: .remove) {
+            case .failure(_):
+                hasEnoughPermissions = false
+            case .success:
+                hasEnoughPermissions = true
+            }
+
+            XCTAssertTrue(hasEnoughPermissions)
+        }
+
+        step("the user is not permitted to remove it") {
+            var hasEnoughPermissions = false
+
+            switch Validations.chorePermission(self.chore, user: self.user, operation: .remove) {
+            case .failure(_):
+                hasEnoughPermissions = false
+            case .success:
+                hasEnoughPermissions = true
+            }
+
+            XCTAssertFalse(hasEnoughPermissions)
+        }
+
+        // MARK: - Complete Chore Permission
+        step("a user with id \"(.*)\" that wants to complete a chore") { (userId: String) in
+            self.user.id = userId
+        }
+
+        step("""
+            the chore creator is either the \"(.*)\" or the assignee \"(.*)\"
+            """) { (creatorId: String, assigneeId: String) in
+
+            self.chore.creator = creatorId
+            self.chore.assignee = assigneeId
+        }
+
+        step("""
+            the chore is not the creator \"(.*)\" of the chore, nor the assignee \"(.*)\", nor the admin
+            """) { (creatorId: String, assigneeId: String) in
+
+            self.chore.creator = creatorId
+            self.chore.assignee = assigneeId
+            self.user.isAdmin = false
+        }
+
+        step("the user is permitted to complete it") {
+            var hasEnoughPermissions = false
+
+            switch Validations.chorePermission(self.chore, user: self.user, operation: .complete) {
+            case .failure(_):
+                hasEnoughPermissions = false
+            case .success:
+                hasEnoughPermissions = true
+            }
+
+            XCTAssertTrue(hasEnoughPermissions)
+        }
+
+        step("the user is not permitted to complete it") {
+            var hasEnoughPermissions = false
+
+            switch Validations.chorePermission(self.chore, user: self.user, operation: .complete) {
+            case .failure(_):
+                hasEnoughPermissions = false
+            case .success:
+                hasEnoughPermissions = true
+            }
+
+            XCTAssertFalse(hasEnoughPermissions)
         }
     }
 }
