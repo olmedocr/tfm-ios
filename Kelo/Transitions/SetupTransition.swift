@@ -8,6 +8,7 @@
 import UIKit
 
 extension SetupTransition {
+
     enum TransitionType {
         case enter
         case leave
@@ -20,7 +21,7 @@ public class SetupTransition: NSObject, UIViewControllerAnimatedTransitioning {
     fileprivate let operation: UINavigationController.Operation
 
     // MARK: Initializers
-    init?(withOperation operation: UINavigationController.Operation ) {
+    init?(withOperation operation: UINavigationController.Operation) {
         self.operation = operation
     }
 
@@ -49,7 +50,7 @@ public class SetupTransition: NSObject, UIViewControllerAnimatedTransitioning {
                                  withDuration: Constants.animationDefaultDuration,
                                  withType: .enter,
                                  withOperation: self.operation,
-                                 completion: {_ in
+                                 completion: { _ in
                                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                                  })
 
@@ -117,4 +118,5 @@ public class SetupTransition: NSObject, UIViewControllerAnimatedTransitioning {
             }
         }
     }
+
 }

@@ -8,6 +8,7 @@
 import LetterAvatarKit
 
 extension TableViewDataSource where Model == User {
+
     static func make(for users: [User],
                      reuseIdentifier: String = "userTableViewCell") -> TableViewDataSource {
         return TableViewDataSource(
@@ -38,4 +39,5 @@ extension TableViewDataSource where Model == User {
             }
         }
     }
+
 }

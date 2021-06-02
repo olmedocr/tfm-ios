@@ -98,4 +98,5 @@ class ChoreTests: XCTestCase {
 
         app.navigationBars.buttons.element(boundBy: 0).tap()
     }
+
 }

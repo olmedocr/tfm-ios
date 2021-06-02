@@ -75,7 +75,7 @@ class ChoresTableViewController: UITableViewController {
 
             self.present(alert, animated: true)
 
-        case .success():
+        case .success:
             self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
         }
     }
@@ -211,4 +211,5 @@ class ChoresTableViewController: UITableViewController {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+
 }

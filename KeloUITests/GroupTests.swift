@@ -50,4 +50,5 @@ class GroupTests: XCTestCase {
 
         // TODO: assert that the presented view controller is the initial one
     }
+
 }

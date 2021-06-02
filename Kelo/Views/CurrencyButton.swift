@@ -23,4 +23,5 @@ class CurrencyButton: RoundedButton {
             imageView?.trailingAnchor.constraint(equalTo: titleLabel!.leadingAnchor, constant: -8).isActive = true
         }
     }
+
 }
