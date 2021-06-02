@@ -14,6 +14,9 @@ final class CreateUserSteps: StepDefiner {
     private var userName: String?
     private var isUsernameValid = true
 
+    private var user = User()
+    private var userToBeRemoved = User()
+
     override func defineSteps() {
         step("the user that enters its username \"(.*)\"") { (userName: String) in
             self.userName = userName
@@ -58,6 +61,43 @@ final class CreateUserSteps: StepDefiner {
 
         step("the username must not contain special characters") {
             XCTAssertFalse(self.isUsernameValid)
+        }
+
+        // MARK: - Delete User Action
+        step("the user whose \"(.*)\"") { (userId: String) in
+            self.user.id = userId
+        }
+
+        step("the user \"(.*)\" who is not the admin of the group") { (userId: String) in
+            self.user.id = userId
+            self.user.isAdmin = false
+        }
+
+        step("the user \"(.*)\" who is admin of the group") { (userId: String) in
+            self.user.id = userId
+            self.user.isAdmin = true
+        }
+
+        step("the user tries to remove a certain user \"(.*)\"") { (userId: String) in
+            self.userToBeRemoved.id = userId
+        }
+
+        step("the action of removal will not be executed") {
+            switch Validations.userPermission(self.userToBeRemoved, currrentUser: self.user, operation: .remove) {
+            case .failure(_):
+                break
+            case .success:
+                XCTFail("The operation should be invalid")
+            }
+        }
+
+        step("the action of removal will be executed") {
+            switch Validations.userPermission(self.userToBeRemoved, currrentUser: self.user, operation: .remove) {
+            case .failure(let err):
+                XCTFail(err.localizedDescription)
+            case .success:
+               break
+            }
         }
     }
 }

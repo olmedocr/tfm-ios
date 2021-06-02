@@ -64,7 +64,6 @@ class ChoreTests: XCTestCase {
         app.navigationBars.buttons["Save"].tap()
 
         XCTAssert(app.staticTexts.element(matching: .any, identifier: choreName).label == choreName)
-        XCTAssert(app.staticTexts.element(matching: .any, identifier: userName + " (You)").label == userName + " (You)")
         XCTAssert(app.staticTexts.element(matching: .any, identifier: today).label == today)
         XCTAssert(app.images.element(matching: .any, identifier: "Yellow").identifier == "Yellow")
     }
