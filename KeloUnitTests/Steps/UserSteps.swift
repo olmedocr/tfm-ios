@@ -66,6 +66,7 @@ final class CreateUserSteps: StepDefiner {
         // MARK: - Delete User Action
         step("the user whose \"(.*)\"") { (userId: String) in
             self.user.id = userId
+            self.user.isAdmin = false
         }
 
         step("the user \"(.*)\" who is not the admin of the group") { (userId: String) in
