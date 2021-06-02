@@ -27,4 +27,5 @@ struct Currency: Codable {
         case name
         case symbol
     }
+
 }

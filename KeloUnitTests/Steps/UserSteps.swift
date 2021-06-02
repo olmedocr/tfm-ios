@@ -17,6 +17,7 @@ final class CreateUserSteps: StepDefiner {
     private var user = User()
     private var userToBeRemoved = User()
 
+    // swiftlint:disable function_body_length
     override func defineSteps() {
         step("the user that enters its username \"(.*)\"") { (userName: String) in
             self.userName = userName
@@ -100,4 +101,5 @@ final class CreateUserSteps: StepDefiner {
             }
         }
     }
+
 }

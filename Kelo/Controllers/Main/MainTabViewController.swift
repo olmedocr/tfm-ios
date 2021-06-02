@@ -66,13 +66,16 @@ class MainTabViewController: UITabBarController {
         context.present(sheetController, animated: true, completion: nil)
 
     }
+
 }
 
 extension MainTabViewController: DatabaseManagerDelegate {
+
     func didDeleteUser(user: User) {
         if user.id == DatabaseManager.shared.userId {
             log.warning("This user was deleted remotely by the admin")
             self.restartApp(withMessage: "The admin removed you from the group")
         }
     }
+
 }

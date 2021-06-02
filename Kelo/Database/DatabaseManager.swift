@@ -8,6 +8,7 @@
 import Firebase
 
 extension DatabaseManager {
+
     enum CustomError: LocalizedError {
         case groupNotFound
         case userNotFound
@@ -26,7 +27,7 @@ extension DatabaseManager {
                 return "Username already taken"
             case .groupIsFull:
                 return "Group is full"
-            case .bundleError :
+            case .bundleError:
                 return "No CurrencyList Bundle Access"
             case .unknown:
                 return "Uknown error"
@@ -37,6 +38,7 @@ extension DatabaseManager {
 
 protocol  DatabaseManagerDelegate: AnyObject {
     func didDeleteUser(user: User)
+
 }
 
 // Optional delegate methods

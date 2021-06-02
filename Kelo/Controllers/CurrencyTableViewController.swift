@@ -48,4 +48,5 @@ class CurrencyTableViewController: UITableViewController {
             log.error("Could not return selected currency to parent controller")
         }
     }
+
 }

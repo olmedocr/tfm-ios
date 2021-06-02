@@ -237,10 +237,12 @@ class DetailChoreViewController: UIViewController {
 
         navigationController?.present(sheetController, animated: true, completion: nil)
     }
+
 }
 
 // MARK: - TextField delegate
 extension DetailChoreViewController: UITextFieldDelegate {
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -249,10 +251,13 @@ extension DetailChoreViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         choreTextField.hideError(choreTitleErrorLabel)
     }
+
 }
 
 extension DetailChoreViewController: UsersTableViewDelegate {
+
     func didSelectUser(user: User) {
         selectedAssignee = user
     }
+
 }

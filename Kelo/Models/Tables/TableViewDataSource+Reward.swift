@@ -6,6 +6,7 @@
 //
 
 extension TableViewDataSource where Model == Reward {
+
     static func make(for reward: Reward,
                      reuseIdentifier: String = "rewardTableViewCell") -> TableViewDataSource {
         return TableViewDataSource(
@@ -17,4 +18,5 @@ extension TableViewDataSource where Model == Reward {
             }
         }
     }
+
 }

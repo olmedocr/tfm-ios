@@ -53,4 +53,5 @@ class CurrencyTests: XCTestCase {
         app.buttons["Leave Group"].tap()
         app.alerts["Are you sure?"].buttons["Leave"].tap()
     }
+
 }

@@ -20,6 +20,7 @@ class SectionedTableViewDataSource: NSObject {
 }
 
 extension SectionedTableViewDataSource: UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return dataSources.count
     }
@@ -48,4 +49,5 @@ extension SectionedTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
     }
+
 }

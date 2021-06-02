@@ -9,6 +9,7 @@ import UIKit
 import LetterAvatarKit
 
 extension TableViewDataSource where Model == Chore {
+
     static func make(for chores: [Chore],
                      reuseIdentifier: String = "choreTableViewCell") -> TableViewDataSource {
         return TableViewDataSource(
@@ -117,4 +118,5 @@ extension TableViewDataSource where Model == Chore {
             log.warning("Unknown importance value")
         }
     }
+
 }

@@ -67,7 +67,7 @@ struct Validations {
             switch isValidGroup {
             case .failure(_):
                 result(.failure(EvaluateError.groupNoLongerExists))
-            case .success(()):
+            case .success:
                 isValid(userId: userId) { isValidUser in
                     switch isValidUser {
                     case .failure(_):
@@ -145,7 +145,7 @@ struct Validations {
                 log.error(err.localizedDescription)
                 result(.failure(err))
 
-            case .success(_):
+            case .success:
                 result(.success(()))
             }
         }
@@ -159,7 +159,7 @@ struct Validations {
                 log.error(err.localizedDescription)
                 result(.failure(err))
 
-            case .success(_):
+            case .success:
                 result(.success(()))
             }
         }
@@ -190,4 +190,5 @@ struct Validations {
             return currentUser.isAdmin
         }
     }
+
 }
