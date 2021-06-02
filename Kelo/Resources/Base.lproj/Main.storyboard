@@ -666,7 +666,7 @@
                                                     <constraint firstAttribute="width" secondItem="tuy-rh-Mis" secondAttribute="height" multiplier="7:1" id="812-VU-dK2"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                             </textField>
                                         </subviews>
                                     </stackView>

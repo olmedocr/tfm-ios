@@ -390,7 +390,7 @@ class UserTests: XCTestCase {
             }
         }
 
-        wait(for: [expectation], timeout: 2)
+        wait(for: [expectation], timeout: 4)
     }
 
     // swiftlint:disable cyclomatic_complexity

@@ -56,9 +56,13 @@ class ChoreTests: XCTestCase {
         let today = formatter.string(from: Date())
 
         app.navigationBars.buttons["Add"].tap()
+
         app.textFields.element.waitForExistence(timeout: 2)
         app.textFields.element.tap()
+
         app.textFields.element.typeText(choreName)
+        app.keyboards.buttons["Done"].tap()
+
         app.buttons["Select a user"].tap()
         app.tables.cells.element(boundBy: 0).tap()
         app.buttons["Medium"].tap()
@@ -75,7 +79,7 @@ class ChoreTests: XCTestCase {
             return
         }
 
-        app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 5)
+        app.tables.element.waitForExistence(timeout: 5)
         app.tables.cells.element(boundBy: 0).tap()
 
         XCTAssertTrue(app.textFields[choreName].exists)
@@ -91,6 +95,7 @@ class ChoreTests: XCTestCase {
             return
         }
 
+        app.navigationBars.element.waitForExistence(timeout: 5)
         app.navigationBars.buttons["Add"].tap()
 
         XCTAssertFalse(app.buttons[userName + " (You)"].exists)
