@@ -24,7 +24,7 @@ final class CreateUserSteps: StepDefiner {
 
         step("the user validates its username") {
             switch Validations.userName(self.userName!) {
-            case .failure(_):
+            case .failure:
                 self.isUsernameValid = false
             case .success:
                 self.isUsernameValid = true
@@ -85,7 +85,7 @@ final class CreateUserSteps: StepDefiner {
 
         step("the action of removal will not be executed") {
             switch Validations.userPermission(self.userToBeRemoved, currrentUser: self.user, operation: .remove) {
-            case .failure(_):
+            case .failure:
                 break
             case .success:
                 XCTFail("The operation should be invalid")

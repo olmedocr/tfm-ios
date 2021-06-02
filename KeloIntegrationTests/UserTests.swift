@@ -365,7 +365,7 @@ class UserTests: XCTestCase {
             case .success(let user):
                 DatabaseManager.shared.checkUserNameAvilability(userName: testUser.name) { (result) in
                     switch result {
-                    case .failure(_):
+                    case .failure:
                         XCTAssertTrue(testUser.name == user.name)
                         expectation.fulfill()
                     case .success:
@@ -491,7 +491,7 @@ class UserTests: XCTestCase {
 
         DatabaseManager.shared.retrieveUser(userId: "NonExistingUserId") { (retrievalResult) in
             switch retrievalResult {
-            case .failure(_):
+            case .failure:
                 expectation.fulfill()
 
             case .success:

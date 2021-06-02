@@ -74,7 +74,7 @@ extension DatabaseManager {
 
                 let group = DispatchGroup()
 
-                usersSnapshot?.documents.forEach({ (userSnapshot) in
+                usersSnapshot?.documents.forEach{ (userSnapshot) in
                     group.enter()
                     do {
                         if let user = try userSnapshot.data(as: User.self) {
@@ -86,7 +86,7 @@ extension DatabaseManager {
                         result(.failure(err))
                         group.leave()
                     }
-                })
+                }
 
                 group.notify(queue: .main) {
                     log.info("Successfully retrieved all users")
@@ -144,7 +144,7 @@ extension DatabaseManager {
 
                 let group = DispatchGroup()
 
-                usersSnapshot?.documents.forEach({ (userSnapshot) in
+                usersSnapshot?.documents.forEach{ (userSnapshot) in
                     group.enter()
                     do {
                         if let user = try userSnapshot.data(as: User.self) {
@@ -163,7 +163,7 @@ extension DatabaseManager {
                         log.error(err.localizedDescription)
                         result(.failure(err))
                     }
-                })
+                }
 
                 group.notify(queue: .main) {
                     log.info("Successfully deleted nested users")

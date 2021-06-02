@@ -65,12 +65,12 @@ struct Validations {
     static func userInGroup(_ userId: String, groupId: String, result: @escaping (Result<Void, Error>) -> Void) {
         isValid(groupId: groupId) { isValidGroup in
             switch isValidGroup {
-            case .failure(_):
+            case .failure:
                 result(.failure(EvaluateError.groupNoLongerExists))
             case .success(()):
                 isValid(userId: userId) { isValidUser in
                     switch isValidUser {
-                    case .failure(_):
+                    case .failure:
                         result(.failure(EvaluateError.userNoLongerExists))
                     case .success:
                         result(.success(()))

@@ -30,7 +30,7 @@ final class CreateChoreSteps: StepDefiner {
 
         step("the user tries to create the chore") {
             switch Validations.chore(self.chore) {
-            case .failure(_):
+            case .failure:
                 self.isChoreValid = false
             case .success:
                 self.isChoreValid = true
@@ -74,7 +74,7 @@ final class CreateChoreSteps: StepDefiner {
 
         step("the user validates the chore name") {
             switch Validations.choreName(self.choreName!) {
-            case .failure(_):
+            case .failure:
                 self.isChoreNameValid = false
             case .success:
                 self.isChoreNameValid = true
@@ -122,7 +122,7 @@ final class CreateChoreSteps: StepDefiner {
             var hasEnoughPermissions = false
 
             switch Validations.chorePermission(self.chore, user: self.user, operation: .update) {
-            case .failure(_):
+            case .failure:
                 hasEnoughPermissions = false
             case .success:
                 hasEnoughPermissions = true
@@ -135,7 +135,7 @@ final class CreateChoreSteps: StepDefiner {
             var hasEnoughPermissions = false
 
             switch Validations.chorePermission(self.chore, user: self.user, operation: .update) {
-            case .failure(_):
+            case .failure:
                 hasEnoughPermissions = false
             case .success:
                 hasEnoughPermissions = true
@@ -163,7 +163,7 @@ final class CreateChoreSteps: StepDefiner {
             var hasEnoughPermissions = false
 
             switch Validations.chorePermission(self.chore, user: self.user, operation: .remove) {
-            case .failure(_):
+            case .failure:
                 hasEnoughPermissions = false
             case .success:
                 hasEnoughPermissions = true
@@ -176,7 +176,7 @@ final class CreateChoreSteps: StepDefiner {
             var hasEnoughPermissions = false
 
             switch Validations.chorePermission(self.chore, user: self.user, operation: .remove) {
-            case .failure(_):
+            case .failure:
                 hasEnoughPermissions = false
             case .success:
                 hasEnoughPermissions = true
@@ -211,7 +211,7 @@ final class CreateChoreSteps: StepDefiner {
             var hasEnoughPermissions = false
 
             switch Validations.chorePermission(self.chore, user: self.user, operation: .complete) {
-            case .failure(_):
+            case .failure:
                 hasEnoughPermissions = false
             case .success:
                 hasEnoughPermissions = true
@@ -224,7 +224,7 @@ final class CreateChoreSteps: StepDefiner {
             var hasEnoughPermissions = false
 
             switch Validations.chorePermission(self.chore, user: self.user, operation: .complete) {
-            case .failure(_):
+            case .failure:
                 hasEnoughPermissions = false
             case .success:
                 hasEnoughPermissions = true
@@ -232,5 +232,6 @@ final class CreateChoreSteps: StepDefiner {
 
             XCTAssertFalse(hasEnoughPermissions)
         }
+        
     }
 }
