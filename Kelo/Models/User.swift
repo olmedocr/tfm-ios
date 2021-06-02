@@ -21,4 +21,5 @@ struct User: Identifiable, Codable {
         case points
         case isAdmin
     }
+
 }

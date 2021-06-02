@@ -33,4 +33,5 @@ struct Chore: Identifiable, Codable {
         case medium = 20
         case high = 30
     }
+
 }

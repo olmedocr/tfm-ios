@@ -409,13 +409,13 @@ class UserTests: XCTestCase {
                     switch creationResult2 {
                     case .failure(let err):
                         log.error(err.localizedDescription)
-                    case .success(_):
+                    case .success:
                         XCTAssertTrue(createdUser1.isAdmin)
                         DatabaseManager.shared.createUser(user: testUser3) { (creationResult3) in
                             switch creationResult3 {
                             case .failure(let err):
                                 log.error(err.localizedDescription)
-                            case .success(_):
+                            case .success:
                                 DatabaseManager.shared.deleteUser(userId: createdUser1.id!) { (deletionResult) in
                                     switch deletionResult {
                                     case .failure(let err):
@@ -558,9 +558,11 @@ class UserTests: XCTestCase {
 
         wait(for: [expectation], timeout: 3)
     }
+
 }
 
 extension UserTests: DatabaseManagerDelegate {
+
     func didDeleteUser(user: User) {
         isDeleteListenerTriggered = true
     }

@@ -237,10 +237,12 @@ class SettingsTableViewController: UITableViewController {
 
         navigationController?.pushViewController(controller, animated: true)
     }
+
 }
 
 // MARK: - CurrencyTable delegate
 extension SettingsTableViewController: CurrencyTableViewDelegate {
+
     func didSelectCurrency(currency: Currency) {
         if var updatedGroup = group {
             updatedGroup.currency = currency.code
@@ -255,9 +257,11 @@ extension SettingsTableViewController: CurrencyTableViewDelegate {
             }
         }
     }
+
 }
 
 extension SettingsTableViewController: SettingsCellDelegate {
+
     func didTapOnDeleteGroup() {
         if currentUser!.isAdmin {
             DatabaseManager.shared.removeAllListeners()
@@ -325,4 +329,5 @@ extension SettingsTableViewController: SettingsCellDelegate {
 
         self.present(alert, animated: true)
     }
+
 }

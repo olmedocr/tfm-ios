@@ -51,4 +51,5 @@ class GroupTests: XCTestCase {
                                  scenario: "Invalid Characters",
                                  testCase: self)
     }
+
 }

@@ -75,4 +75,5 @@ class UserTests: XCTestCase {
                                  scenario: "User Can Remove Other User from the User List",
                                  testCase: self)
     }
+
 }

@@ -54,4 +54,5 @@ class AssignChoreViewController: UIViewController {
             embeddedViewController.delegate = delegate
         }
     }
+
 }

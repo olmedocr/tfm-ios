@@ -58,4 +58,5 @@ final class CreateGroupSteps: StepDefiner {
             XCTAssertFalse(self.isGroupNameValid)
         }
     }
+
 }

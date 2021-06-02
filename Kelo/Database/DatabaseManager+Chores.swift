@@ -70,7 +70,7 @@ extension DatabaseManager {
 
                 let group = DispatchGroup()
 
-                choresSnapshot?.documents.forEach({ (choreSnapshot) in
+                choresSnapshot?.documents.forEach { (choreSnapshot) in
                     group.enter()
                     do {
                         if let chore = try choreSnapshot.data(as: Chore.self) {
@@ -82,7 +82,7 @@ extension DatabaseManager {
                         result(.failure(err))
                         group.leave()
                     }
-                })
+                }
 
                 group.notify(queue: .main) {
                     log.info("Successfully retrieved all chores")
@@ -141,7 +141,7 @@ extension DatabaseManager {
 
                 let group = DispatchGroup()
 
-                choresSnapshot?.documents.forEach({ (choreSnapshot) in
+                choresSnapshot?.documents.forEach { (choreSnapshot) in
                     group.enter()
                     do {
                         if let chore = try choreSnapshot.data(as: Chore.self) {
@@ -160,7 +160,7 @@ extension DatabaseManager {
                         log.error(err.localizedDescription)
                         result(.failure(err))
                     }
-                })
+                }
 
                 group.notify(queue: .main) {
                     log.info("Successfully deleted nested chores")
@@ -200,4 +200,5 @@ extension DatabaseManager {
 
         }
     }
+
 }

@@ -107,10 +107,12 @@ class CreateViewController: UIViewController {
 
         navigationController?.present(sheetController, animated: true, completion: nil)
     }
+
 }
 
 // MARK: - TextField delegate
 extension CreateViewController: UITextFieldDelegate {
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -119,19 +121,24 @@ extension CreateViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.hideError(groupErrorLabel)
     }
+
 }
 
 // MARK: - CurrencyTable delegate
 extension CreateViewController: CurrencyTableViewDelegate {
+
     func didSelectCurrency(currency: Currency) {
         currencyButton.setImage(currency.flag, for: .normal)
         currencyButton.setTitle(currency.code, for: .normal)
     }
+
 }
 
 // MARK: - Animatable views
 extension CreateViewController: Animatable {
+
     func getViewsToAnimate() -> [UIView] {
         return viewsToAnimate
     }
+
 }

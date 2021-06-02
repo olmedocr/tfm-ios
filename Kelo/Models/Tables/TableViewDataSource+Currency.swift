@@ -6,6 +6,7 @@
 //
 
 extension TableViewDataSource where Model == Currency {
+
     static func make(for currencies: [Currency],
                      reuseIdentifier: String = "currencyTableViewCell") -> TableViewDataSource {
         return TableViewDataSource(
@@ -18,4 +19,5 @@ extension TableViewDataSource where Model == Currency {
             }
         }
     }
+
 }

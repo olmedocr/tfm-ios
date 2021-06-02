@@ -49,4 +49,5 @@ class UsersTableViewController: UITableViewController {
             log.error("Could not return selected user to parent controller")
         }
     }
+
 }

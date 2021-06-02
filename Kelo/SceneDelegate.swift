@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             handleUniversalLinks(url: url, scene: scene)
         }
 
-        guard let windowScene = (scene as? UIWindowScene) else { return }
+        guard let windowScene = scene as? UIWindowScene else { return }
 
         if !defaults.bool(forKey: UserDefaults.Keys.hasBeenLaunchedBefore.rawValue) {
             let window = UIWindow(windowScene: windowScene)
@@ -118,7 +118,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         log.info("Setting new groupId in DatabaseManager")
         DatabaseManager.shared.groupId = groupId
 
-        guard let windowScene = (scene as? UIWindowScene) else {
+        guard let windowScene = scene as? UIWindowScene else {
             log.error("Failed to join new group: scene could not be casted")
             return
         }

@@ -48,4 +48,5 @@ class ShareGroupCodeViewController: UIViewController {
             groupCodeLabel.text = "nil"
         }
     }
+
 }

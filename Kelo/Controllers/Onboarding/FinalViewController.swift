@@ -99,10 +99,12 @@ class FinalViewController: UIViewController {
             navigationController?.present(viewController, animated: true)
         }
     }
+
 }
 
 // MARK: - TextField delegate
 extension FinalViewController: UITextFieldDelegate {
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -111,11 +113,14 @@ extension FinalViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.hideError(errorLabel)
     }
+
 }
 
 // MARK: - Animatable views
 extension FinalViewController: Animatable {
+
     func getViewsToAnimate() -> [UIView] {
         return viewsToAnimate
     }
+
 }

@@ -144,4 +144,5 @@ class GroupTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 3)
     }
+
 }

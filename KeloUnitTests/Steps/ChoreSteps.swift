@@ -147,6 +147,7 @@ final class CreateChoreSteps: StepDefiner {
         // MARK: - Removal Chore Permission
         step("a user with id \"(.*)\" that wants to remove a chore") { (userId: String) in
             self.user.id = userId
+            self.user.isAdmin = false
         }
 
         step("the user is the admin of the group") {
@@ -232,4 +233,5 @@ final class CreateChoreSteps: StepDefiner {
             XCTAssertFalse(hasEnoughPermissions)
         }
     }
+
 }

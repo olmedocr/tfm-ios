@@ -44,11 +44,14 @@ class InitialViewController: UIViewController {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+
 }
 
 // MARK: - Animatable views
 extension InitialViewController: Animatable {
+
     func getViewsToAnimate() -> [UIView] {
         return viewsToAnimate
     }
+
 }

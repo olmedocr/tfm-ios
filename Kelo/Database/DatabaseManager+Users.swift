@@ -357,4 +357,5 @@ extension DatabaseManager {
         listeners.append(listener)
         result(.success(listener))
     }
+
 }

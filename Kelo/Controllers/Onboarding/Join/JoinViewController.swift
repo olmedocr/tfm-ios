@@ -91,10 +91,12 @@ class JoinViewController: UIViewController {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+
 }
 
 // MARK: - TextField delegate
 extension JoinViewController: UITextFieldDelegate {
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -103,11 +105,14 @@ extension JoinViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.hideError(errorLabel)
     }
+
 }
 
 // MARK: - Animatable views
 extension JoinViewController: Animatable {
+
     func getViewsToAnimate() -> [UIView] {
         return viewsToAnimate
     }
+
 }

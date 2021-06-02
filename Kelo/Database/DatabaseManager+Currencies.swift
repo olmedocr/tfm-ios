@@ -8,6 +8,7 @@
 import Foundation
 
 extension DatabaseManager {
+
     func retrieveCurrencies(result: @escaping (Result<[Currency], Error>) -> Void) {
         let path = "Currencies.bundle/Data/CurrencyList"
 
@@ -28,4 +29,5 @@ extension DatabaseManager {
             result(.failure(err))
         }
     }
+
 }
