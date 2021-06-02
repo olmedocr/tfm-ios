@@ -15,7 +15,7 @@ class CurrencyTests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUp() {
-        continueAfterFailure = false
+        continueAfterFailure = true
 
         app = XCUIApplication()
         app.launchArguments += ["-hasBeenLaunchedBefore", "NO"]

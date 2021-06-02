@@ -23,7 +23,7 @@ final class CreateGroupSteps: StepDefiner {
 
         step("the user validates its group name") {
             switch Validations.groupName(self.groupName!) {
-            case .failure(_):
+            case .failure:
                 self.isGroupNameValid = false
             case .success:
                 self.isGroupNameValid = true
