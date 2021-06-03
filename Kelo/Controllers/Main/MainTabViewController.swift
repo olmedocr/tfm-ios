@@ -38,6 +38,17 @@ class MainTabViewController: UITabBarController {
                             log.error(err.localizedDescription)
                         case .success:
                             log.info("Subscribed to user changes")
+
+                            DatabaseManager.shared.retrieveGroup(groupId: groupId) { (result) in
+                                switch result {
+                                case .failure(let err):
+                                    log.error(err.localizedDescription)
+                                case .success(let group):
+                                    self.children.forEach({ navigationController in
+                                        navigationController.children.first?.navigationItem.prompt = group.name
+                                    })
+                                }
+                            }
                         }
                     }
                 }
@@ -45,6 +56,7 @@ class MainTabViewController: UITabBarController {
         } else {
             log.error("No ids found on userDefaults")
         }
+
     }
 
     // MARK: - Navigation
