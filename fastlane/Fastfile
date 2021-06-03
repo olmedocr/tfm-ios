@@ -96,22 +96,6 @@ platform :ios do
       version_number: version
     )
 
-    changelog_path="CHANGELOG.md"
-
-    if options[:is_prerelease]
-      changelog_path="CHANGELOG-beta.md"
-    end
-
-    changelog = read_changelog(
-      changelog_path: changelog_path
-    )
-
-    stamp_changelog(
-      section_identifier: last_git_tag,
-      git_tag: last_git_tag, 
-      changelog_path: changelog_path
-    )
-
     gym(
       clean: false,
       scheme: "Kelo",
@@ -125,14 +109,26 @@ platform :ios do
   private_lane :finish do |options|
     clean_build_artifacts
     
-    changelog_path="CHANGELOG.md"
-
     if options[:is_prerelease]
       changelog_path="CHANGELOG-beta.md"
+    else
+      changelog_path="CHANGELOG.md"
     end
 
+    changelog = read_changelog(
+      changelog_path: changelog_path
+    )
+
+    git_tag = last_git_tag
+
+    stamp_changelog(
+      section_identifier: git_tag,
+      git_tag: git_tag, 
+      changelog_path: changelog_path
+    )
+
     commit_version_bump(
-      message: "Deploying version #{last_git_tag}.",
+      message: "Deploying version #{git_tag}.",
       xcodeproj: "Kelo.xcodeproj",
       include: changelog_path
     )
@@ -140,8 +136,8 @@ platform :ios do
     set_github_release(
       repository_name: "olmedocr/tfm-ios",
       api_token: ENV["GITHUB_TOKEN"],
-      name: last_git_tag,
-      tag_name: last_git_tag,
+      name: git_tag,
+      tag_name: git_tag,
       description: changelog,
       is_prerelease: options[:is_prerelease]
     )
