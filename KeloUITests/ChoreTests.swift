@@ -57,7 +57,7 @@ class ChoreTests: XCTestCase {
 
         app.navigationBars.buttons["Add"].tap()
 
-        app.textFields.element.waitForExistence(timeout: 2)
+        app.textFields.element.waitForExistence(timeout: 10)
         app.textFields.element.tap()
 
         app.textFields.element.typeText(choreName)
@@ -79,10 +79,10 @@ class ChoreTests: XCTestCase {
             return
         }
 
-        app.tables.element.waitForExistence(timeout: 5)
+        app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 10)
         app.tables.cells.element(boundBy: 0).tap()
 
-        app.textFields[choreName].waitForExistence(timeout: 2)
+        app.textFields[choreName].waitForExistence(timeout: 5)
         XCTAssertTrue(app.textFields[choreName].exists)
         XCTAssertTrue(app.buttons[userName + " (You)"].exists)
         XCTAssertTrue(app.buttons["Medium"].isSelected)
