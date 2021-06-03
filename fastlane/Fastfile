@@ -141,5 +141,8 @@ platform :ios do
       description: changelog,
       is_prerelease: options[:is_prerelease]
     )
+
+    push_to_git_remote()
+
   end
 end
