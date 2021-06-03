@@ -124,11 +124,17 @@ platform :ios do
   desc "Clean and commit version bump"
   private_lane :finish do |options|
     clean_build_artifacts
+    
+    changelog_path="CHANGELOG.md"
+
+    if options[:is_prerelease]
+      changelog_path="CHANGELOG-beta.md"
+    end
 
     commit_version_bump(
       message: "Deploying version #{last_git_tag}.",
       xcodeproj: "Kelo.xcodeproj",
-      include: "CHANGELOG.md"
+      include: changelog_path
     )
 
     set_github_release(
