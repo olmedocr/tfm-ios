@@ -90,9 +90,10 @@ platform :ios do
     )
 
     version = last_git_tag.split("-").first
+    version.slice!(0)
 
     increment_version_number(
-      version_number: version.slice!(0)
+      version_number: version
     )
 
     changelog_path="CHANGELOG.md"
