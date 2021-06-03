@@ -2,7 +2,7 @@ default_platform(:ios)
 
 platform :ios do
   before_all do
-    xcversion(version: "12.4")
+    xcversion(version: "12.5")
     setup_circle_ci
   end
 
@@ -89,8 +89,10 @@ platform :ios do
       build_number: Time.new.strftime("%Y%m%d")
     )
 
+    version = last_git_tag.split("-").first
+
     increment_version_number(
-      version_number: last_git_tag.split("-").first.slice!(0)
+      version_number: version.slice!(0)
     )
 
     changelog_path="CHANGELOG.md"
@@ -105,7 +107,8 @@ platform :ios do
 
     stamp_changelog(
       section_identifier: last_git_tag,
-      git_tag: last_git_tag
+      git_tag: last_git_tag, 
+      changelog_path: changelog_path
     )
 
     gym(
