@@ -45,6 +45,7 @@ class GroupTests: XCTestCase {
 
     func testDeleteGroupByAdmin() throws {
         app.tabBars.buttons["Settings"].tap()
+        app.swipeUp()
         app.buttons["Delete Group"].tap()
         XCTAssertTrue(app.alerts["Are you sure?"].exists)
         app.alerts["Are you sure?"].buttons["Delete"].tap()
