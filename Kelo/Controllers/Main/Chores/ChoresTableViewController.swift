@@ -36,15 +36,6 @@ class ChoresTableViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
 
         fetchData()
-
-        DatabaseManager.shared.retrieveUser(userId: DatabaseManager.shared.userId!) { (result) in
-            switch result {
-            case .failure(let err):
-                log.error(err.localizedDescription)
-            case .success(let user):
-                self.currentUser = user
-            }
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -115,7 +106,10 @@ class ChoresTableViewController: UITableViewController {
     }
 
     // MARK: - Internal
-    @objc private func fetchData() {
+    @objc func fetchData() {
+        // FIXME: https://twitter.com/_ryannystrom/status/1162078373813936130
+        // refreshControl?.beginRefreshing()
+
         DatabaseManager.shared.retrieveAllChores { result in
             switch result {
             case .failure(let err):
@@ -125,13 +119,22 @@ class ChoresTableViewController: UITableViewController {
                 self.tableView.dataSource = self.dataSource
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
+
+                DatabaseManager.shared.retrieveUser(userId: DatabaseManager.shared.userId!) { (result) in
+                    switch result {
+                    case .failure(let err):
+                        log.error(err.localizedDescription)
+                    case .success(let user):
+                        self.currentUser = user
+                    }
+                }
             }
         }
     }
 
     private func handleMarkAsComplete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
 
-        switch Validations.chorePermission(chore, user: currentUser, operation: .update) {
+        switch Validations.chorePermission(chore, user: currentUser, operation: .complete) {
         case .failure(let err):
             log.error(err.localizedDescription)
             log.info("Tried to complete the chore without being the assigned user or the creator")
@@ -163,7 +166,7 @@ class ChoresTableViewController: UITableViewController {
 
     private func handleMarkAsDelete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
 
-        switch Validations.chorePermission(chore, user: currentUser, operation: .update) {
+        switch Validations.chorePermission(chore, user: currentUser, operation: .remove) {
         case .failure(let err):
             log.error(err.localizedDescription)
             log.info("Tried to remove the chore without being the creator")

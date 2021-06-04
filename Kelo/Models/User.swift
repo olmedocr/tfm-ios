@@ -14,12 +14,14 @@ struct User: Identifiable, Codable {
     var name: String = ""
     var points: Int = 0
     var isAdmin: Bool = false
+    var messagingToken: String = ""
 
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case points
         case isAdmin
+        case messagingToken
     }
 
 }
