@@ -100,4 +100,10 @@ class ChoreTests: XCTestCase {
                                  testCase: self)
     }
 
+    func testChoreUpdateHasAdminPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "(Admin) User Has Permissions For Updating a Chore",
+                                 testCase: self)
+    }
+
 }

@@ -233,6 +233,19 @@ final class CreateChoreSteps: StepDefiner {
             XCTAssertFalse(hasEnoughPermissions)
         }
 
+        step("the user is not permitted to update it") {
+            var hasEnoughPermissions = false
+
+            switch Validations.chorePermission(self.chore, user: self.user, operation: .update) {
+            case .failure:
+                hasEnoughPermissions = false
+            case .success:
+                hasEnoughPermissions = true
+            }
+
+            XCTAssertFalse(hasEnoughPermissions)
+        }
+
     }
 
 }

@@ -160,3 +160,12 @@ Feature: Create Chore
         Examples:
                   | id   | creator | assignee |
                   | RAUL | GABO    | ALEX     |
+                  
+        @Chore
+        Scenario Outline: (Admin) User Has Permissions For Updating a Chore
+            Given a user with id "<id>" that wants to update a chore
+             When the user is the admin of the group
+             Then the user is permitted to update it
+        Examples:
+                  | id   |
+                  | RAUL |
