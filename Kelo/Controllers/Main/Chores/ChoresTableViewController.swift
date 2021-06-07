@@ -13,6 +13,10 @@ class ChoresTableViewController: UITableViewController {
     // MARK: Properties
     var currentUser: User!
     var dataSource: TableViewDataSource<Chore>?
+    var isShowingCompletedChores: Bool = false
+
+    // MARK: IBOutlets
+    @IBOutlet weak var checkButton: UIBarButtonItem!
 
     // MARK: IBActions
     @IBAction func didTapAddButton(_ sender: Any) {
@@ -23,6 +27,20 @@ class ChoresTableViewController: UITableViewController {
         if let tabBarController = tabBarController as? MainTabViewController {
             tabBarController.presentShareGroupCodeViewController(context: self)
         }
+    }
+
+    @IBAction func didTapCheckButton(_ sender: Any) {
+        if isShowingCompletedChores {
+            isShowingCompletedChores = false
+            checkButton.image = UIImage(systemName: "checkmark.circle")
+            navigationItem.title = "Chores"
+        } else {
+            isShowingCompletedChores = true
+            checkButton.image = UIImage(systemName: "checkmark.circle.fill")
+            navigationItem.title = "Completed"
+        }
+
+        fetchData()
     }
 
     // MARK: View lifecycle
@@ -46,29 +64,38 @@ class ChoresTableViewController: UITableViewController {
 
     // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        switch Validations.chorePermission((dataSource?.models[indexPath.row])!,
-                                           user: currentUser,
-                                           operation: .update) {
-
-        case .failure(let err):
-            log.error(err.localizedDescription)
-            log.info("Tried to edit a chore without being the creator")
-
-            tableView.deselectRow(at: indexPath, animated: true)
-
+        if isShowingCompletedChores {
             let alert = self.setAlert(title: "Error!",
                                       message: """
-                                        Only the creator of the chore and the group admin are able to
-                                        edit this element
+                                        Completed chores cannot be edited
                                         """,
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
+        } else {
+            switch Validations.chorePermission((dataSource?.models[indexPath.row])!,
+                                               user: currentUser,
+                                               operation: .update) {
 
-        case .success:
-            self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
+            case .failure(let err):
+                log.error(err.localizedDescription)
+                log.info("Tried to edit a chore without being the creator")
+
+                let alert = self.setAlert(title: "Error!",
+                                          message: """
+                                        Only the creator of the chore and the group admin are able to
+                                        edit this element
+                                        """,
+                                          actionTitle: "OK")
+
+                self.present(alert, animated: true)
+
+            case .success:
+                self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
+            }
         }
+
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func tableView(_ tableView: UITableView,
@@ -107,10 +134,8 @@ class ChoresTableViewController: UITableViewController {
 
     // MARK: - Internal
     @objc func fetchData() {
-        // FIXME: https://twitter.com/_ryannystrom/status/1162078373813936130
-        // refreshControl?.beginRefreshing()
 
-        DatabaseManager.shared.retrieveAllChores { result in
+        DatabaseManager.shared.retrieveAllChores(isCompleted: isShowingCompletedChores) { result in
             switch result {
             case .failure(let err):
                 log.error(err.localizedDescription)
@@ -134,31 +159,41 @@ class ChoresTableViewController: UITableViewController {
 
     private func handleMarkAsComplete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
 
-        switch Validations.chorePermission(chore, user: currentUser, operation: .complete) {
-        case .failure(let err):
-            log.error(err.localizedDescription)
-            log.info("Tried to complete the chore without being the assigned user or the creator")
-
+        if isShowingCompletedChores {
             let alert = self.setAlert(title: "Error!",
                                       message: """
-                                        Only the group admin, the creator of the chore or the user assigned to it
-                                        can complete this element
+                                        Completed chores cannot be edited
                                         """,
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
+        } else {
+            switch Validations.chorePermission(chore, user: currentUser, operation: .complete) {
+            case .failure(let err):
+                log.error(err.localizedDescription)
+                log.info("Tried to complete the chore without being the assigned user or the creator")
 
-        case .success:
-            DatabaseManager.shared.completeChore(chore: chore) { (result) in
-                switch result {
-                case .failure(let err):
-                    log.error(err.localizedDescription)
-                    completion(false)
-                case .success:
-                    log.info("Correctly completed chore with id \(chore.id ?? "null")")
-                    self.dataSource?.models.remove(at: index)
-                    self.tableView.reloadData()
-                    completion(true)
+                let alert = self.setAlert(title: "Error!",
+                                          message: """
+                                            Only the group admin, the creator of the chore or the user assigned to it
+                                            can complete this element
+                                            """,
+                                          actionTitle: "OK")
+
+                self.present(alert, animated: true)
+
+            case .success:
+                DatabaseManager.shared.completeChore(chore: chore) { (result) in
+                    switch result {
+                    case .failure(let err):
+                        log.error(err.localizedDescription)
+                        completion(false)
+                    case .success:
+                        log.info("Correctly completed chore with id \(chore.id ?? "null")")
+                        self.dataSource?.models.remove(at: index)
+                        self.tableView.reloadData()
+                        completion(true)
+                    }
                 }
             }
         }
@@ -166,31 +201,41 @@ class ChoresTableViewController: UITableViewController {
 
     private func handleMarkAsDelete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
 
-        switch Validations.chorePermission(chore, user: currentUser, operation: .remove) {
-        case .failure(let err):
-            log.error(err.localizedDescription)
-            log.info("Tried to remove the chore without being the creator")
-
+        if isShowingCompletedChores {
             let alert = self.setAlert(title: "Error!",
                                       message: """
-                                        Only the creator of the chore or the group admin are able to
-                                        remove this element
+                                        Completed chores cannot be edited
                                         """,
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
+        } else {
+            switch Validations.chorePermission(chore, user: currentUser, operation: .remove) {
+            case .failure(let err):
+                log.error(err.localizedDescription)
+                log.info("Tried to remove the chore without being the creator")
 
-        case .success:
-            DatabaseManager.shared.deleteChore(choreId: chore.id!) { (result) in
-                switch result {
-                case .failure(let err):
-                    log.error(err.localizedDescription)
-                    completion(false)
-                case .success:
-                    log.info("Correctly deleted chore with id \(chore.id ?? "null")")
-                    self.dataSource?.models.remove(at: index)
-                    self.tableView.reloadData()
-                    completion(true)
+                let alert = self.setAlert(title: "Error!",
+                                          message: """
+                                            Only the creator of the chore or the group admin are able to
+                                            remove this element
+                                            """,
+                                          actionTitle: "OK")
+
+                self.present(alert, animated: true)
+
+            case .success:
+                DatabaseManager.shared.deleteChore(choreId: chore.id!) { (result) in
+                    switch result {
+                    case .failure(let err):
+                        log.error(err.localizedDescription)
+                        completion(false)
+                    case .success:
+                        log.info("Correctly deleted chore with id \(chore.id ?? "null")")
+                        self.dataSource?.models.remove(at: index)
+                        self.tableView.reloadData()
+                        completion(true)
+                    }
                 }
             }
         }

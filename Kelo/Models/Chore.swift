@@ -17,6 +17,7 @@ struct Chore: Identifiable, Codable {
     var expiration: Date = Date()
     var points: Int = Importance.low.rawValue
     var creator: String = ""
+    var isCompleted: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -26,6 +27,7 @@ struct Chore: Identifiable, Codable {
         case expiration
         case points
         case creator
+        case isCompleted
     }
 
     enum Importance: Int {

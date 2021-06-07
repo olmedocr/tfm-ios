@@ -133,10 +133,10 @@ class DetailChoreViewController: UIViewController {
     }
 
     private func validateAndStoreInDatabase() {
-        let title = choreTextField.text!
+        let title = choreTextField.text ?? ""
         let icon = ""
-        let assigneeId = selectedAssignee!.id!
-        let assignerId = DatabaseManager.shared.userId!
+        let assigneeId = selectedAssignee?.id ?? ""
+        let assignerId = DatabaseManager.shared.userId ?? ""
         let expiration = expirationDate.date
         var points: Int {
             var returnValue: Int?
