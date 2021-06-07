@@ -45,7 +45,7 @@
 		C445B5C826316EA8008EADCA /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445B5C726316EA8008EADCA /* GroupTests.swift */; };
 		C45F1B18265E698200538956 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B17265E698200538956 /* PointsTableViewCell.swift */; };
 		C45F1B1A265E699D00538956 /* RewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B19265E699D00538956 /* RewardTableViewCell.swift */; };
-		C45F1B1C265E69B600538956 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1B265E69B600538956 /* SettingsTableViewCell.swift */; };
+		C45F1B1C265E69B600538956 /* DangerSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1B265E69B600538956 /* DangerSettingsTableViewCell.swift */; };
 		C45F1B1F265E87C600538956 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1E265E87C600538956 /* TableViewDataSource.swift */; };
 		C45F1B2A265EA78E00538956 /* SectionedTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */; };
 		C45F1B2C265FA02100538956 /* DatabaseManager+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */; };
@@ -84,6 +84,7 @@
 		C4B7515B26444110002888FC /* ChoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7515A26444110002888FC /* ChoreTests.swift */; };
 		C4B7517426454A33002888FC /* ChoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7517326454A33002888FC /* ChoreTests.swift */; };
 		C4C1D1042664FF6B00553C44 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */; };
+		C4E40774266E387C006942B8 /* EditSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */; };
 		C4E8CE76264BBF8C004A9F04 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8CE75264BBF8C004A9F04 /* UserDefaults+Extensions.swift */; };
 		C4F1C2652638608900E2AD7E /* ChoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1C2642638608900E2AD7E /* ChoresTableViewController.swift */; };
 		C4F1C2672638662500E2AD7E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1C2662638662500E2AD7E /* SettingsTableViewController.swift */; };
@@ -155,7 +156,7 @@
 		C445B5C926316EA8008EADCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C45F1B17265E698200538956 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
 		C45F1B19265E699D00538956 /* RewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableViewCell.swift; sourceTree = "<group>"; };
-		C45F1B1B265E69B600538956 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		C45F1B1B265E69B600538956 /* DangerSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		C45F1B1E265E87C600538956 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedTableViewDataSource.swift; sourceTree = "<group>"; };
 		C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseManager+Currencies.swift"; sourceTree = "<group>"; };
@@ -189,6 +190,7 @@
 		C4B7516C264531D0002888FC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4B7517326454A33002888FC /* ChoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreTests.swift; sourceTree = "<group>"; };
 		C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
+		C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		C4E8CE74264AD209004A9F04 /* Kelo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kelo.entitlements; sourceTree = "<group>"; };
 		C4E8CE75264BBF8C004A9F04 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		C4F1C2642638608900E2AD7E /* ChoresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoresTableViewController.swift; sourceTree = "<group>"; };
@@ -349,9 +351,10 @@
 				C4360A2C26289DC7009852F3 /* CurrencyTableViewCell.swift */,
 				C42A80C5263871C000D9468F /* ChoreTableViewCell.swift */,
 				C4B7514F2643FFD9002888FC /* UserTableViewCell.swift */,
-				C45F1B1B265E69B600538956 /* SettingsTableViewCell.swift */,
 				C45F1B17265E698200538956 /* PointsTableViewCell.swift */,
 				C45F1B19265E699D00538956 /* RewardTableViewCell.swift */,
+				C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */,
+				C45F1B1B265E69B600538956 /* DangerSettingsTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -762,9 +765,10 @@
 				C4A3396726567B9C00D29D0C /* Validations.swift in Sources */,
 				C4360A3F26289DDB009852F3 /* FinalViewController.swift in Sources */,
 				C4360A2426289DAC009852F3 /* Group.swift in Sources */,
+				C4E40774266E387C006942B8 /* EditSettingsTableViewCell.swift in Sources */,
 				C4E8CE76264BBF8C004A9F04 /* UserDefaults+Extensions.swift in Sources */,
 				C4360A4026289DDB009852F3 /* CurrencyTableViewController.swift in Sources */,
-				C45F1B1C265E69B600538956 /* SettingsTableViewCell.swift in Sources */,
+				C45F1B1C265E69B600538956 /* DangerSettingsTableViewCell.swift in Sources */,
 				C47D29412611E8E800F824F6 /* UIAlertController+Extension.swift in Sources */,
 				C45F1B1F265E87C600538956 /* TableViewDataSource.swift in Sources */,
 				C42F5E312609F3DB00818229 /* SceneDelegate.swift in Sources */,

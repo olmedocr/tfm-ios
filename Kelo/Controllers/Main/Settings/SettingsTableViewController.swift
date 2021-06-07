@@ -11,7 +11,7 @@ import FittedSheets
 class SettingsTableViewController: UITableViewController {
 
     // MARK: Properties
-    let sectionTitles = ["Your points", "Roommates", "Rewards", "Currency", "Danger zone"]
+    let sectionTitles = ["Your points", "Roommates", "Rewards", "Currency", "Miscellaneous", "Danger zone"]
     var dataSources: SectionedTableViewDataSource?
     var users: [User]?
     var group: Group?
@@ -100,6 +100,11 @@ class SettingsTableViewController: UITableViewController {
                 log.error(err.localizedDescription)
             case .success(let group):
                 self.group = group
+
+                self.tabBarController?.children.forEach { navController in
+                    navController.children.first?.navigationItem.prompt = group.name
+                }
+
                 DatabaseManager.shared.retrieveCurrencies { (currencyResult) in
                     switch currencyResult {
                     case .failure(let err):
@@ -156,9 +161,17 @@ class SettingsTableViewController: UITableViewController {
                 },
                 TableViewDataSource(
                     models: [(user)],
-                    reuseIdentifier: "settingsTableViewCell"
+                    reuseIdentifier: "editSettingsTableViewCell"
                 ) { _, cell in
-                    if let cell = cell as? SettingsTableViewCell {
+                    if let cell = cell as? EditSettingsTableViewCell {
+                        cell.delegate = self
+                    }
+                },
+                TableViewDataSource(
+                    models: [(user)],
+                    reuseIdentifier: "dangerSettingsTableViewCell"
+                ) { _, cell in
+                    if let cell = cell as? DangerSettingsTableViewCell {
                         cell.delegate = self
                     }
                 }],
@@ -260,7 +273,8 @@ extension SettingsTableViewController: CurrencyTableViewDelegate {
 
 }
 
-extension SettingsTableViewController: SettingsCellDelegate {
+// MARK: - Danger settings delegate
+extension SettingsTableViewController: DangerSettingsCellDelegate {
 
     func didTapOnDeleteGroup() {
         if currentUser!.isAdmin {
@@ -326,6 +340,119 @@ extension SettingsTableViewController: SettingsCellDelegate {
         }
 
         alert.addAction(action)
+
+        self.present(alert, animated: true)
+    }
+
+}
+
+// MARK: - Misc settings delegate
+extension SettingsTableViewController: EditSettingsCellDelegate {
+
+    func didTapOnEditUser() {
+        let alert = UIAlertController(title: "User name",
+                                      message: "Change your username in the group",
+                                      preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.placeholder = self.currentUser?.name
+        }
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
+            let newUsername = alert.textFields![0].text
+            var updatedUser = self.currentUser
+
+            switch Validations.userName(newUsername!) {
+            case .failure(let err):
+                log.error(err.localizedDescription)
+                let alert = self.setAlert(title: "Error!",
+                                          message: err.localizedDescription,
+                                          actionTitle: "OK")
+
+                self.present(alert, animated: true)
+            case .success():
+                updatedUser?.name = newUsername!
+
+                DatabaseManager.shared.updateUser(user: updatedUser!) { result in
+                    switch result {
+                    case .failure(let err):
+                        log.error(err.localizedDescription)
+                        let alert = self.setAlert(title: "Error!",
+                                                  message: err.localizedDescription,
+                                                  actionTitle: "OK")
+
+                        self.present(alert, animated: true)
+                    case .success:
+                        log.info("Successfully updated user name")
+
+                        let alert = self.setAlert(title: "Done!",
+                                                  message: """
+                                                    Successfully updated user name
+                                                    """,
+                                                  actionTitle: "OK")
+
+                        self.present(alert, animated: true)
+
+                        self.fetchData()
+                    }
+                }
+            }
+        }))
+
+        self.present(alert, animated: true)
+    }
+
+    func didTapOnEditGroup() {
+        let alert = UIAlertController(title: "Group name",
+                                      message: "Change the name of the group",
+                                      preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.placeholder = self.group?.name
+        }
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
+            let newGroupname = alert.textFields![0].text
+            var updatedGroup = self.group
+
+            switch Validations.groupName(newGroupname!) {
+            case .failure(let err):
+                log.error(err.localizedDescription)
+                let alert = self.setAlert(title: "Error!",
+                                          message: err.localizedDescription,
+                                          actionTitle: "OK")
+
+                self.present(alert, animated: true)
+            case .success():
+                updatedGroup?.name = newGroupname!
+
+                DatabaseManager.shared.updateGroup(group: updatedGroup!) { result in
+                    switch result {
+                    case .failure(let err):
+                        log.error(err.localizedDescription)
+                        let alert = self.setAlert(title: "Error!",
+                                                  message: err.localizedDescription,
+                                                  actionTitle: "OK")
+
+                        self.present(alert, animated: true)
+                    case .success:
+                        log.info("Successfully updated group name")
+
+                        let alert = self.setAlert(title: "Done!",
+                                                  message: """
+                                                    Successfully updated group name
+                                                    """,
+                                                  actionTitle: "OK")
+
+                        self.present(alert, animated: true)
+
+                        self.fetchData()
+                    }
+                }
+            }
+        }))
 
         self.present(alert, animated: true)
     }

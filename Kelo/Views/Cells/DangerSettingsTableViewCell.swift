@@ -1,5 +1,5 @@
 //
-//  SettingsTableViewCell.swift
+//  DangerSettingsTableViewCell.swift
 //  Kelo
 //
 //  Created by Raul Olmedo on 26/5/21.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol SettingsCellDelegate: AnyObject {
+protocol DangerSettingsCellDelegate: AnyObject {
     func didTapOnDeleteGroup()
     func didTapOnLeaveGroup()
 }
 
-class SettingsTableViewCell: UITableViewCell {
+class DangerSettingsTableViewCell: UITableViewCell {
 
     // MARK: Properties
-    weak var delegate: SettingsCellDelegate?
+    weak var delegate: DangerSettingsCellDelegate?
 
     // MARK: IBActions
     @IBAction func didTapDeleteButton(_ sender: Any) {

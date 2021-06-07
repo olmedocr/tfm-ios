@@ -335,7 +335,7 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Admin" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgw-wn-2OL">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Admin" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgw-wn-2OL">
                                                     <rect key="frame" x="230.5" y="11.5" width="48.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGreenColor"/>
@@ -359,7 +359,7 @@
                                     <outlet property="userNameLabel" destination="RRq-lI-xo1" id="qA8-aU-A1i"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rewardTableViewCell" id="5nz-yN-VSj" customClass="RewardTableViewCell" customModule="Kelo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rewardTableViewCell" id="5nz-yN-VSj" customClass="RewardTableViewCell" customModule="Kelo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="189" width="343" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5nz-yN-VSj" id="YIa-T4-xc0">
@@ -421,7 +421,7 @@
                                     <outlet property="flagImage" destination="9S7-Eh-Keg" id="ZL2-wP-yBZ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="settingsTableViewCell" id="YYu-3w-cSe" customClass="SettingsTableViewCell" customModule="Kelo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="editSettingsTableViewCell" id="YYu-3w-cSe" customClass="EditSettingsTableViewCell" customModule="Kelo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="297" width="343" height="59.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YYu-3w-cSe" id="0pP-rm-mHB">
@@ -433,30 +433,30 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTR-cW-iYe" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="163.5" height="43.5"/>
-                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="Delete Group"/>
+                                                    <state key="normal" title="Edit User"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <integer key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="didTapDeleteButton:" destination="YYu-3w-cSe" eventType="touchUpInside" id="CMS-zc-7Ah"/>
+                                                        <action selector="didTapEditUserButton:" destination="YYu-3w-cSe" eventType="touchUpInside" id="ZOA-Sr-YUP"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EP3-9l-UJ4" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
                                                     <rect key="frame" x="179.5" y="0.0" width="163.5" height="43.5"/>
-                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="Leave Group"/>
+                                                    <state key="normal" title="Edit Group"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <integer key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="didTapLeaveButton:" destination="YYu-3w-cSe" eventType="touchUpInside" id="HSI-LE-vMa"/>
+                                                        <action selector="didTapEditGroupButton:" destination="YYu-3w-cSe" eventType="touchUpInside" id="hIp-6C-WZJ"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -474,6 +474,59 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="dangerSettingsTableViewCell" id="Agh-HJ-9Dy" customClass="DangerSettingsTableViewCell" customModule="Kelo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="356.5" width="343" height="59.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Agh-HJ-9Dy" id="61m-rk-iqy">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="IjX-Nr-H7Y">
+                                            <rect key="frame" x="0.0" y="8" width="343" height="43.5"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYC-DB-pSG" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="163.5" height="43.5"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="Delete Group"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <integer key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTapDeleteButton:" destination="Agh-HJ-9Dy" eventType="touchUpInside" id="OzN-7L-Ujp"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAM-eR-IpR" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
+                                                    <rect key="frame" x="179.5" y="0.0" width="163.5" height="43.5"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="Leave Group"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <integer key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTapLeaveButton:" destination="Agh-HJ-9Dy" eventType="touchUpInside" id="Ivy-Yp-MD4"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="IjX-Nr-H7Y" secondAttribute="height" multiplier="8:1" id="AVw-wR-AJG"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="IjX-Nr-H7Y" firstAttribute="leading" secondItem="61m-rk-iqy" secondAttribute="leading" id="KJE-O6-G8s"/>
+                                        <constraint firstAttribute="bottom" secondItem="IjX-Nr-H7Y" secondAttribute="bottom" constant="8" id="Maa-Aa-P6L"/>
+                                        <constraint firstAttribute="trailing" secondItem="IjX-Nr-H7Y" secondAttribute="trailing" id="Xy6-6g-zno"/>
+                                        <constraint firstItem="IjX-Nr-H7Y" firstAttribute="top" secondItem="61m-rk-iqy" secondAttribute="top" constant="8" id="sTe-aB-xHw"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
@@ -487,6 +540,7 @@
                                 <action selector="didTapShareButton:" destination="yx1-5L-4bb" id="aPT-cJ-T19"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="info.circle" catalog="system" id="2Qj-sj-paN"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7K-7v-Z8d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -503,7 +557,7 @@
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-EF-ghY" customClass="ChoreTableViewCell" customModule="Kelo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="375" height="82.5"/>
+                                <rect key="frame" x="0.0" y="25" width="375" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yyu-EF-ghY" id="js6-xD-d5b">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
@@ -612,17 +666,27 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Chores" id="icf-dB-Dlu">
-                        <barButtonItem key="leftBarButtonItem" title="Share" image="square.and.arrow.up" catalog="system" id="7GV-Ky-r4k">
-                            <connections>
-                                <action selector="didTapShareButton:" destination="pbi-T0-mAe" id="L4C-Za-aoo"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Share" image="square.and.arrow.up" catalog="system" id="7GV-Ky-r4k">
+                                <connections>
+                                    <action selector="didTapShareButton:" destination="pbi-T0-mAe" id="L4C-Za-aoo"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="checkmark.circle" catalog="system" id="sHl-tA-wJB">
+                                <connections>
+                                    <action selector="didTapCheckButton:" destination="pbi-T0-mAe" id="Hlz-2H-blG"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="eCx-1N-6Hy">
                             <connections>
                                 <action selector="didTapAddButton:" destination="pbi-T0-mAe" id="HUA-8V-3eh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="checkButton" destination="sHl-tA-wJB" id="1nT-GS-XgB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pir-Hh-Cry" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1378,8 +1442,10 @@
     <resources>
         <image name="DesktopDoodle" width="897.30999755859375" height="800.92999267578125"/>
         <image name="EUR.png" width="206" height="144"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="pin.circle.fill" catalog="system" width="128" height="121"/>
