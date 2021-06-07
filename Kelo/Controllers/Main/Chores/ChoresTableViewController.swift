@@ -14,6 +14,7 @@ class ChoresTableViewController: UITableViewController {
     var currentUser: User!
     var dataSource: TableViewDataSource<Chore>?
     var isShowingCompletedChores: Bool = false
+    var group: Group?
 
     // MARK: IBOutlets
     @IBOutlet weak var checkButton: UIBarButtonItem!
@@ -46,6 +47,8 @@ class ChoresTableViewController: UITableViewController {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.prompt = ""
 
         tableView.tableFooterView = UIView()
 
@@ -134,9 +137,8 @@ class ChoresTableViewController: UITableViewController {
 
     // MARK: - Internal
     @objc func fetchData() {
-
-        DatabaseManager.shared.retrieveAllChores(isCompleted: isShowingCompletedChores) { result in
-            switch result {
+        DatabaseManager.shared.retrieveAllChores(isCompleted: isShowingCompletedChores) { choresResult in
+            switch choresResult {
             case .failure(let err):
                 log.error(err.localizedDescription)
             case .success(let chores):
@@ -145,12 +147,26 @@ class ChoresTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
 
-                DatabaseManager.shared.retrieveUser(userId: DatabaseManager.shared.userId!) { (result) in
-                    switch result {
+                DatabaseManager.shared.retrieveUser(userId: DatabaseManager.shared.userId!) { (userResult) in
+                    switch userResult {
                     case .failure(let err):
                         log.error(err.localizedDescription)
                     case .success(let user):
                         self.currentUser = user
+
+                        DatabaseManager.shared
+                            .retrieveGroup(groupId: DatabaseManager.shared.groupId!) { (groupResult) in
+                                switch groupResult {
+                                case .failure(let err):
+                                    log.error(err.localizedDescription)
+                                case .success(let group):
+                                    self.group = group
+
+                                    self.tabBarController?.children.forEach { navController in
+                                        navController.children.first?.navigationItem.prompt = group.name
+                                    }
+                                }
+                            }
                     }
                 }
             }
