@@ -1003,13 +1003,14 @@
 				CODE_SIGN_ENTITLEMENTS = Kelo/Kelo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development: Raul Olmedo (FKT89F3DN3)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 202106101845;
 				DEVELOPMENT_TEAM = Q26F7S66DB;
 				INFOPLIST_FILE = Kelo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "";
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.raulolmedo.kelo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.raulolmedo.kelo";
@@ -1027,13 +1028,14 @@
 				CODE_SIGN_ENTITLEMENTS = Kelo/Kelo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Raul Olmedo (Q26F7S66DB)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 202106101845;
 				DEVELOPMENT_TEAM = Q26F7S66DB;
 				INFOPLIST_FILE = Kelo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "";
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.raulolmedo.kelo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.raulolmedo.kelo";
