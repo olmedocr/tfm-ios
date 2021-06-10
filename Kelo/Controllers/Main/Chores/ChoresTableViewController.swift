@@ -13,7 +13,11 @@ class ChoresTableViewController: UITableViewController {
     // MARK: Properties
     var currentUser: User!
     var dataSource: TableViewDataSource<Chore>?
-    var isShowingCompletedChores: Bool = false
+    var isShowingCompletedChores: Bool = false {
+        didSet {
+            tableView.allowsSelection = !isShowingCompletedChores
+        }
+    }
     var group: Group?
 
     // MARK: IBOutlets
@@ -67,35 +71,26 @@ class ChoresTableViewController: UITableViewController {
 
     // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isShowingCompletedChores {
+
+        switch Validations.chorePermission((dataSource?.models[indexPath.row])!,
+                                           user: currentUser,
+                                           operation: .update) {
+        
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            log.info("Tried to edit a chore without being the creator")
+            
             let alert = self.setAlert(title: "Error!",
                                       message: """
-                                        Completed chores cannot be edited
-                                        """,
-                                      actionTitle: "OK")
-
-            self.present(alert, animated: true)
-        } else {
-            switch Validations.chorePermission((dataSource?.models[indexPath.row])!,
-                                               user: currentUser,
-                                               operation: .update) {
-
-            case .failure(let err):
-                log.error(err.localizedDescription)
-                log.info("Tried to edit a chore without being the creator")
-
-                let alert = self.setAlert(title: "Error!",
-                                          message: """
                                         Only the creator of the chore and the group admin are able to
                                         edit this element
                                         """,
-                                          actionTitle: "OK")
-
-                self.present(alert, animated: true)
-
-            case .success:
-                self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
-            }
+                                      actionTitle: "OK")
+            
+            self.present(alert, animated: true)
+            
+        case .success:
+            self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
@@ -105,16 +100,22 @@ class ChoresTableViewController: UITableViewController {
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
     -> UISwipeActionsConfiguration? {
 
+        let configuration: UISwipeActionsConfiguration!
         let completeAction = UIContextualAction(style: .normal,
                                                 title: "Complete") { [weak self] (_, _, completionHandler) in
             self?.handleMarkAsComplete(chore: (self?.dataSource?.models[indexPath.row])!,
                                        index: indexPath.row,
                                        onComplete: completionHandler)
         }
-        completeAction.backgroundColor = UIColor.systemBlue
+        completeAction.backgroundColor = UIColor(named: "AccentColor")
         completeAction.image = UIImage(systemName: "checkmark.circle.fill")
 
-        let configuration = UISwipeActionsConfiguration(actions: [completeAction])
+        if isShowingCompletedChores {
+            configuration = UISwipeActionsConfiguration(actions: [])
+        } else {
+            configuration = UISwipeActionsConfiguration(actions: [completeAction])
+        }
+
         return configuration
     }
 
@@ -122,6 +123,7 @@ class ChoresTableViewController: UITableViewController {
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
     -> UISwipeActionsConfiguration? {
 
+        let configuration: UISwipeActionsConfiguration!
         let deleteAction = UIContextualAction(style: .destructive,
                                                 title: "Delete") { [weak self] (_, _, completionHandler) in
             self?.handleMarkAsDelete(chore: (self?.dataSource?.models[indexPath.row])!,
@@ -131,7 +133,12 @@ class ChoresTableViewController: UITableViewController {
         deleteAction.backgroundColor = UIColor.systemRed
         deleteAction.image = UIImage(systemName: "trash.fill")
 
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        if isShowingCompletedChores {
+            configuration = UISwipeActionsConfiguration(actions: [])
+        } else {
+            configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        }
+
         return configuration
     }
 
