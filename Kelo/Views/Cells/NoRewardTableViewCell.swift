@@ -1,19 +1,15 @@
 //
-//  RewardTableViewCell.swift
+//  NoRewardTableViewCell.swift
 //  Kelo
 //
-//  Created by Raul Olmedo on 26/5/21.
+//  Created by Raul Olmedo on 10/6/21.
 //
 
 import UIKit
-import MarqueeLabel
 
-class RewardTableViewCell: UITableViewCell {
-
+class NoRewardTableViewCell: UITableViewCell {
     // MARK: @IBOutlets
-    @IBOutlet weak var rewardName: MarqueeLabel!
-    @IBOutlet weak var rewardFrequency: UILabel!
-    @IBOutlet weak var rewardImage: UIImageView!
+    @IBOutlet weak var label: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
