@@ -42,6 +42,18 @@ extension TableViewDataSource where Model == Chore {
         cell.choreTitle.animationCurve = .easeInOut
         cell.choreTitle.fadeLength = 5.0
         cell.choreTitle.trailingBuffer = 14.0
+
+        cell.assigneeName.type = .continuous
+        cell.assigneeName.speed = .duration(8)
+        cell.assigneeName.animationCurve = .easeInOut
+        cell.assigneeName.fadeLength = 5.0
+        cell.assigneeName.trailingBuffer = 14.0
+
+        cell.assignerName.type = .continuous
+        cell.assignerName.speed = .duration(8)
+        cell.assignerName.animationCurve = .easeInOut
+        cell.assignerName.fadeLength = 5.0
+        cell.assignerName.trailingBuffer = 14.0
     }
 
     private static func setImage(_ cell: ChoreTableViewCell, choreName: String) {
@@ -49,10 +61,10 @@ extension TableViewDataSource where Model == Chore {
         let circleAvatarImage = LetterAvatarMaker()
             .setCircle(true)
             .setUsername(choreName)
-            .setSize(CGSize(width: 50, height: 50))
+            .useSingleLetter(true)
             .build()
 
-        cell.imageView?.image = circleAvatarImage
+        cell.coreImage.image = circleAvatarImage
     }
 
     private static func fetchAssignee(_ cell: ChoreTableViewCell, withUserId assgineeId: String) {
