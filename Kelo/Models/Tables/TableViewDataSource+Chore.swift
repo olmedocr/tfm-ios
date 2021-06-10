@@ -31,7 +31,7 @@ extension TableViewDataSource where Model == Chore {
 
                 setDueDate(cell, withDate: chore.expiration)
 
-                setImportanceIndicator(cell, withPoints: chore.points)
+                setImportanceIndicator(cell, withImportance: chore.points)
             }
         }
     }
@@ -103,19 +103,17 @@ extension TableViewDataSource where Model == Chore {
         cell.dueDate.accessibilityIdentifier = formatter.string(from: date)
     }
 
-    private static func setImportanceIndicator(_ cell: ChoreTableViewCell, withPoints points: Int) {
-        switch points {
-        case Chore.Importance.low.rawValue:
+    private static func setImportanceIndicator(_ cell: ChoreTableViewCell, withImportance importance: Importance) {
+        switch importance {
+        case .low:
             cell.importanceIndicator.image = UIImage(color: .systemGreen)
             cell.importanceIndicator.accessibilityIdentifier = "Green"
-        case Chore.Importance.medium.rawValue:
+        case .medium:
             cell.importanceIndicator.image = UIImage(color: .systemYellow)
             cell.importanceIndicator.accessibilityIdentifier = "Yellow"
-        case Chore.Importance.high.rawValue:
+        case .high:
             cell.importanceIndicator.image = UIImage(color: .systemRed)
             cell.importanceIndicator.accessibilityIdentifier = "Red"
-        default:
-            log.warning("Unknown importance value")
         }
     }
 

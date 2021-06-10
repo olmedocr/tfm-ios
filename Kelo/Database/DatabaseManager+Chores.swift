@@ -190,7 +190,7 @@ extension DatabaseManager {
                     case .success:
 
                         var updatedUser = user
-                        updatedUser.points = user.points + chore.points
+                        updatedUser.points = user.points + chore.points.rawValue
 
                         DatabaseManager.shared.updateUser(user: updatedUser) { (updateResult) in
                             switch updateResult {
