@@ -44,7 +44,6 @@
 		C445B4F3262F3F8D008EADCA /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445B4F2262F3F8D008EADCA /* InitialViewController.swift */; };
 		C445B5C826316EA8008EADCA /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445B5C726316EA8008EADCA /* GroupTests.swift */; };
 		C45F1B18265E698200538956 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B17265E698200538956 /* PointsTableViewCell.swift */; };
-		C45F1B1A265E699D00538956 /* RewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B19265E699D00538956 /* RewardTableViewCell.swift */; };
 		C45F1B1C265E69B600538956 /* DangerSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1B265E69B600538956 /* DangerSettingsTableViewCell.swift */; };
 		C45F1B1F265E87C600538956 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1E265E87C600538956 /* TableViewDataSource.swift */; };
 		C45F1B2A265EA78E00538956 /* SectionedTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */; };
@@ -72,7 +71,6 @@
 		C49040A02649939F0058E636 /* ShareGroupCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C490409F2649939F0058E636 /* ShareGroupCodeViewController.swift */; };
 		C49040A22649977C0058E636 /* SelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49040A12649977C0058E636 /* SelectableLabel.swift */; };
 		C49040B7264A7F110058E636 /* AssignChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49040B6264A7F110058E636 /* AssignChoreViewController.swift */; };
-		C49A605E265E636000298A6C /* RewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A605D265E636000298A6C /* RewardViewController.swift */; };
 		C4A3396726567B9C00D29D0C /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3396626567B9C00D29D0C /* Validations.swift */; };
 		C4A9B3DE260E419500D1E770 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9B3DD260E419500D1E770 /* Constants.swift */; };
 		C4A9B3EF2611D81600D1E770 /* UIVIewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9B3EE2611D81600D1E770 /* UIVIewController+Extensions.swift */; };
@@ -85,6 +83,13 @@
 		C4B7517426454A33002888FC /* ChoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7517326454A33002888FC /* ChoreTests.swift */; };
 		C4C1D1042664FF6B00553C44 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */; };
 		C4E40774266E387C006942B8 /* EditSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */; };
+		C4E407762670CD01006942B8 /* DetailRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E407752670CD00006942B8 /* DetailRewardViewController.swift */; };
+		C4E407782670D9AE006942B8 /* RewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */; };
+		C4E4077C2670DFD2006942B8 /* PeriodTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4077B2670DFD2006942B8 /* PeriodTableViewController.swift */; };
+		C4E4077E2671057B006942B8 /* PeriodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4077D2671057B006942B8 /* PeriodTableViewCell.swift */; };
+		C4E4078026710633006942B8 /* TableViewDataSource+Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4077F26710633006942B8 /* TableViewDataSource+Period.swift */; };
+		C4E4078226711043006942B8 /* DatabaseManager+Rewards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4078126711043006942B8 /* DatabaseManager+Rewards.swift */; };
+		C4E4078426723128006942B8 /* NoRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4078326723128006942B8 /* NoRewardTableViewCell.swift */; };
 		C4E8CE76264BBF8C004A9F04 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8CE75264BBF8C004A9F04 /* UserDefaults+Extensions.swift */; };
 		C4F1C2652638608900E2AD7E /* ChoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1C2642638608900E2AD7E /* ChoresTableViewController.swift */; };
 		C4F1C2672638662500E2AD7E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1C2662638662500E2AD7E /* SettingsTableViewController.swift */; };
@@ -155,7 +160,6 @@
 		C445B5C726316EA8008EADCA /* GroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
 		C445B5C926316EA8008EADCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C45F1B17265E698200538956 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
-		C45F1B19265E699D00538956 /* RewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableViewCell.swift; sourceTree = "<group>"; };
 		C45F1B1B265E69B600538956 /* DangerSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		C45F1B1E265E87C600538956 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -176,7 +180,6 @@
 		C490409F2649939F0058E636 /* ShareGroupCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareGroupCodeViewController.swift; sourceTree = "<group>"; };
 		C49040A12649977C0058E636 /* SelectableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableLabel.swift; sourceTree = "<group>"; };
 		C49040B6264A7F110058E636 /* AssignChoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignChoreViewController.swift; sourceTree = "<group>"; };
-		C49A605D265E636000298A6C /* RewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewController.swift; sourceTree = "<group>"; };
 		C4A3396626567B9C00D29D0C /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		C4A9B3DD260E419500D1E770 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C4A9B3EE2611D81600D1E770 /* UIVIewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -191,6 +194,13 @@
 		C4B7517326454A33002888FC /* ChoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreTests.swift; sourceTree = "<group>"; };
 		C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
 		C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		C4E407752670CD00006942B8 /* DetailRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRewardViewController.swift; sourceTree = "<group>"; };
+		C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableViewCell.swift; sourceTree = "<group>"; };
+		C4E4077B2670DFD2006942B8 /* PeriodTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTableViewController.swift; sourceTree = "<group>"; };
+		C4E4077D2671057B006942B8 /* PeriodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTableViewCell.swift; sourceTree = "<group>"; };
+		C4E4077F26710633006942B8 /* TableViewDataSource+Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewDataSource+Period.swift"; sourceTree = "<group>"; };
+		C4E4078126711043006942B8 /* DatabaseManager+Rewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseManager+Rewards.swift"; sourceTree = "<group>"; };
+		C4E4078326723128006942B8 /* NoRewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRewardTableViewCell.swift; sourceTree = "<group>"; };
 		C4E8CE74264AD209004A9F04 /* Kelo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kelo.entitlements; sourceTree = "<group>"; };
 		C4E8CE75264BBF8C004A9F04 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		C4F1C2642638608900E2AD7E /* ChoresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoresTableViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +257,7 @@
 				C470CCCA2642E38E0074FCE1 /* DatabaseManager+Users.swift */,
 				C470CCC82642E37B0074FCE1 /* DatabaseManager+Chores.swift */,
 				C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */,
+				C4E4078126711043006942B8 /* DatabaseManager+Rewards.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -352,9 +363,11 @@
 				C42A80C5263871C000D9468F /* ChoreTableViewCell.swift */,
 				C4B7514F2643FFD9002888FC /* UserTableViewCell.swift */,
 				C45F1B17265E698200538956 /* PointsTableViewCell.swift */,
-				C45F1B19265E699D00538956 /* RewardTableViewCell.swift */,
 				C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */,
 				C45F1B1B265E69B600538956 /* DangerSettingsTableViewCell.swift */,
+				C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */,
+				C4E4078326723128006942B8 /* NoRewardTableViewCell.swift */,
+				C4E4077D2671057B006942B8 /* PeriodTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -427,6 +440,7 @@
 				C42AA3EE2662A3A300270FD2 /* TableViewDataSource+Reward.swift */,
 				C42AA3F02662A3BF00270FD2 /* TableViewDataSource+Currency.swift */,
 				C42AA3E92662A32800270FD2 /* TableViewDataSource+Chore.swift */,
+				C4E4077F26710633006942B8 /* TableViewDataSource+Period.swift */,
 				C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */,
 			);
 			path = Tables;
@@ -449,7 +463,8 @@
 			isa = PBXGroup;
 			children = (
 				C4F1C2662638662500E2AD7E /* SettingsTableViewController.swift */,
-				C49A605D265E636000298A6C /* RewardViewController.swift */,
+				C4E407752670CD00006942B8 /* DetailRewardViewController.swift */,
+				C4E4077B2670DFD2006942B8 /* PeriodTableViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -728,26 +743,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E4077C2670DFD2006942B8 /* PeriodTableViewController.swift in Sources */,
 				C4360A3C26289DDB009852F3 /* OnboardingNavigationController.swift in Sources */,
 				C4B751482642FA4E002888FC /* DetailChoreViewController.swift in Sources */,
+				C4E4078426723128006942B8 /* NoRewardTableViewCell.swift in Sources */,
 				C42AA3EF2662A3A300270FD2 /* TableViewDataSource+Reward.swift in Sources */,
 				C4360A2326289DAC009852F3 /* User.swift in Sources */,
 				C4360A4126289DDB009852F3 /* MainTabViewController.swift in Sources */,
 				C4360A2226289DAC009852F3 /* Reward.swift in Sources */,
-				C45F1B1A265E699D00538956 /* RewardTableViewCell.swift in Sources */,
 				C4A9B3EF2611D81600D1E770 /* UIVIewController+Extensions.swift in Sources */,
+				C4E4077E2671057B006942B8 /* PeriodTableViewCell.swift in Sources */,
 				C47D293C2611E5E600F824F6 /* NSRegularExpression+Extensions.swift in Sources */,
+				C4E4078026710633006942B8 /* TableViewDataSource+Period.swift in Sources */,
 				C49040B7264A7F110058E636 /* AssignChoreViewController.swift in Sources */,
 				C470CCC92642E37B0074FCE1 /* DatabaseManager+Chores.swift in Sources */,
 				C42AA3EA2662A32800270FD2 /* TableViewDataSource+Chore.swift in Sources */,
 				C42F5E2F2609F3DB00818229 /* AppDelegate.swift in Sources */,
 				C45F1B2C265FA02100538956 /* DatabaseManager+Currencies.swift in Sources */,
 				C4360A3D26289DDB009852F3 /* JoinViewController.swift in Sources */,
-				C49A605E265E636000298A6C /* RewardViewController.swift in Sources */,
 				C4360A2526289DAC009852F3 /* Chore.swift in Sources */,
 				C42A80C6263871C000D9468F /* ChoreTableViewCell.swift in Sources */,
 				C41F3841261B5C7900121956 /* DatabaseManager.swift in Sources */,
 				C49040A02649939F0058E636 /* ShareGroupCodeViewController.swift in Sources */,
+				C4E407762670CD01006942B8 /* DetailRewardViewController.swift in Sources */,
 				C4360A0E26288333009852F3 /* SetupTransition.swift in Sources */,
 				C4F1C2672638662500E2AD7E /* SettingsTableViewController.swift in Sources */,
 				C490409E26494B2A0058E636 /* UIImage+Extensions.swift in Sources */,
@@ -773,9 +791,11 @@
 				C45F1B1F265E87C600538956 /* TableViewDataSource.swift in Sources */,
 				C42F5E312609F3DB00818229 /* SceneDelegate.swift in Sources */,
 				C4360A2F26289DC7009852F3 /* RoundedButton.swift in Sources */,
+				C4E4078226711043006942B8 /* DatabaseManager+Rewards.swift in Sources */,
 				C49040A22649977C0058E636 /* SelectableLabel.swift in Sources */,
 				C4F1C2652638608900E2AD7E /* ChoresTableViewController.swift in Sources */,
 				C45F1B18265E698200538956 /* PointsTableViewCell.swift in Sources */,
+				C4E407782670D9AE006942B8 /* RewardTableViewCell.swift in Sources */,
 				C4A9B3DE260E419500D1E770 /* Constants.swift in Sources */,
 				C470CCCD2642E3CA0074FCE1 /* DatabaseManager+Groups.swift in Sources */,
 				C4360A2E26289DC7009852F3 /* CurrencyTableViewCell.swift in Sources */,
