@@ -60,6 +60,11 @@ class ChoresTableViewController: UITableViewController {
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
 
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(fetchData),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+
         fetchData()
     }
 
@@ -182,83 +187,62 @@ class ChoresTableViewController: UITableViewController {
 
     private func handleMarkAsComplete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
 
-        if isShowingCompletedChores {
+        switch Validations.chorePermission(chore, user: currentUser, operation: .complete) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            log.info("Tried to complete the chore without being the assigned user or the creator")
+
             let alert = self.setAlert(title: "Error!",
                                       message: """
-                                        Completed chores cannot be edited
-                                        """,
-                                      actionTitle: "OK")
-
-            self.present(alert, animated: true)
-        } else {
-            switch Validations.chorePermission(chore, user: currentUser, operation: .complete) {
-            case .failure(let err):
-                log.error(err.localizedDescription)
-                log.info("Tried to complete the chore without being the assigned user or the creator")
-
-                let alert = self.setAlert(title: "Error!",
-                                          message: """
                                             Only the group admin, the creator of the chore or the user assigned to it
                                             can complete this element
                                             """,
-                                          actionTitle: "OK")
+                                      actionTitle: "OK")
 
-                self.present(alert, animated: true)
+            self.present(alert, animated: true)
 
-            case .success:
-                DatabaseManager.shared.completeChore(chore: chore) { (result) in
-                    switch result {
-                    case .failure(let err):
-                        log.error(err.localizedDescription)
-                        completion(false)
-                    case .success:
-                        log.info("Correctly completed chore with id \(chore.id ?? "null")")
-                        self.dataSource?.models.remove(at: index)
-                        self.tableView.reloadData()
-                        completion(true)
-                    }
+        case .success:
+            DatabaseManager.shared.completeChore(chore: chore) { (result) in
+                switch result {
+                case .failure(let err):
+                    log.error(err.localizedDescription)
+                    completion(false)
+                case .success:
+                    log.info("Correctly completed chore with id \(chore.id ?? "null")")
+                    self.dataSource?.models.remove(at: index)
+                    self.tableView.reloadData()
+                    completion(true)
                 }
             }
         }
     }
 
     private func handleMarkAsDelete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
+        switch Validations.chorePermission(chore, user: currentUser, operation: .remove) {
+        case .failure(let err):
+            log.error(err.localizedDescription)
+            log.info("Tried to remove the chore without being the creator")
 
-        if isShowingCompletedChores {
             let alert = self.setAlert(title: "Error!",
                                       message: """
-                                        Completed chores cannot be edited
-                                        """,
-                                      actionTitle: "OK")
-
-            self.present(alert, animated: true)
-        } else {
-            switch Validations.chorePermission(chore, user: currentUser, operation: .remove) {
-            case .failure(let err):
-                log.error(err.localizedDescription)
-                log.info("Tried to remove the chore without being the creator")
-
-                let alert = self.setAlert(title: "Error!",
-                                          message: """
                                             Only the creator of the chore or the group admin are able to
                                             remove this element
                                             """,
-                                          actionTitle: "OK")
+                                      actionTitle: "OK")
 
-                self.present(alert, animated: true)
+            self.present(alert, animated: true)
 
-            case .success:
-                DatabaseManager.shared.deleteChore(choreId: chore.id!) { (result) in
-                    switch result {
-                    case .failure(let err):
-                        log.error(err.localizedDescription)
-                        completion(false)
-                    case .success:
-                        log.info("Correctly deleted chore with id \(chore.id ?? "null")")
-                        self.dataSource?.models.remove(at: index)
-                        self.tableView.reloadData()
-                        completion(true)
-                    }
+        case .success:
+            DatabaseManager.shared.deleteChore(choreId: chore.id!) { (result) in
+                switch result {
+                case .failure(let err):
+                    log.error(err.localizedDescription)
+                    completion(false)
+                case .success:
+                    log.info("Correctly deleted chore with id \(chore.id ?? "null")")
+                    self.dataSource?.models.remove(at: index)
+                    self.tableView.reloadData()
+                    completion(true)
                 }
             }
         }
