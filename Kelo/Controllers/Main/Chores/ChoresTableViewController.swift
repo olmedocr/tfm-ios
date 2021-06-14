@@ -80,20 +80,20 @@ class ChoresTableViewController: UITableViewController {
         switch Validations.chorePermission((dataSource?.models[indexPath.row])!,
                                            user: currentUser,
                                            operation: .update) {
-        
+
         case .failure(let err):
             log.error(err.localizedDescription)
             log.info("Tried to edit a chore without being the creator")
-            
+
             let alert = self.setAlert(title: "Error!",
                                       message: """
                                         Only the creator of the chore and the group admin are able to
                                         edit this element
                                         """,
                                       actionTitle: "OK")
-            
+
             self.present(alert, animated: true)
-            
+
         case .success:
             self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
         }
