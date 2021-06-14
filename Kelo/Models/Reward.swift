@@ -61,7 +61,7 @@ struct Reward: Identifiable, Codable {
     var icon: String = ""
     @ExplicitNull var expiration: Date?
     var creation: Date = Date()
-    var frequency: Period?
+    var frequency: Period = .none
 
     enum CodingKeys: String, CodingKey {
         case id

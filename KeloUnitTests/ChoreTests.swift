@@ -10,6 +10,18 @@ import XCTest_Gherkin
 
 class ChoreTests: XCTestCase {
 
+    func testChoreValidity() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "Validate Valid Chore",
+                                 testCase: self)
+    }
+
+    func testChoreInvalidity() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "Validate Invalid Chore",
+                                 testCase: self)
+    }
+
     func testChoreNameLength1() {
         NativeRunner.runScenario(featureFile: "Chore.feature",
                                  scenario: "Valid Length 1",

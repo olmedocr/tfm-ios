@@ -70,7 +70,7 @@ class DetailRewardViewController: UIViewController {
         if let reward = reward {
             titleTextField.text = reward.name
 
-            periodButton.setTitle(reward.frequency?.description, for: .normal)
+            periodButton.setTitle(reward.frequency.description, for: .normal)
 
             selectedPeriod = reward.frequency
 
@@ -89,7 +89,7 @@ class DetailRewardViewController: UIViewController {
         let icon = ""
         let expiration = computedExpiration
         let creation = reward?.creation ?? Date()
-        let frequency = selectedPeriod
+        let frequency = selectedPeriod ?? .none
 
         var rewardToSave = Reward(name: title,
                                   icon: icon,

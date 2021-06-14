@@ -379,13 +379,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lyj-5R-RF7">
                                                     <rect key="frame" x="56" y="0.33333333333333215" width="286" height="42.666666666666671"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hax-Xs-i7h" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hax-Xs-i7h" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                                             <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsn-GM-Hgh">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsn-GM-Hgh">
                                                             <rect key="frame" x="0.0" y="28.333333333333332" width="31" height="14.333333333333332"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -609,7 +609,7 @@
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-EF-ghY" customClass="ChoreTableViewCell" customModule="Kelo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="82.333335876464844"/>
+                                <rect key="frame" x="0.0" y="24" width="414" height="83"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yyu-EF-ghY" id="js6-xD-d5b">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="82.333335876464844"/>
@@ -724,7 +724,7 @@
                                     <action selector="didTapShareButton:" destination="pbi-T0-mAe" id="L4C-Za-aoo"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="checkmark.circle" catalog="system" id="sHl-tA-wJB">
+                            <barButtonItem title="Checkmark" image="checkmark.circle" catalog="system" id="sHl-tA-wJB">
                                 <connections>
                                     <action selector="didTapCheckButton:" destination="pbi-T0-mAe" id="Hlz-2H-blG"/>
                                 </connections>
@@ -1151,10 +1151,10 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Zzv-8e-bOY">
-                                <rect key="frame" x="41.333333333333343" y="589.66666666666663" width="331.33333333333326" height="130.33333333333337"/>
+                                <rect key="frame" x="41.333333333333343" y="489.99999999999994" width="331.33333333333326" height="130.33333333333331"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbt-Le-J2E" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="55"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="55.333333333333336"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" secondItem="Sbt-Le-J2E" secondAttribute="width" multiplier="1:6" id="PqQ-Oo-5ah"/>
@@ -1172,7 +1172,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2u-QA-tdv" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="75" width="331.33333333333331" height="55.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="75.333333333333371" width="331.33333333333331" height="55"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1188,10 +1188,9 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="250" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BGc-uq-jZb">
-                                <rect key="frame" x="41.333333333333343" y="393" width="331.33333333333326" height="132.66666666666663"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="250" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Welcome to ke" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BGc-uq-jZb">
+                                <rect key="frame" x="41.333333333333343" y="393" width="331.33333333333326" height="33"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1513,7 +1512,7 @@
                                                     <constraint firstAttribute="width" secondItem="aOm-s2-BaJ" secondAttribute="height" multiplier="7:1" id="oaW-5t-oDB"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1592,14 +1591,14 @@
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="periodTableViewCell" id="doA-WI-wzO" customClass="PeriodTableViewCell" customModule="Kelo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="49" width="374" height="53"/>
+                                <rect key="frame" x="20" y="49" width="374" height="53.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="doA-WI-wzO" id="C77-4y-tmL">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="53"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="53.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzY-K8-f9M">
-                                            <rect key="frame" x="16" y="16" width="342" height="21"/>
+                                            <rect key="frame" x="16" y="15.999999999999998" width="342" height="21.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1630,8 +1629,23 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="Hax-Xs-i7h">
+            <size key="intrinsicContentSize" width="41.333333333333336" height="20.333333333333332"/>
+        </designable>
+        <designable name="RRq-lI-xo1">
+            <size key="intrinsicContentSize" width="41.333333333333336" height="20.333333333333332"/>
+        </designable>
         <designable name="Tyb-5K-KnO">
             <size key="intrinsicContentSize" width="183" height="17"/>
+        </designable>
+        <designable name="esz-D5-94x">
+            <size key="intrinsicContentSize" width="41.333333333333336" height="20.333333333333332"/>
+        </designable>
+        <designable name="iXh-XO-J7m">
+            <size key="intrinsicContentSize" width="6.333333333333333" height="14.333333333333334"/>
+        </designable>
+        <designable name="pc0-IC-35y">
+            <size key="intrinsicContentSize" width="74.333333333333329" height="14.333333333333334"/>
         </designable>
     </designables>
     <resources>

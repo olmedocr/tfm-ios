@@ -27,7 +27,7 @@ extension TableViewDataSource where Model == Reward {
                 cell.rewardImage.image = circleAvatarImage
 
                 cell.rewardName.text = reward.name
-                cell.rewardFrequency.text = reward.frequency?.description
+                cell.rewardFrequency.text = reward.frequency.description
 
                 setMarquee(cell)
 

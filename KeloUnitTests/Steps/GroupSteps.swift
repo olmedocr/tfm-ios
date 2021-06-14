@@ -9,7 +9,7 @@
 import XCTest
 import XCTest_Gherkin
 
-final class CreateGroupSteps: StepDefiner {
+final class GroupSteps: StepDefiner {
 
     private var groupName: String?
     private var userName: String?

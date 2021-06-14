@@ -9,7 +9,7 @@
 import XCTest
 import XCTest_Gherkin
 
-final class CreateUserSteps: StepDefiner {
+final class UserSteps: StepDefiner {
 
     private var userName: String?
     private var isUsernameValid = true

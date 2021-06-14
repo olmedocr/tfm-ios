@@ -15,7 +15,7 @@ class CurrencyTests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUp() {
-        continueAfterFailure = true
+        continueAfterFailure = false
 
         app = XCUIApplication()
         app.launchArguments += ["-hasBeenLaunchedBefore", "NO"]
@@ -47,10 +47,11 @@ class CurrencyTests: XCTestCase {
         app.buttons["Continue"].tap()
         app.tabBars.buttons["Settings"].tap()
 
-        app.tables.cells.element(boundBy: 2).waitForExistence(timeout: 5)
-        app.tables.cells.element(boundBy: 2).tap()
+        app.tables.cells.element(boundBy: 3).waitForExistence(timeout: 5)
+        app.tables.cells.element(boundBy: 3).tap()
 
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tables.cells.element(boundBy: 0).tap()
+
         app.tabBars.buttons["Settings"].tap()
         app.buttons["Leave Group"].tap()
         app.alerts["Are you sure?"].buttons["Leave"].tap()

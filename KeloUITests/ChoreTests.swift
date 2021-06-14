@@ -38,7 +38,7 @@ class ChoreTests: XCTestCase {
     }
 
     override func setUp() {
-        continueAfterFailure = true
+        continueAfterFailure = false
     }
 
     func testAddChore() throws {
@@ -105,6 +105,20 @@ class ChoreTests: XCTestCase {
         XCTAssertTrue(app.buttons[userName + " (You)"].exists)
 
         app.navigationBars.buttons.element(boundBy: 0).tap()
+    }
+
+    func testCompletedChores() throws {
+        guard let app = ChoreTests.app else {
+            XCTFail("Unknown error")
+            return
+        }
+
+        app.navigationBars.element.waitForExistence(timeout: 5)
+        app.navigationBars.buttons["Checkmark"].tap()
+
+        XCTAssert(app.staticTexts.element(matching: .any, identifier: "Completed").exists)
+
+        app.navigationBars.buttons["Checkmark"].tap()
     }
 
 }
