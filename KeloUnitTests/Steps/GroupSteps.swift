@@ -9,14 +9,19 @@
 import XCTest
 import XCTest_Gherkin
 
-final class CreateGroupSteps: StepDefiner {
+final class GroupSteps: StepDefiner {
 
     private var groupName: String?
     private var userName: String?
     private var selectedCurrency: Currency?
+
     private var isGroupNameValid = true
 
+    private var user = User()
+
     override func defineSteps() {
+
+        // MARK: - Group name validation
         step("the user that enters its group name \"(.*)\"") { (groupName: String) in
             self.groupName = groupName
         }
@@ -56,6 +61,25 @@ final class CreateGroupSteps: StepDefiner {
 
         step("the group name must not contain special characters") {
             XCTAssertFalse(self.isGroupNameValid)
+        }
+
+        // MARK: - Group name update validation
+        step("a user that wants to update the group name") {}
+
+        step("the user is the unique administrator of the group") {
+            self.user.isAdmin = true
+        }
+
+        step("the user is not the unique administrator of the group") {
+            self.user.isAdmin = false
+        }
+
+        step("the user is permitted to modify the group name") {
+            XCTAssertTrue(self.user.isAdmin)
+        }
+
+        step("the user is not permitted to modify the group name") {
+            XCTAssertFalse(self.user.isAdmin)
         }
     }
 

@@ -31,7 +31,7 @@ extension TableViewDataSource where Model == Chore {
 
                 setDueDate(cell, withDate: chore.expiration)
 
-                setImportanceIndicator(cell, withPoints: chore.points)
+                setImportanceIndicator(cell, withImportance: chore.points)
             }
         }
     }
@@ -42,6 +42,18 @@ extension TableViewDataSource where Model == Chore {
         cell.choreTitle.animationCurve = .easeInOut
         cell.choreTitle.fadeLength = 5.0
         cell.choreTitle.trailingBuffer = 14.0
+
+        cell.assigneeName.type = .continuous
+        cell.assigneeName.speed = .duration(8)
+        cell.assigneeName.animationCurve = .easeInOut
+        cell.assigneeName.fadeLength = 5.0
+        cell.assigneeName.trailingBuffer = 14.0
+
+        cell.assignerName.type = .continuous
+        cell.assignerName.speed = .duration(8)
+        cell.assignerName.animationCurve = .easeInOut
+        cell.assignerName.fadeLength = 5.0
+        cell.assignerName.trailingBuffer = 14.0
     }
 
     private static func setImage(_ cell: ChoreTableViewCell, choreName: String) {
@@ -49,10 +61,10 @@ extension TableViewDataSource where Model == Chore {
         let circleAvatarImage = LetterAvatarMaker()
             .setCircle(true)
             .setUsername(choreName)
-            .setSize(CGSize(width: 50, height: 50))
+            .useSingleLetter(true)
             .build()
 
-        cell.imageView?.image = circleAvatarImage
+        cell.coreImage.image = circleAvatarImage
     }
 
     private static func fetchAssignee(_ cell: ChoreTableViewCell, withUserId assgineeId: String) {
@@ -103,19 +115,17 @@ extension TableViewDataSource where Model == Chore {
         cell.dueDate.accessibilityIdentifier = formatter.string(from: date)
     }
 
-    private static func setImportanceIndicator(_ cell: ChoreTableViewCell, withPoints points: Int) {
-        switch points {
-        case Chore.Importance.low.rawValue:
+    private static func setImportanceIndicator(_ cell: ChoreTableViewCell, withImportance importance: Importance) {
+        switch importance {
+        case .low:
             cell.importanceIndicator.image = UIImage(color: .systemGreen)
             cell.importanceIndicator.accessibilityIdentifier = "Green"
-        case Chore.Importance.medium.rawValue:
+        case .medium:
             cell.importanceIndicator.image = UIImage(color: .systemYellow)
             cell.importanceIndicator.accessibilityIdentifier = "Yellow"
-        case Chore.Importance.high.rawValue:
+        case .high:
             cell.importanceIndicator.image = UIImage(color: .systemRed)
             cell.importanceIndicator.accessibilityIdentifier = "Red"
-        default:
-            log.warning("Unknown importance value")
         }
     }
 

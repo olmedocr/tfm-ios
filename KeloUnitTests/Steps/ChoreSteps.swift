@@ -9,7 +9,7 @@
 import XCTest
 import XCTest_Gherkin
 
-final class CreateChoreSteps: StepDefiner {
+final class ChoreSteps: StepDefiner {
 
     private var chore = Chore()
     private var choreName: String?
@@ -24,8 +24,12 @@ final class CreateChoreSteps: StepDefiner {
     override func defineSteps() {
 
         // MARK: - Validate Chore
-        step("the user that fills up a chore without an assignee") {
+        step("the user that fills up a invalid chore") {
             self.chore = Chore(id: "", name: "Do the laundry")
+        }
+
+        step("the user that fills up a valid chore") {
+            self.chore = Chore(id: "", name: "Do the laundry", assignee: "Olmedo")
         }
 
         step("the user tries to create the chore") {
@@ -37,8 +41,12 @@ final class CreateChoreSteps: StepDefiner {
             }
         }
 
-        step("the user will not be able to create it") {
+        step("the user will not be able to create the chore") {
             XCTAssertFalse(self.isChoreValid)
+        }
+
+        step("the user will be able to create the chore") {
+            XCTAssertTrue(self.isChoreValid)
         }
 
         // MARK: - Selected Chore Date
@@ -52,7 +60,7 @@ final class CreateChoreSteps: StepDefiner {
         }
 
         step("the user will see that the importance is set to Low by default") {
-            XCTAssertTrue(self.chore.points == Chore.Importance.low.rawValue)
+            XCTAssertTrue(self.chore.points == .low)
         }
 
         step("the user will see that the expiration date is set to today by default") {
@@ -112,6 +120,7 @@ final class CreateChoreSteps: StepDefiner {
         // MARK: - Update Chore Permission
         step("a user with id \"(.*)\" that wants to update a chore") { (userId: String) in
             self.user.id = userId
+            self.user.isAdmin = false
         }
 
         step("the chore creator is \"(.*)\"") { (creatorId: String) in

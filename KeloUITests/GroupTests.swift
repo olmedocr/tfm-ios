@@ -16,7 +16,7 @@ class GroupTests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUp() {
-        continueAfterFailure = true
+        continueAfterFailure = false
 
         app = XCUIApplication()
         app.launchArguments += ["-hasBeenLaunchedBefore", "NO"]
@@ -39,18 +39,23 @@ class GroupTests: XCTestCase {
         XCTAssertTrue(app.alerts["Are you sure?"].exists)
         app.alerts["Are you sure?"].buttons["Leave"].tap()
         app.alerts["Attention!"].buttons["OK"].tap()
-
-        // TODO: assert that the presented view controller is the initial one
     }
 
     func testDeleteGroupByAdmin() throws {
         app.tabBars.buttons["Settings"].tap()
+        app.swipeUp()
         app.buttons["Delete Group"].tap()
         XCTAssertTrue(app.alerts["Are you sure?"].exists)
         app.alerts["Are you sure?"].buttons["Delete"].tap()
         app.alerts["Attention!"].buttons["OK"].tap()
+    }
 
-        // TODO: assert that the presented view controller is the initial one
+    func testGroupNameUpdateByAdmin() throws {
+        // TODO:
+    }
+
+    func testUserNameUpdateByAdmin() throws {
+        // TODO: y ponerlo en UserTests
     }
 
 }

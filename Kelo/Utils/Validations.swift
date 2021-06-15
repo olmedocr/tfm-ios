@@ -22,6 +22,9 @@ enum EvaluateError: LocalizedError {
     case groupNoLongerExists
     case userNoLongerExists
 
+    case isNotValidRewardName
+    case isnotValidReward
+
     var errorDescription: String? {
         switch self {
         case .isNotValidGroupName:
@@ -40,6 +43,10 @@ enum EvaluateError: LocalizedError {
             return "It appears that this group no longer exists"
         case .userNoLongerExists:
             return "You no longer have access to the group"
+        case .isNotValidRewardName:
+            return "Invalid name"
+        case .isnotValidReward:
+            return "Invalid reward"
         }
     }
 }
@@ -52,7 +59,11 @@ enum ChoreOperation {
 
 enum UserOperation {
 //    case update
-//    case complete
+    case remove
+}
+
+enum RewardOperation {
+    case update
     case remove
 }
 
@@ -60,7 +71,8 @@ struct Validations {
     private static let userNameRegex = NSRegularExpression("^[A-Za-zñÁÉÍÓÚÜáéíóúüç ]{3,32}$")
     private static let groupNameRegex = NSRegularExpression("^[A-Za-z0-9ñÁÉÍÓÚÜáéíóúüç ]{5,32}$")
     private static let groupCodeRegex = NSRegularExpression("^[A-Za-z0-9 ]{20}$")
-    private static let choreNameRegex = groupNameRegex
+    private static let choreNameRegex = NSRegularExpression("^[A-Za-z0-9ñÁÉÍÓÚÜáéíóúüç ]{5,32}$")
+    private static let rewardNameRegex = NSRegularExpression("^[A-Za-z0-9ñÁÉÍÓÚÜáéíóúüç ]{5,48}$")
 
     static func userInGroup(_ userId: String, groupId: String, result: @escaping (Result<Void, Error>) -> Void) {
         isValid(groupId: groupId) { isValidGroup in
@@ -105,7 +117,7 @@ struct Validations {
     }
 
     static func userPermission(_ user: User, currrentUser: User, operation: UserOperation) -> Result<Void, Error> {
-        if !isValid(input: user, currentUser: currrentUser, operation: operation) {
+        if !isValid(input: operation, currentUser: currrentUser) {
             return .failure(EvaluateError.noPermissions)
         } else {
             return .success(())
@@ -130,6 +142,30 @@ struct Validations {
 
     static func chorePermission(_ chore: Chore, user: User, operation: ChoreOperation) -> Result<Void, Error> {
         if !isValid(input: chore, user: user, operation: operation) {
+            return .failure(EvaluateError.noPermissions)
+        } else {
+            return .success(())
+        }
+    }
+
+    static func reward(_ reward: Reward) -> Result<Void, Error> {
+        if !isValid(input: reward) {
+            return .failure(EvaluateError.isnotValidReward)
+        } else {
+            return .success(())
+        }
+    }
+
+    static func rewardName(_ name: String) -> Result<Void, Error> {
+        if !isValid(input: name, regEx: rewardNameRegex) {
+            return .failure(EvaluateError.isNotValidRewardName)
+        } else {
+            return .success(())
+        }
+    }
+
+    static func rewardPermission(currentUser: User, operation: RewardOperation) -> Result<Void, Error> {
+        if !isValid(input: operation, currentUser: currentUser) {
             return .failure(EvaluateError.noPermissions)
         } else {
             return .success(())
@@ -184,11 +220,24 @@ struct Validations {
         }
     }
 
-    private static func isValid(input: User, currentUser: User, operation: UserOperation) -> Bool {
-        switch operation {
+    private static func isValid(input: UserOperation, currentUser: User) -> Bool {
+        switch input {
         case .remove:
             return currentUser.isAdmin
         }
+    }
+
+    private static func isValid(input: RewardOperation, currentUser: User) -> Bool {
+        switch input {
+        case .remove:
+            return currentUser.isAdmin
+        case .update:
+            return currentUser.isAdmin
+        }
+    }
+
+    private static func isValid(input: Reward) -> Bool {
+        return input.name != "" && input.frequency != nil
     }
 
 }

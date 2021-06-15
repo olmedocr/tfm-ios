@@ -13,11 +13,11 @@ protocol UsersTableViewDelegate: AnyObject {
 
 class UsersTableViewController: UITableViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     weak var delegate: UsersTableViewDelegate?
     var dataSource: TableViewDataSource<User>?
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

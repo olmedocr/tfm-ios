@@ -9,9 +9,6 @@ import XCTest
 @testable import Kelo
 
 class ChoreTests: XCTestCase {
-    var isAddListenerTriggered: Bool!
-    var isDeleteListenerTriggered: Bool!
-    var isModifyListenerTriggered: Bool!
 
     override func setUp() {
         let expectation = XCTestExpectation(description: "Wait for the creation of the group")
@@ -30,7 +27,7 @@ class ChoreTests: XCTestCase {
     }
 
     override func tearDown() {
-        let expectation = XCTestExpectation(description: "Wait for the creation of the group")
+        let expectation = XCTestExpectation(description: "Wait for the deletion of the group")
 
         DatabaseManager.shared.deleteGroup(groupId: DatabaseManager.shared.groupId!) { (result) in
             switch result {
@@ -184,7 +181,7 @@ class ChoreTests: XCTestCase {
     func testChoreCompletion() throws {
         let expectation = XCTestExpectation(description: "Wait for the completion of the chore")
         let testUser = User(name: "UserName", points: 10)
-        var testChore = Chore(name: "ChoreCompletion", points: 30)
+        var testChore = Chore(name: "ChoreCompletion", points: .high)
 
         DatabaseManager.shared.createUser(user: testUser) { (creationResult1) in
             switch creationResult1 {
@@ -209,7 +206,8 @@ class ChoreTests: XCTestCase {
                                         case .failure(let err):
                                             XCTFail(err.localizedDescription)
                                         case .success(let retrievedUser):
-                                            XCTAssert(retrievedUser.points == testChore.points + testUser.points)
+                                            XCTAssert(retrievedUser.points ==
+                                                        testChore.points.rawValue + testUser.points)
                                             expectation.fulfill()
                                         }
                                     }

@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import MarqueeLabel
 
 class RewardTableViewCell: UITableViewCell {
-    // MARK: @IBOutlets
-    @IBOutlet weak var rewardName: UILabel!
+
+    // MARK: - @IBOutlets
+    @IBOutlet weak var rewardName: MarqueeLabel!
+    @IBOutlet weak var rewardFrequency: UILabel!
+    @IBOutlet weak var rewardImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

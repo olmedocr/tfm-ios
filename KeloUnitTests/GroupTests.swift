@@ -52,4 +52,16 @@ class GroupTests: XCTestCase {
                                  testCase: self)
     }
 
+    func testGroupUpdatePermissionByAdmin() {
+        NativeRunner.runScenario(featureFile: "Group.feature",
+                                 scenario: "(Admin) User Has Permissions For Updating the Group Name",
+                                 testCase: self)
+    }
+
+    func testGroupUpdatePermission() {
+        NativeRunner.runScenario(featureFile: "Group.feature",
+                                 scenario: "User Has Not Permissions For Updating the Group Name",
+                                 testCase: self)
+    }
+
 }

@@ -11,7 +11,7 @@ import LetterAvatarKit
 
 class DetailChoreViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     var chore: Chore?
     var selectedAssignee: User? {
         didSet {
@@ -25,7 +25,7 @@ class DetailChoreViewController: UIViewController {
         }
     }
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var choreTextField: UITextField!
     @IBOutlet weak var assigneeButton: RoundedButton!
     @IBOutlet weak var importanceLevel: UISegmentedControl!
@@ -34,14 +34,14 @@ class DetailChoreViewController: UIViewController {
     @IBOutlet weak var choreImage: UIImageView!
     @IBOutlet weak var assigneeErrorLabel: UILabel!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapAssigneeButton(_ sender: Any) {
         assigneeButton.hideError(assigneeErrorLabel)
 
         presentUsersTableViewController()
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,19 +106,19 @@ class DetailChoreViewController: UIViewController {
                 }
             }
 
-            if chore.points == Chore.Importance.low.rawValue {
+            switch chore.points {
+            case .low:
                 importanceLevel.selectedSegmentIndex = 0
-            } else if chore.points == Chore.Importance.medium.rawValue {
+            case .medium:
                 importanceLevel.selectedSegmentIndex = 1
-            } else if chore.points == Chore.Importance.high.rawValue {
+            case .high:
                 importanceLevel.selectedSegmentIndex = 2
-            } else {
-                log.warning("Unknown chore importance value")
             }
 
             let circleAvatarImage = LetterAvatarMaker()
                 .setCircle(true)
                 .setUsername(chore.name)
+                .useSingleLetter(true)
                 .build()
 
             choreImage.image = circleAvatarImage
@@ -133,21 +133,21 @@ class DetailChoreViewController: UIViewController {
     }
 
     private func validateAndStoreInDatabase() {
-        let title = choreTextField.text!
+        let title = choreTextField.text ?? ""
         let icon = ""
-        let assigneeId = selectedAssignee!.id!
-        let assignerId = DatabaseManager.shared.userId!
+        let assigneeId = selectedAssignee?.id ?? ""
+        let assignerId = DatabaseManager.shared.userId ?? ""
         let expiration = expirationDate.date
-        var points: Int {
-            var returnValue: Int?
+        var importance: Importance {
+            var returnValue: Importance?
 
             switch self.importanceLevel.selectedSegmentIndex {
             case 0:
-                returnValue = Chore.Importance.low.rawValue
+                returnValue = .low
             case 1:
-                returnValue = Chore.Importance.medium.rawValue
+                returnValue = .medium
             case 2:
-                returnValue = Chore.Importance.high.rawValue
+                returnValue = .high
             default:
                 assertionFailure("Unknown value for the importance")
             }
@@ -159,7 +159,7 @@ class DetailChoreViewController: UIViewController {
                                 icon: icon,
                                 assignee: assigneeId,
                                 expiration: expiration,
-                                points: points,
+                                points: importance,
                                 creator: assignerId)
 
         choreToSave.id = chore?.id

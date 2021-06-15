@@ -1,6 +1,18 @@
 Feature: Create Chore
 
         @Chore
+        Scenario: Validate Invalid Chore
+            Given the user that fills up a invalid chore
+             When the user tries to create the chore
+             Then the user will not be able to create the chore
+
+        @Chore
+        Scenario: Validate Valid Chore
+            Given the user that fills up a valid chore
+             When the user tries to create the chore
+             Then the user will be able to create the chore
+
+        @Chore
         Scenario: Validate Chore
             Given the user that fills up a chore without an assignee
              When the user tries to create the chore
@@ -160,3 +172,12 @@ Feature: Create Chore
         Examples:
                   | id   | creator | assignee |
                   | RAUL | GABO    | ALEX     |
+                  
+        @Chore
+        Scenario Outline: (Admin) User Has Permissions For Updating a Chore
+            Given a user with id "<id>" that wants to update a chore
+             When the user is the admin of the group
+             Then the user is permitted to update it
+        Examples:
+                  | id   |
+                  | RAUL |

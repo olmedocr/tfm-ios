@@ -9,7 +9,7 @@ import UIKit
 
 class PointsTableViewCell: UITableViewCell {
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var pointsLabel: UILabel!
 
     override func awakeFromNib() {
