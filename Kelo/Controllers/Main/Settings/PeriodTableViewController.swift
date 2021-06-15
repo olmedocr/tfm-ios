@@ -13,11 +13,11 @@ protocol PeriodTableViewDelegate: AnyObject {
 
 class PeriodTableViewController: UITableViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     weak var delegate: PeriodTableViewDelegate?
     var dataSource: TableViewDataSource<Period>?
 
-    // MARK: View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +31,7 @@ class PeriodTableViewController: UITableViewController {
         sheetViewController?.handleScrollView(tableView)
     }
 
-    // MARK: Table view delegate
+    // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectedPeriod = dataSource?.models[indexPath.row] {
             delegate?.didSelectPeriod(period: selectedPeriod)

@@ -9,13 +9,13 @@ import UIKit
 
 class ShareGroupCodeViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     var groupId: String?
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var groupCodeLabel: UILabel!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapOnShare(_ sender: Any) {
         if let groupId = groupId {
             log.info("Sharing group code")
@@ -35,7 +35,7 @@ class ShareGroupCodeViewController: UIViewController {
 
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -11,10 +11,10 @@ import FirebaseMessaging
 
 class MainTabViewController: UITabBarController {
 
-    // MARK: Properties
+    // MARK: - Properties
     let defaults = UserDefaults.standard
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

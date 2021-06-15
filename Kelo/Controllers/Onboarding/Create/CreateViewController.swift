@@ -10,18 +10,18 @@ import FittedSheets
 
 class CreateViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var groupErrorLabel: UILabel!
     @IBOutlet weak var currencyErrorLabel: UILabel!
     @IBOutlet weak var currencyButton: RoundedButton!
 
-    // MARK: IBOutlet Collections
+    // MARK: - IBOutlet Collections
     @IBOutlet var viewsToAnimate: [UIView]!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
@@ -51,7 +51,7 @@ class CreateViewController: UIViewController {
         }
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

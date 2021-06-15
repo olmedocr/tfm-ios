@@ -10,7 +10,7 @@ import MarqueeLabel
 
 class UserTableViewCell: UITableViewCell {
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: MarqueeLabel!
     @IBOutlet weak var adminLabel: UILabel!

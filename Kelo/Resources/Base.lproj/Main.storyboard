@@ -594,7 +594,11 @@
                                 <action selector="didTapShareButton:" destination="yx1-5L-4bb" id="aPT-cJ-T19"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="info.circle" catalog="system" id="2Qj-sj-paN"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="info.circle" catalog="system" id="2Qj-sj-paN">
+                            <connections>
+                                <action selector="didTapInfoButton:" destination="yx1-5L-4bb" id="eeX-9z-2iH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7K-7v-Z8d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -611,7 +615,7 @@
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-EF-ghY" customClass="ChoreTableViewCell" customModule="Kelo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24" width="390" height="83"/>
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="82.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yyu-EF-ghY" id="js6-xD-d5b">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="82.333335876464844"/>
@@ -905,7 +909,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vg2-mo-Npf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2334" y="-734"/>
+            <point key="canvasLocation" x="2334" y="-566"/>
         </scene>
         <!--Create View Controller-->
         <scene sceneID="b74-Ah-IsL">
@@ -1130,7 +1134,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQo-FH-i5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-845" y="-734"/>
+            <point key="canvasLocation" x="-798" y="-566"/>
         </scene>
         <!--Initial View Controller-->
         <scene sceneID="FM7-Es-x1Y">
@@ -1270,7 +1274,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="UsersTableViewController" id="Vyy-t2-Rft" customClass="UsersTableViewController" customModule="Kelo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="nN7-M9-gpF">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="713.33333333333337"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="713"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <prototypes>
@@ -1466,12 +1470,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbM-3q-Wu2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3188" y="-734"/>
+            <point key="canvasLocation" x="3185" y="-567"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Tutorial View Controller-->
         <scene sceneID="nHf-ym-Ydg">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="JC5-p8-uoC" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="TutorialViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="crossDissolve" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="JC5-p8-uoC" customClass="TutorialViewController" customModule="Kelo" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeX-Hz-xL5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1428" y="1229"/>
@@ -1587,7 +1591,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6H-TH-x8L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2334" y="1074"/>
+            <point key="canvasLocation" x="2334" y="917"/>
         </scene>
         <!--Period Table View Controller-->
         <scene sceneID="fix-zo-8Rf">
@@ -1633,7 +1637,171 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIZ-fN-ClE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3187" y="1074"/>
+            <point key="canvasLocation" x="3186" y="916"/>
+        </scene>
+        <!--First Step View Controller-->
+        <scene sceneID="leh-lf-4GJ">
+            <objects>
+                <viewController storyboardIdentifier="FirstStepViewController" id="fA6-qG-zXX" customClass="FirstStepViewController" customModule="Kelo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7uh-dL-vXg">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IS-2b-iQI">
+                                <rect key="frame" x="178" y="108" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Acp-w7-eBm" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
+                                <rect key="frame" x="90" y="652" width="210" height="30"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Acp-w7-eBm" secondAttribute="height" multiplier="7:1" id="LTt-Yq-Ked"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTapContinueButton:" destination="fA6-qG-zXX" eventType="touchUpInside" id="QwH-l4-XrZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ay2-w3-kk0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7IS-2b-iQI" firstAttribute="centerX" secondItem="7uh-dL-vXg" secondAttribute="centerX" id="F3N-Qu-Dbx"/>
+                            <constraint firstItem="Acp-w7-eBm" firstAttribute="centerX" secondItem="7uh-dL-vXg" secondAttribute="centerX" id="FZe-kY-WM3"/>
+                            <constraint firstItem="ay2-w3-kk0" firstAttribute="bottom" secondItem="Acp-w7-eBm" secondAttribute="bottom" constant="128" id="S6A-YS-dH8"/>
+                            <constraint firstItem="7IS-2b-iQI" firstAttribute="top" secondItem="ay2-w3-kk0" secondAttribute="top" constant="64" id="lyK-Wm-HUf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NaE-Uc-631" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="500" y="1937"/>
+        </scene>
+        <!--Second Step View Controller-->
+        <scene sceneID="yVy-la-K0C">
+            <objects>
+                <viewController storyboardIdentifier="SecondStepViewController" id="gLW-ws-DBy" customClass="SecondStepViewController" customModule="Kelo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mqZ-xd-0wx">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdR-Id-5Dp">
+                                <rect key="frame" x="166" y="108" width="58" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCi-lY-RRK" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
+                                <rect key="frame" x="90" y="652" width="210" height="30"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dCi-lY-RRK" secondAttribute="height" multiplier="7:1" id="ZlR-3F-ZCL"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTapContinueButton:" destination="gLW-ws-DBy" eventType="touchUpInside" id="W7e-Lq-aXj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NBw-5e-GPa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NBw-5e-GPa" firstAttribute="bottom" secondItem="dCi-lY-RRK" secondAttribute="bottom" constant="128" id="NPZ-IE-IH1"/>
+                            <constraint firstItem="dCi-lY-RRK" firstAttribute="centerX" secondItem="mqZ-xd-0wx" secondAttribute="centerX" id="ZMd-DC-syI"/>
+                            <constraint firstItem="OdR-Id-5Dp" firstAttribute="top" secondItem="NBw-5e-GPa" secondAttribute="top" constant="64" id="hkZ-Zx-qDh"/>
+                            <constraint firstItem="OdR-Id-5Dp" firstAttribute="centerX" secondItem="mqZ-xd-0wx" secondAttribute="centerX" id="vUA-4a-UlU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0qh-8K-NBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1428" y="1936"/>
+        </scene>
+        <!--Third Step View Controller-->
+        <scene sceneID="WNn-Nx-uzi">
+            <objects>
+                <viewController storyboardIdentifier="ThirdStepViewController" id="ObI-wA-hO0" customClass="ThirdStepViewController" customModule="Kelo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a2z-ZV-AHO">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vul-ct-vm9">
+                                <rect key="frame" x="175" y="108" width="40" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fK6-2k-Aqs" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
+                                <rect key="frame" x="90" y="652" width="210" height="30"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fK6-2k-Aqs" secondAttribute="height" multiplier="7:1" id="xHe-JX-kDU"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTapContinueButton:" destination="ObI-wA-hO0" eventType="touchUpInside" id="IAt-vX-5Hc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yfs-G0-ysh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vul-ct-vm9" firstAttribute="centerX" secondItem="a2z-ZV-AHO" secondAttribute="centerX" id="6vs-QC-5tT"/>
+                            <constraint firstItem="yfs-G0-ysh" firstAttribute="bottom" secondItem="fK6-2k-Aqs" secondAttribute="bottom" constant="128" id="I4L-at-9ni"/>
+                            <constraint firstItem="vul-ct-vm9" firstAttribute="top" secondItem="yfs-G0-ysh" secondAttribute="top" constant="64" id="sHK-R5-m3s"/>
+                            <constraint firstItem="fK6-2k-Aqs" firstAttribute="centerX" secondItem="a2z-ZV-AHO" secondAttribute="centerX" id="w9P-Kl-rvN"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="stw-93-Sa9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2334" y="1936"/>
+        </scene>
+        <!--Fourth Step View Controller-->
+        <scene sceneID="Hlc-J4-2ok">
+            <objects>
+                <viewController storyboardIdentifier="FourthStepViewController" id="2xl-Ew-ceQ" customClass="FourthStepViewController" customModule="Kelo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SDe-do-KJC">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fourth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yaG-eG-r0C">
+                                <rect key="frame" x="170" y="108" width="50.333333333333343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCw-7b-f2Q" customClass="RoundedButton" customModule="Kelo" customModuleProvider="target">
+                                <rect key="frame" x="90" y="652" width="210" height="30"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RCw-7b-f2Q" secondAttribute="height" multiplier="7:1" id="Ves-2Q-kyh"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTapContinueButton:" destination="2xl-Ew-ceQ" eventType="touchUpInside" id="3uT-wY-vwo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8OY-su-UCh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yaG-eG-r0C" firstAttribute="centerX" secondItem="SDe-do-KJC" secondAttribute="centerX" id="Rem-Lq-IlG"/>
+                            <constraint firstItem="8OY-su-UCh" firstAttribute="bottom" secondItem="RCw-7b-f2Q" secondAttribute="bottom" constant="128" id="awc-mF-lxy"/>
+                            <constraint firstItem="RCw-7b-f2Q" firstAttribute="centerX" secondItem="SDe-do-KJC" secondAttribute="centerX" id="tSi-t5-zPt"/>
+                            <constraint firstItem="yaG-eG-r0C" firstAttribute="top" secondItem="8OY-su-UCh" secondAttribute="top" constant="64" id="yNW-m8-h3V"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9jv-u3-kcv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3185" y="1936"/>
         </scene>
     </scenes>
     <designables>

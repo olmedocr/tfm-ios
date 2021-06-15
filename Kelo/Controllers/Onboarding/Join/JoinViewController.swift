@@ -9,18 +9,18 @@ import UIKit
 
 class JoinViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     var groupCode: String?
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var groupCodeTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
 
-    // MARK: IBOutlet Collections
+    // MARK: - IBOutlet Collections
     @IBOutlet var viewsToAnimate: [UIView]!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
@@ -52,7 +52,7 @@ class JoinViewController: UIViewController {
         }
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

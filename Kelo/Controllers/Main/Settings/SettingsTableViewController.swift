@@ -10,7 +10,7 @@ import FittedSheets
 
 class SettingsTableViewController: UITableViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     let sectionTitles = ["Your points", "Users", "Reward", "Currency", "Miscellaneous", "Danger zone"]
     var dataSources: SectionedTableViewDataSource?
     var users: [User]?
@@ -18,14 +18,18 @@ class SettingsTableViewController: UITableViewController {
     var currentUser: User?
     var reward: Reward?
 
-    // MARK: @IBActions
+    // MARK: - @IBActions
     @IBAction func didTapShareButton(_ sender: Any) {
         if let tabBarController = tabBarController as? MainTabViewController {
             tabBarController.presentShareGroupCodeViewController(context: self)
         }
     }
 
-    // MARK: View lifecycle
+    @IBAction func didTapInfoButton(_ sender: Any) {
+        self.presentTutorialViewController()
+    }
+
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -346,6 +350,18 @@ class SettingsTableViewController: UITableViewController {
         }
 
         navigationController?.pushViewController(controller, animated: true)
+    }
+
+    private func presentTutorialViewController() {
+        guard let controller = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "TutorialViewController")
+                as? TutorialViewController
+        else {
+            log.error("Could not instantiate TutorialViewController")
+            return
+        }
+
+        navigationController?.present(controller, animated: true, completion: nil)
     }
 
 }

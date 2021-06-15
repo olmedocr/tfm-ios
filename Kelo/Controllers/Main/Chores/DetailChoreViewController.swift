@@ -11,7 +11,7 @@ import LetterAvatarKit
 
 class DetailChoreViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     var chore: Chore?
     var selectedAssignee: User? {
         didSet {
@@ -25,7 +25,7 @@ class DetailChoreViewController: UIViewController {
         }
     }
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var choreTextField: UITextField!
     @IBOutlet weak var assigneeButton: RoundedButton!
     @IBOutlet weak var importanceLevel: UISegmentedControl!
@@ -34,14 +34,14 @@ class DetailChoreViewController: UIViewController {
     @IBOutlet weak var choreImage: UIImageView!
     @IBOutlet weak var assigneeErrorLabel: UILabel!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapAssigneeButton(_ sender: Any) {
         assigneeButton.hideError(assigneeErrorLabel)
 
         presentUsersTableViewController()
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

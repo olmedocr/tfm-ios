@@ -10,7 +10,7 @@ import FittedSheets
 
 class ChoresTableViewController: UITableViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     var currentUser: User!
     var dataSource: TableViewDataSource<Chore>?
     var isShowingCompletedChores: Bool = false {
@@ -20,10 +20,10 @@ class ChoresTableViewController: UITableViewController {
     }
     var group: Group?
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var checkButton: UIBarButtonItem!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapAddButton(_ sender: Any) {
         self.presentDetailChoreViewController()
     }
@@ -48,7 +48,7 @@ class ChoresTableViewController: UITableViewController {
         fetchData()
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -74,7 +74,7 @@ class ChoresTableViewController: UITableViewController {
         fetchData()
     }
 
-    // MARK: Table view delegate
+    // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         switch Validations.chorePermission((dataSource?.models[indexPath.row])!,

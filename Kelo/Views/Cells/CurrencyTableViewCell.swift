@@ -9,11 +9,11 @@ import UIKit
 
 class CurrencyTableViewCell: UITableViewCell {
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var flagImage: UIImageView!
     @IBOutlet weak var currencyName: UILabel!
 
-    // MARK: View Lifecycle
+    // MARK: - View Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -17,15 +17,15 @@ extension SetupTransition {
 
 public class SetupTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
-    // MARK: Properties
+    // MARK: - Properties
     fileprivate let operation: UINavigationController.Operation
 
-    // MARK: Initializers
+    // MARK: - Initializers
     init?(withOperation operation: UINavigationController.Operation) {
         self.operation = operation
     }
 
-    // MARK: Animated transitioning
+    // MARK: - Animated transitioning
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return Constants.transitionDefaultDuration
     }

@@ -14,10 +14,10 @@ protocol DangerSettingsCellDelegate: AnyObject {
 
 class DangerSettingsTableViewCell: UITableViewCell {
 
-    // MARK: Properties
+    // MARK: - Properties
     weak var delegate: DangerSettingsCellDelegate?
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapDeleteButton(_ sender: Any) {
         delegate?.didTapOnDeleteGroup()
     }

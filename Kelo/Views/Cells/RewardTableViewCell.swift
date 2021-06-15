@@ -10,7 +10,7 @@ import MarqueeLabel
 
 class RewardTableViewCell: UITableViewCell {
 
-    // MARK: @IBOutlets
+    // MARK: - @IBOutlets
     @IBOutlet weak var rewardName: MarqueeLabel!
     @IBOutlet weak var rewardFrequency: UILabel!
     @IBOutlet weak var rewardImage: UIImageView!

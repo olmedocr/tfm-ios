@@ -10,7 +10,7 @@ import MarqueeLabel
 
 class ChoreTableViewCell: UITableViewCell {
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var choreTitle: MarqueeLabel!
     @IBOutlet weak var assigneeName: MarqueeLabel!
     @IBOutlet weak var dueDate: UILabel!
