@@ -142,7 +142,9 @@ platform :ios do
       is_prerelease: options[:is_prerelease]
     )
 
-    push_to_git_remote()
+    push_to_git_remote(
+      local_branch: ENV["CIRCLE_BRANCH"]
+    )
 
   end
 end
