@@ -12,6 +12,11 @@
 		C41F3845261B720F00121956 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C41F3844261B720F00121956 /* GoogleService-Info.plist */; };
 		C41F385B261CB99A00121956 /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F385A261CB99A00121956 /* TextField+Extensions.swift */; };
 		C421AEBA2667833300EC0732 /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C421AEB92667833300EC0732 /* GroupTests.swift */; };
+		C421AEBD2669253000EC0732 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = C421AEBC2669253000EC0732 /* FirebaseFunctions */; };
+		C421AEBF2669253000EC0732 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = C421AEBE2669253000EC0732 /* FirebaseFirestoreSwift-Beta */; };
+		C421AEC12669253000EC0732 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C421AEC02669253000EC0732 /* FirebaseMessaging */; };
+		C421AEC32669253000EC0732 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = C421AEC22669253000EC0732 /* FirebaseStorageSwift-Beta */; };
+		C421AEC52669253000EC0732 /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = C421AEC42669253000EC0732 /* FirebaseAnalyticsSwift-Beta */; };
 		C42A80C6263871C000D9468F /* ChoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A80C5263871C000D9468F /* ChoreTableViewCell.swift */; };
 		C42AA3EA2662A32800270FD2 /* TableViewDataSource+Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42AA3E92662A32800270FD2 /* TableViewDataSource+Chore.swift */; };
 		C42AA3EC2662A36800270FD2 /* TableViewDataSource+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42AA3EB2662A36800270FD2 /* TableViewDataSource+User.swift */; };
@@ -22,6 +27,11 @@
 		C42F5E362609F3DB00818229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42F5E342609F3DB00818229 /* Main.storyboard */; };
 		C42F5E382609F3DC00818229 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C42F5E372609F3DC00818229 /* Assets.xcassets */; };
 		C42F5E3B2609F3DC00818229 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42F5E392609F3DC00818229 /* LaunchScreen.storyboard */; };
+		C43388042677453300D9DB53 /* Reward.feature in Resources */ = {isa = PBXBuildFile; fileRef = C43388032677453300D9DB53 /* Reward.feature */; };
+		C43388062677454200D9DB53 /* RewardSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43388052677454200D9DB53 /* RewardSteps.swift */; };
+		C433880A26774F8900D9DB53 /* RewardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C433880926774F8900D9DB53 /* RewardTests.swift */; };
+		C433880C26775EC100D9DB53 /* RewardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C433880B26775EC100D9DB53 /* RewardTests.swift */; };
+		C433880E2677A1A400D9DB53 /* RewardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C433880D2677A1A400D9DB53 /* RewardTests.swift */; };
 		C4360A0E26288333009852F3 /* SetupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4360A0D26288333009852F3 /* SetupTransition.swift */; };
 		C4360A2126289DAC009852F3 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4360A1C26289DAB009852F3 /* Currency.swift */; };
 		C4360A2226289DAC009852F3 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4360A1D26289DAB009852F3 /* Reward.swift */; };
@@ -39,8 +49,7 @@
 		C445B4F3262F3F8D008EADCA /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445B4F2262F3F8D008EADCA /* InitialViewController.swift */; };
 		C445B5C826316EA8008EADCA /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445B5C726316EA8008EADCA /* GroupTests.swift */; };
 		C45F1B18265E698200538956 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B17265E698200538956 /* PointsTableViewCell.swift */; };
-		C45F1B1A265E699D00538956 /* RewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B19265E699D00538956 /* RewardTableViewCell.swift */; };
-		C45F1B1C265E69B600538956 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1B265E69B600538956 /* SettingsTableViewCell.swift */; };
+		C45F1B1C265E69B600538956 /* DangerSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1B265E69B600538956 /* DangerSettingsTableViewCell.swift */; };
 		C45F1B1F265E87C600538956 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B1E265E87C600538956 /* TableViewDataSource.swift */; };
 		C45F1B2A265EA78E00538956 /* SectionedTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */; };
 		C45F1B2C265FA02100538956 /* DatabaseManager+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */; };
@@ -57,11 +66,6 @@
 		C47D293C2611E5E600F824F6 /* NSRegularExpression+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D293B2611E5E600F824F6 /* NSRegularExpression+Extensions.swift */; };
 		C47D29412611E8E800F824F6 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D29402611E8E800F824F6 /* UIAlertController+Extension.swift */; };
 		C47EE9682657C21300A8F525 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = C42F614F260A161C00818229 /* SwiftyBeaver */; };
-		C47EE9692657C21300A8F525 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = C4A9B3BB260E3B2E00D1E770 /* FirebaseFunctions */; };
-		C47EE96A2657C21300A8F525 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = C4A9B3BD260E3B2E00D1E770 /* FirebaseFirestoreSwift-Beta */; };
-		C47EE96B2657C21300A8F525 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C4A9B3BF260E3B2E00D1E770 /* FirebaseMessaging */; };
-		C47EE96C2657C21300A8F525 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C4A9B3C1260E3B2E00D1E770 /* FirebaseAuth */; };
-		C47EE96D2657C21300A8F525 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = C4A9B3C3260E3B2E00D1E770 /* FirebaseStorageSwift-Beta */; };
 		C47EE96E2657C21300A8F525 /* FittedSheets in Frameworks */ = {isa = PBXBuildFile; productRef = C41F3B86261E038600121956 /* FittedSheets */; };
 		C47EE96F2657C21300A8F525 /* LetterAvatarKit in Frameworks */ = {isa = PBXBuildFile; productRef = C4B751542644386D002888FC /* LetterAvatarKit */; };
 		C47EE9702657C21300A8F525 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = C4D9D1BB264A96F800EF0732 /* MarqueeLabel */; };
@@ -72,7 +76,6 @@
 		C49040A02649939F0058E636 /* ShareGroupCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C490409F2649939F0058E636 /* ShareGroupCodeViewController.swift */; };
 		C49040A22649977C0058E636 /* SelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49040A12649977C0058E636 /* SelectableLabel.swift */; };
 		C49040B7264A7F110058E636 /* AssignChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49040B6264A7F110058E636 /* AssignChoreViewController.swift */; };
-		C49A605E265E636000298A6C /* RewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A605D265E636000298A6C /* RewardViewController.swift */; };
 		C4A3396726567B9C00D29D0C /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3396626567B9C00D29D0C /* Validations.swift */; };
 		C4A9B3DE260E419500D1E770 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9B3DD260E419500D1E770 /* Constants.swift */; };
 		C4A9B3EF2611D81600D1E770 /* UIVIewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9B3EE2611D81600D1E770 /* UIVIewController+Extensions.swift */; };
@@ -84,6 +87,14 @@
 		C4B7515B26444110002888FC /* ChoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7515A26444110002888FC /* ChoreTests.swift */; };
 		C4B7517426454A33002888FC /* ChoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7517326454A33002888FC /* ChoreTests.swift */; };
 		C4C1D1042664FF6B00553C44 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */; };
+		C4E40774266E387C006942B8 /* EditSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */; };
+		C4E407762670CD01006942B8 /* DetailRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E407752670CD00006942B8 /* DetailRewardViewController.swift */; };
+		C4E407782670D9AE006942B8 /* RewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */; };
+		C4E4077C2670DFD2006942B8 /* PeriodTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4077B2670DFD2006942B8 /* PeriodTableViewController.swift */; };
+		C4E4077E2671057B006942B8 /* PeriodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4077D2671057B006942B8 /* PeriodTableViewCell.swift */; };
+		C4E4078026710633006942B8 /* TableViewDataSource+Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4077F26710633006942B8 /* TableViewDataSource+Period.swift */; };
+		C4E4078226711043006942B8 /* DatabaseManager+Rewards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4078126711043006942B8 /* DatabaseManager+Rewards.swift */; };
+		C4E4078426723128006942B8 /* NoRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4078326723128006942B8 /* NoRewardTableViewCell.swift */; };
 		C4E8CE76264BBF8C004A9F04 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8CE75264BBF8C004A9F04 /* UserDefaults+Extensions.swift */; };
 		C4F1C2652638608900E2AD7E /* ChoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1C2642638608900E2AD7E /* ChoresTableViewController.swift */; };
 		C4F1C2672638662500E2AD7E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1C2662638662500E2AD7E /* SettingsTableViewController.swift */; };
@@ -133,6 +144,11 @@
 		C42F5E372609F3DC00818229 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C42F5E3A2609F3DC00818229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C42F5E3C2609F3DC00818229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C43388032677453300D9DB53 /* Reward.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Reward.feature; sourceTree = "<group>"; };
+		C43388052677454200D9DB53 /* RewardSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardSteps.swift; sourceTree = "<group>"; };
+		C433880926774F8900D9DB53 /* RewardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTests.swift; sourceTree = "<group>"; };
+		C433880B26775EC100D9DB53 /* RewardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTests.swift; sourceTree = "<group>"; };
+		C433880D2677A1A400D9DB53 /* RewardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTests.swift; sourceTree = "<group>"; };
 		C43609FC26286138009852F3 /* GroupSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSteps.swift; sourceTree = "<group>"; };
 		C4360A00262861B5009852F3 /* Group.feature */ = {isa = PBXFileReference; lastKnownFileType = text; path = Group.feature; sourceTree = "<group>"; };
 		C4360A0D26288333009852F3 /* SetupTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTransition.swift; sourceTree = "<group>"; };
@@ -154,8 +170,7 @@
 		C445B5C726316EA8008EADCA /* GroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
 		C445B5C926316EA8008EADCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C45F1B17265E698200538956 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
-		C45F1B19265E699D00538956 /* RewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableViewCell.swift; sourceTree = "<group>"; };
-		C45F1B1B265E69B600538956 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		C45F1B1B265E69B600538956 /* DangerSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		C45F1B1E265E87C600538956 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedTableViewDataSource.swift; sourceTree = "<group>"; };
 		C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseManager+Currencies.swift"; sourceTree = "<group>"; };
@@ -175,7 +190,6 @@
 		C490409F2649939F0058E636 /* ShareGroupCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareGroupCodeViewController.swift; sourceTree = "<group>"; };
 		C49040A12649977C0058E636 /* SelectableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableLabel.swift; sourceTree = "<group>"; };
 		C49040B6264A7F110058E636 /* AssignChoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignChoreViewController.swift; sourceTree = "<group>"; };
-		C49A605D265E636000298A6C /* RewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewController.swift; sourceTree = "<group>"; };
 		C4A3396626567B9C00D29D0C /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		C4A9B3DD260E419500D1E770 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C4A9B3EE2611D81600D1E770 /* UIVIewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -189,6 +203,14 @@
 		C4B7516C264531D0002888FC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4B7517326454A33002888FC /* ChoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreTests.swift; sourceTree = "<group>"; };
 		C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
+		C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		C4E407752670CD00006942B8 /* DetailRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRewardViewController.swift; sourceTree = "<group>"; };
+		C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableViewCell.swift; sourceTree = "<group>"; };
+		C4E4077B2670DFD2006942B8 /* PeriodTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTableViewController.swift; sourceTree = "<group>"; };
+		C4E4077D2671057B006942B8 /* PeriodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTableViewCell.swift; sourceTree = "<group>"; };
+		C4E4077F26710633006942B8 /* TableViewDataSource+Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewDataSource+Period.swift"; sourceTree = "<group>"; };
+		C4E4078126711043006942B8 /* DatabaseManager+Rewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseManager+Rewards.swift"; sourceTree = "<group>"; };
+		C4E4078326723128006942B8 /* NoRewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRewardTableViewCell.swift; sourceTree = "<group>"; };
 		C4E8CE74264AD209004A9F04 /* Kelo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kelo.entitlements; sourceTree = "<group>"; };
 		C4E8CE75264BBF8C004A9F04 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		C4F1C2642638608900E2AD7E /* ChoresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoresTableViewController.swift; sourceTree = "<group>"; };
@@ -200,15 +222,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C47EE96B2657C21300A8F525 /* FirebaseMessaging in Frameworks */,
-				C47EE96C2657C21300A8F525 /* FirebaseAuth in Frameworks */,
 				C47EE9702657C21300A8F525 /* MarqueeLabel in Frameworks */,
 				C47EE96E2657C21300A8F525 /* FittedSheets in Frameworks */,
-				C47EE96A2657C21300A8F525 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				C421AEC12669253000EC0732 /* FirebaseMessaging in Frameworks */,
+				C421AEC52669253000EC0732 /* FirebaseAnalyticsSwift-Beta in Frameworks */,
+				C421AEBD2669253000EC0732 /* FirebaseFunctions in Frameworks */,
+				C421AEBF2669253000EC0732 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				C421AEC32669253000EC0732 /* FirebaseStorageSwift-Beta in Frameworks */,
 				C47EE9682657C21300A8F525 /* SwiftyBeaver in Frameworks */,
-				C47EE9692657C21300A8F525 /* FirebaseFunctions in Frameworks */,
 				C47EE96F2657C21300A8F525 /* LetterAvatarKit in Frameworks */,
-				C47EE96D2657C21300A8F525 /* FirebaseStorageSwift-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +267,7 @@
 				C470CCCA2642E38E0074FCE1 /* DatabaseManager+Users.swift */,
 				C470CCC82642E37B0074FCE1 /* DatabaseManager+Chores.swift */,
 				C45F1B2B265FA02100538956 /* DatabaseManager+Currencies.swift */,
+				C4E4078126711043006942B8 /* DatabaseManager+Rewards.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -255,6 +278,7 @@
 				C4222DC926283E3D00D31296 /* User.feature */,
 				C4360A00262861B5009852F3 /* Group.feature */,
 				C4B7515626443F41002888FC /* Chore.feature */,
+				C43388032677453300D9DB53 /* Reward.feature */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -265,6 +289,7 @@
 				C4222DD926283E8100D31296 /* UserSteps.swift */,
 				C43609FC26286138009852F3 /* GroupSteps.swift */,
 				C4B7515826443F7A002888FC /* ChoreSteps.swift */,
+				C43388052677454200D9DB53 /* RewardSteps.swift */,
 			);
 			path = Steps;
 			sourceTree = "<group>";
@@ -277,7 +302,6 @@
 				C470CCB626413CDE0074FCE1 /* KeloUnitTests */,
 				C4B75161264531AB002888FC /* KeloUITests */,
 				C42F5E2C2609F3DB00818229 /* Products */,
-				C445B53126315D1C008EADCA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -337,9 +361,9 @@
 			isa = PBXGroup;
 			children = (
 				C4360A2D26289DC7009852F3 /* RoundedButton.swift */,
+				C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */,
 				C49040A12649977C0058E636 /* SelectableLabel.swift */,
 				C4360A2B26289DC7009852F3 /* Cells */,
-				C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,9 +374,12 @@
 				C4360A2C26289DC7009852F3 /* CurrencyTableViewCell.swift */,
 				C42A80C5263871C000D9468F /* ChoreTableViewCell.swift */,
 				C4B7514F2643FFD9002888FC /* UserTableViewCell.swift */,
-				C45F1B1B265E69B600538956 /* SettingsTableViewCell.swift */,
 				C45F1B17265E698200538956 /* PointsTableViewCell.swift */,
-				C45F1B19265E699D00538956 /* RewardTableViewCell.swift */,
+				C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */,
+				C45F1B1B265E69B600538956 /* DangerSettingsTableViewCell.swift */,
+				C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */,
+				C4E4078326723128006942B8 /* NoRewardTableViewCell.swift */,
+				C4E4077D2671057B006942B8 /* PeriodTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -406,19 +433,13 @@
 			path = Chores;
 			sourceTree = "<group>";
 		};
-		C445B53126315D1C008EADCA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C445B5C626316EA8008EADCA /* KeloIntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
 				C445B5C726316EA8008EADCA /* GroupTests.swift */,
 				C48D0AC9263171F700CC85F7 /* UserTests.swift */,
 				C470CCCE2642E98D0074FCE1 /* ChoreTests.swift */,
+				C433880926774F8900D9DB53 /* RewardTests.swift */,
 				C445B5C926316EA8008EADCA /* Info.plist */,
 			);
 			path = KeloIntegrationTests;
@@ -432,6 +453,7 @@
 				C42AA3EE2662A3A300270FD2 /* TableViewDataSource+Reward.swift */,
 				C42AA3F02662A3BF00270FD2 /* TableViewDataSource+Currency.swift */,
 				C42AA3E92662A32800270FD2 /* TableViewDataSource+Chore.swift */,
+				C4E4077F26710633006942B8 /* TableViewDataSource+Period.swift */,
 				C45F1B29265EA78E00538956 /* SectionedTableViewDataSource.swift */,
 			);
 			path = Tables;
@@ -440,12 +462,13 @@
 		C470CCB626413CDE0074FCE1 /* KeloUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				C4222DCF26283E4700D31296 /* Steps */,
-				C4222DC826283E2200D31296 /* Features */,
 				C470CCB726413CDE0074FCE1 /* UserTests.swift */,
 				C470CCC6264145D30074FCE1 /* GroupTests.swift */,
 				C4B7515A26444110002888FC /* ChoreTests.swift */,
+				C433880D2677A1A400D9DB53 /* RewardTests.swift */,
 				C470CCB926413CDE0074FCE1 /* Info.plist */,
+				C4222DCF26283E4700D31296 /* Steps */,
+				C4222DC826283E2200D31296 /* Features */,
 			);
 			path = KeloUnitTests;
 			sourceTree = "<group>";
@@ -454,7 +477,8 @@
 			isa = PBXGroup;
 			children = (
 				C4F1C2662638662500E2AD7E /* SettingsTableViewController.swift */,
-				C49A605D265E636000298A6C /* RewardViewController.swift */,
+				C4E407752670CD00006942B8 /* DetailRewardViewController.swift */,
+				C4E4077B2670DFD2006942B8 /* PeriodTableViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -517,6 +541,7 @@
 				C421AEB92667833300EC0732 /* GroupTests.swift */,
 				C4B7517326454A33002888FC /* ChoreTests.swift */,
 				C47EE9762657CB9B00A8F525 /* CurrencyTests.swift */,
+				C433880B26775EC100D9DB53 /* RewardTests.swift */,
 				C4B7516C264531D0002888FC /* Info.plist */,
 			);
 			path = KeloUITests;
@@ -541,14 +566,14 @@
 			name = Kelo;
 			packageProductDependencies = (
 				C42F614F260A161C00818229 /* SwiftyBeaver */,
-				C4A9B3BB260E3B2E00D1E770 /* FirebaseFunctions */,
-				C4A9B3BD260E3B2E00D1E770 /* FirebaseFirestoreSwift-Beta */,
-				C4A9B3BF260E3B2E00D1E770 /* FirebaseMessaging */,
-				C4A9B3C1260E3B2E00D1E770 /* FirebaseAuth */,
-				C4A9B3C3260E3B2E00D1E770 /* FirebaseStorageSwift-Beta */,
 				C41F3B86261E038600121956 /* FittedSheets */,
 				C4B751542644386D002888FC /* LetterAvatarKit */,
 				C4D9D1BB264A96F800EF0732 /* MarqueeLabel */,
+				C421AEBC2669253000EC0732 /* FirebaseFunctions */,
+				C421AEBE2669253000EC0732 /* FirebaseFirestoreSwift-Beta */,
+				C421AEC02669253000EC0732 /* FirebaseMessaging */,
+				C421AEC22669253000EC0732 /* FirebaseStorageSwift-Beta */,
+				C421AEC42669253000EC0732 /* FirebaseAnalyticsSwift-Beta */,
 			);
 			productName = Kelo;
 			productReference = C42F5E2B2609F3DB00818229 /* Kelo.app */;
@@ -650,11 +675,11 @@
 			mainGroup = C42F5E222609F3DB00818229;
 			packageReferences = (
 				C42F614E260A161C00818229 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
-				C4A9B3BA260E3B2E00D1E770 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C41F3B85261E038600121956 /* XCRemoteSwiftPackageReference "FittedSheets" */,
 				C470CCC326413FF90074FCE1 /* XCRemoteSwiftPackageReference "XCTest-Gherkin" */,
 				C4B751532644386D002888FC /* XCRemoteSwiftPackageReference "LetterAvatarKit" */,
 				C4D9D1BA264A96F800EF0732 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
+				C421AEBB2669253000EC0732 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = C42F5E2C2609F3DB00818229 /* Products */;
 			projectDirPath = "";
@@ -693,6 +718,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C470CCC226413D060074FCE1 /* Group.feature in Resources */,
+				C43388042677453300D9DB53 /* Reward.feature in Resources */,
 				C470CCC126413D030074FCE1 /* User.feature in Resources */,
 				C4B7515726443F41002888FC /* Chore.feature in Resources */,
 			);
@@ -733,26 +759,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E4077C2670DFD2006942B8 /* PeriodTableViewController.swift in Sources */,
 				C4360A3C26289DDB009852F3 /* OnboardingNavigationController.swift in Sources */,
 				C4B751482642FA4E002888FC /* DetailChoreViewController.swift in Sources */,
+				C4E4078426723128006942B8 /* NoRewardTableViewCell.swift in Sources */,
 				C42AA3EF2662A3A300270FD2 /* TableViewDataSource+Reward.swift in Sources */,
 				C4360A2326289DAC009852F3 /* User.swift in Sources */,
 				C4360A4126289DDB009852F3 /* MainTabViewController.swift in Sources */,
 				C4360A2226289DAC009852F3 /* Reward.swift in Sources */,
-				C45F1B1A265E699D00538956 /* RewardTableViewCell.swift in Sources */,
 				C4A9B3EF2611D81600D1E770 /* UIVIewController+Extensions.swift in Sources */,
+				C4E4077E2671057B006942B8 /* PeriodTableViewCell.swift in Sources */,
 				C47D293C2611E5E600F824F6 /* NSRegularExpression+Extensions.swift in Sources */,
+				C4E4078026710633006942B8 /* TableViewDataSource+Period.swift in Sources */,
 				C49040B7264A7F110058E636 /* AssignChoreViewController.swift in Sources */,
 				C470CCC92642E37B0074FCE1 /* DatabaseManager+Chores.swift in Sources */,
 				C42AA3EA2662A32800270FD2 /* TableViewDataSource+Chore.swift in Sources */,
 				C42F5E2F2609F3DB00818229 /* AppDelegate.swift in Sources */,
 				C45F1B2C265FA02100538956 /* DatabaseManager+Currencies.swift in Sources */,
 				C4360A3D26289DDB009852F3 /* JoinViewController.swift in Sources */,
-				C49A605E265E636000298A6C /* RewardViewController.swift in Sources */,
 				C4360A2526289DAC009852F3 /* Chore.swift in Sources */,
 				C42A80C6263871C000D9468F /* ChoreTableViewCell.swift in Sources */,
 				C41F3841261B5C7900121956 /* DatabaseManager.swift in Sources */,
 				C49040A02649939F0058E636 /* ShareGroupCodeViewController.swift in Sources */,
+				C4E407762670CD01006942B8 /* DetailRewardViewController.swift in Sources */,
 				C4360A0E26288333009852F3 /* SetupTransition.swift in Sources */,
 				C4F1C2672638662500E2AD7E /* SettingsTableViewController.swift in Sources */,
 				C490409E26494B2A0058E636 /* UIImage+Extensions.swift in Sources */,
@@ -770,16 +799,19 @@
 				C4A3396726567B9C00D29D0C /* Validations.swift in Sources */,
 				C4360A3F26289DDB009852F3 /* FinalViewController.swift in Sources */,
 				C4360A2426289DAC009852F3 /* Group.swift in Sources */,
+				C4E40774266E387C006942B8 /* EditSettingsTableViewCell.swift in Sources */,
 				C4E8CE76264BBF8C004A9F04 /* UserDefaults+Extensions.swift in Sources */,
 				C4360A4026289DDB009852F3 /* CurrencyTableViewController.swift in Sources */,
-				C45F1B1C265E69B600538956 /* SettingsTableViewCell.swift in Sources */,
+				C45F1B1C265E69B600538956 /* DangerSettingsTableViewCell.swift in Sources */,
 				C47D29412611E8E800F824F6 /* UIAlertController+Extension.swift in Sources */,
 				C45F1B1F265E87C600538956 /* TableViewDataSource.swift in Sources */,
 				C42F5E312609F3DB00818229 /* SceneDelegate.swift in Sources */,
 				C4360A2F26289DC7009852F3 /* RoundedButton.swift in Sources */,
+				C4E4078226711043006942B8 /* DatabaseManager+Rewards.swift in Sources */,
 				C49040A22649977C0058E636 /* SelectableLabel.swift in Sources */,
 				C4F1C2652638608900E2AD7E /* ChoresTableViewController.swift in Sources */,
 				C45F1B18265E698200538956 /* PointsTableViewCell.swift in Sources */,
+				C4E407782670D9AE006942B8 /* RewardTableViewCell.swift in Sources */,
 				C4A9B3DE260E419500D1E770 /* Constants.swift in Sources */,
 				C470CCCD2642E3CA0074FCE1 /* DatabaseManager+Groups.swift in Sources */,
 				C4360A2E26289DC7009852F3 /* CurrencyTableViewCell.swift in Sources */,
@@ -790,6 +822,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C433880A26774F8900D9DB53 /* RewardTests.swift in Sources */,
 				C445B5C826316EA8008EADCA /* GroupTests.swift in Sources */,
 				C470CCCF2642E98D0074FCE1 /* ChoreTests.swift in Sources */,
 				C48D0ACA263171F700CC85F7 /* UserTests.swift in Sources */,
@@ -800,9 +833,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C433880E2677A1A400D9DB53 /* RewardTests.swift in Sources */,
 				C470CCBF26413CF70074FCE1 /* UserSteps.swift in Sources */,
 				C4B7515926443F7A002888FC /* ChoreSteps.swift in Sources */,
 				C470CCB826413CDE0074FCE1 /* UserTests.swift in Sources */,
+				C43388062677454200D9DB53 /* RewardSteps.swift in Sources */,
 				C470CCC026413CF90074FCE1 /* GroupSteps.swift in Sources */,
 				C470CCC7264145D30074FCE1 /* GroupTests.swift in Sources */,
 				C4B7515B26444110002888FC /* ChoreTests.swift in Sources */,
@@ -813,6 +848,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C433880C26775EC100D9DB53 /* RewardTests.swift in Sources */,
 				C47EE9772657CB9B00A8F525 /* CurrencyTests.swift in Sources */,
 				C421AEBA2667833300EC0732 /* GroupTests.swift in Sources */,
 				C4B7517426454A33002888FC /* ChoreTests.swift in Sources */,
@@ -893,7 +929,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 202105141349;
+				CURRENT_PROJECT_VERSION = 202106031717;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -956,7 +992,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 202105141349;
+				CURRENT_PROJECT_VERSION = 202106031717;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -985,15 +1021,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Kelo/Kelo.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Created via API (NQN82CWCQV)";
+				CODE_SIGN_IDENTITY = "Apple Development: Raul Olmedo (FKT89F3DN3)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 202106101845;
 				DEVELOPMENT_TEAM = Q26F7S66DB;
 				INFOPLIST_FILE = Kelo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "";
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.raulolmedo.kelo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.raulolmedo.kelo";
@@ -1011,13 +1048,14 @@
 				CODE_SIGN_ENTITLEMENTS = Kelo/Kelo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Raul Olmedo (Q26F7S66DB)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 202106101845;
 				DEVELOPMENT_TEAM = Q26F7S66DB;
 				INFOPLIST_FILE = Kelo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "";
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.raulolmedo.kelo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.raulolmedo.kelo";
@@ -1208,6 +1246,14 @@
 				minimumVersion = 2.4.0;
 			};
 		};
+		C421AEBB2669253000EC0732 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
 		C42F614E260A161C00818229 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
@@ -1222,14 +1268,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.21.2;
-			};
-		};
-		C4A9B3BA260E3B2E00D1E770 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.9.1;
 			};
 		};
 		C4B751532644386D002888FC /* XCRemoteSwiftPackageReference "LetterAvatarKit" */ = {
@@ -1256,6 +1294,31 @@
 			package = C41F3B85261E038600121956 /* XCRemoteSwiftPackageReference "FittedSheets" */;
 			productName = FittedSheets;
 		};
+		C421AEBC2669253000EC0732 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C421AEBB2669253000EC0732 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		C421AEBE2669253000EC0732 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C421AEBB2669253000EC0732 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		C421AEC02669253000EC0732 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C421AEBB2669253000EC0732 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		C421AEC22669253000EC0732 /* FirebaseStorageSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C421AEBB2669253000EC0732 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageSwift-Beta";
+		};
+		C421AEC42669253000EC0732 /* FirebaseAnalyticsSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C421AEBB2669253000EC0732 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAnalyticsSwift-Beta";
+		};
 		C42F614F260A161C00818229 /* SwiftyBeaver */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C42F614E260A161C00818229 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
@@ -1265,31 +1328,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C470CCC326413FF90074FCE1 /* XCRemoteSwiftPackageReference "XCTest-Gherkin" */;
 			productName = XCTest_Gherkin;
-		};
-		C4A9B3BB260E3B2E00D1E770 /* FirebaseFunctions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4A9B3BA260E3B2E00D1E770 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFunctions;
-		};
-		C4A9B3BD260E3B2E00D1E770 /* FirebaseFirestoreSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4A9B3BA260E3B2E00D1E770 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseFirestoreSwift-Beta";
-		};
-		C4A9B3BF260E3B2E00D1E770 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4A9B3BA260E3B2E00D1E770 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
-		};
-		C4A9B3C1260E3B2E00D1E770 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4A9B3BA260E3B2E00D1E770 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		C4A9B3C3260E3B2E00D1E770 /* FirebaseStorageSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4A9B3BA260E3B2E00D1E770 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseStorageSwift-Beta";
 		};
 		C4B751542644386D002888FC /* LetterAvatarKit */ = {
 			isa = XCSwiftPackageProductDependency;

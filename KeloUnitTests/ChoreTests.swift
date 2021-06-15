@@ -10,6 +10,18 @@ import XCTest_Gherkin
 
 class ChoreTests: XCTestCase {
 
+    func testChoreValidity() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "Validate Valid Chore",
+                                 testCase: self)
+    }
+
+    func testChoreInvalidity() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "Validate Invalid Chore",
+                                 testCase: self)
+    }
+
     func testChoreNameLength1() {
         NativeRunner.runScenario(featureFile: "Chore.feature",
                                  scenario: "Valid Length 1",
@@ -97,6 +109,12 @@ class ChoreTests: XCTestCase {
     func testChoreCompletionHasNoPermissions() {
         NativeRunner.runScenario(featureFile: "Chore.feature",
                                  scenario: "User Has Not Permissions For Completing a Chore",
+                                 testCase: self)
+    }
+
+    func testChoreUpdateHasAdminPermissions() {
+        NativeRunner.runScenario(featureFile: "Chore.feature",
+                                 scenario: "(Admin) User Has Permissions For Updating a Chore",
                                  testCase: self)
     }
 

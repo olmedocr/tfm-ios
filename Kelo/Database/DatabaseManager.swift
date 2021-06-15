@@ -15,6 +15,7 @@ extension DatabaseManager {
         case userNameAlreadyTaken
         case groupIsFull
         case bundleError
+        case rewardNotFound
         case unknown
 
         var errorDescription: String? {
@@ -29,6 +30,8 @@ extension DatabaseManager {
                 return "Group is full"
             case .bundleError:
                 return "No CurrencyList Bundle Access"
+            case .rewardNotFound:
+                return "No Reward could be retrieved"
             case .unknown:
                 return "Uknown error"
             }

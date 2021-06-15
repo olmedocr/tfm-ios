@@ -19,7 +19,7 @@ class ShareGroupCodeViewController: UIViewController {
     @IBAction func didTapOnShare(_ sender: Any) {
         if let groupId = groupId {
             log.info("Sharing group code")
-            let textToShare = [ "Join my Kelo group by pasting this code! \n" +
+            let textToShare = [ "Join my Kelo group by following this link! \n" +
                                     "https://kelo-64c5c.web.app/group/" + groupId ]
             let activityViewController = UIActivityViewController(activityItems: textToShare,
                                                                   applicationActivities: nil)

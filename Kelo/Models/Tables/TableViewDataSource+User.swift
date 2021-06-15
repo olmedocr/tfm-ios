@@ -29,6 +29,8 @@ extension TableViewDataSource where Model == User {
                     adminLabel.isHidden = !user.isAdmin
                 }
 
+                setMarquee(cell)
+
                 cell.pointsLabel.text = String(user.points)
 
                 if user.id == DatabaseManager.shared.userId {
@@ -38,6 +40,14 @@ extension TableViewDataSource where Model == User {
                 }
             }
         }
+    }
+
+    private static func setMarquee(_ cell: UserTableViewCell) {
+        cell.userNameLabel.type = .continuous
+        cell.userNameLabel.speed = .duration(8)
+        cell.userNameLabel.animationCurve = .easeInOut
+        cell.userNameLabel.fadeLength = 5.0
+        cell.userNameLabel.trailingBuffer = 14.0
     }
 
 }

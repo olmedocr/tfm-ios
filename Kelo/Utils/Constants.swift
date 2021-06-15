@@ -14,5 +14,6 @@ struct Constants {
     static let groupsCollectionKey = "groups"
     static let usersCollectionKey = "users"
     static let choresCollectionKey = "chores"
+    static let rewardsCollectionKey = "rewards"
 
 }

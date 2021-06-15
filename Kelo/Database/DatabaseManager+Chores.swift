@@ -56,12 +56,14 @@ extension DatabaseManager {
         }
     }
 
-    func retrieveAllChores(result: @escaping (Result<[Chore], Error>) -> Void) {
+    func retrieveAllChores(isCompleted: Bool, result: @escaping (Result<[Chore], Error>) -> Void) {
         let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
         let choresReference: CollectionReference = groupReference.collection(Constants.choresCollectionKey)
         var chores: [Chore] = []
 
-        choresReference.order(by: Chore.CodingKeys.expiration.rawValue)
+        choresReference
+            .order(by: Chore.CodingKeys.expiration.rawValue)
+            .whereField(Chore.CodingKeys.isCompleted.rawValue, isEqualTo: isCompleted)
             .getDocuments { (choresSnapshot, err) in
                 if let err = err {
                     log.error(err.localizedDescription)
@@ -176,16 +178,22 @@ extension DatabaseManager {
                 log.error(err.localizedDescription)
                 result(.failure(err))
             case .success(let user):
-                var updatedUser = User(name: user.name, points: user.points + chore.points)
-                updatedUser.id = user.id
-                DatabaseManager.shared.updateUser(user: updatedUser) { (updateResult) in
+
+                var updatedChore = chore
+                updatedChore.isCompleted = true
+
+                DatabaseManager.shared.updateChore(chore: updatedChore) { updateResult in
                     switch updateResult {
                     case .failure(let err):
                         log.error(err.localizedDescription)
                         result(.failure(err))
                     case .success:
-                        DatabaseManager.shared.deleteChore(choreId: chore.id!) { (deletionResult) in
-                            switch deletionResult {
+
+                        var updatedUser = user
+                        updatedUser.points = user.points + chore.points.rawValue
+
+                        DatabaseManager.shared.updateUser(user: updatedUser) { (updateResult) in
+                            switch updateResult {
                             case .failure(let err):
                                 log.error(err.localizedDescription)
                                 result(.failure(err))
@@ -197,7 +205,6 @@ extension DatabaseManager {
                     }
                 }
             }
-
         }
     }
 

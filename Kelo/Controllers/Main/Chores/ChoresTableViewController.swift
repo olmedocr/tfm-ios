@@ -13,6 +13,15 @@ class ChoresTableViewController: UITableViewController {
     // MARK: Properties
     var currentUser: User!
     var dataSource: TableViewDataSource<Chore>?
+    var isShowingCompletedChores: Bool = false {
+        didSet {
+            tableView.allowsSelection = !isShowingCompletedChores
+        }
+    }
+    var group: Group?
+
+    // MARK: IBOutlets
+    @IBOutlet weak var checkButton: UIBarButtonItem!
 
     // MARK: IBActions
     @IBAction func didTapAddButton(_ sender: Any) {
@@ -25,9 +34,25 @@ class ChoresTableViewController: UITableViewController {
         }
     }
 
+    @IBAction func didTapCheckButton(_ sender: Any) {
+        if isShowingCompletedChores {
+            isShowingCompletedChores = false
+            checkButton.image = UIImage(systemName: "checkmark.circle")
+            navigationItem.title = "Chores"
+        } else {
+            isShowingCompletedChores = true
+            checkButton.image = UIImage(systemName: "checkmark.circle.fill")
+            navigationItem.title = "Completed"
+        }
+
+        fetchData()
+    }
+
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.prompt = ""
 
         tableView.tableFooterView = UIView()
 
@@ -35,16 +60,12 @@ class ChoresTableViewController: UITableViewController {
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
 
-        fetchData()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(fetchData),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
 
-        DatabaseManager.shared.retrieveUser(userId: DatabaseManager.shared.userId!) { (result) in
-            switch result {
-            case .failure(let err):
-                log.error(err.localizedDescription)
-            case .success(let user):
-                self.currentUser = user
-            }
-        }
+        fetchData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -64,8 +85,6 @@ class ChoresTableViewController: UITableViewController {
             log.error(err.localizedDescription)
             log.info("Tried to edit a chore without being the creator")
 
-            tableView.deselectRow(at: indexPath, animated: true)
-
             let alert = self.setAlert(title: "Error!",
                                       message: """
                                         Only the creator of the chore and the group admin are able to
@@ -78,22 +97,30 @@ class ChoresTableViewController: UITableViewController {
         case .success:
             self.presentDetailChoreViewController(dataSource?.models[indexPath.row])
         }
+
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func tableView(_ tableView: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
     -> UISwipeActionsConfiguration? {
 
+        let configuration: UISwipeActionsConfiguration!
         let completeAction = UIContextualAction(style: .normal,
                                                 title: "Complete") { [weak self] (_, _, completionHandler) in
             self?.handleMarkAsComplete(chore: (self?.dataSource?.models[indexPath.row])!,
                                        index: indexPath.row,
                                        onComplete: completionHandler)
         }
-        completeAction.backgroundColor = UIColor.systemBlue
+        completeAction.backgroundColor = UIColor(named: "AccentColor")
         completeAction.image = UIImage(systemName: "checkmark.circle.fill")
 
-        let configuration = UISwipeActionsConfiguration(actions: [completeAction])
+        if isShowingCompletedChores {
+            configuration = UISwipeActionsConfiguration(actions: [])
+        } else {
+            configuration = UISwipeActionsConfiguration(actions: [completeAction])
+        }
+
         return configuration
     }
 
@@ -101,6 +128,7 @@ class ChoresTableViewController: UITableViewController {
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
     -> UISwipeActionsConfiguration? {
 
+        let configuration: UISwipeActionsConfiguration!
         let deleteAction = UIContextualAction(style: .destructive,
                                                 title: "Delete") { [weak self] (_, _, completionHandler) in
             self?.handleMarkAsDelete(chore: (self?.dataSource?.models[indexPath.row])!,
@@ -110,14 +138,19 @@ class ChoresTableViewController: UITableViewController {
         deleteAction.backgroundColor = UIColor.systemRed
         deleteAction.image = UIImage(systemName: "trash.fill")
 
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        if isShowingCompletedChores {
+            configuration = UISwipeActionsConfiguration(actions: [])
+        } else {
+            configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        }
+
         return configuration
     }
 
     // MARK: - Internal
-    @objc private func fetchData() {
-        DatabaseManager.shared.retrieveAllChores { result in
-            switch result {
+    @objc func fetchData() {
+        DatabaseManager.shared.retrieveAllChores(isCompleted: isShowingCompletedChores) { choresResult in
+            switch choresResult {
             case .failure(let err):
                 log.error(err.localizedDescription)
             case .success(let chores):
@@ -125,22 +158,45 @@ class ChoresTableViewController: UITableViewController {
                 self.tableView.dataSource = self.dataSource
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
+
+                DatabaseManager.shared.retrieveUser(userId: DatabaseManager.shared.userId!) { (userResult) in
+                    switch userResult {
+                    case .failure(let err):
+                        log.error(err.localizedDescription)
+                    case .success(let user):
+                        self.currentUser = user
+
+                        DatabaseManager.shared
+                            .retrieveGroup(groupId: DatabaseManager.shared.groupId!) { (groupResult) in
+                                switch groupResult {
+                                case .failure(let err):
+                                    log.error(err.localizedDescription)
+                                case .success(let group):
+                                    self.group = group
+
+                                    self.tabBarController?.children.forEach { navController in
+                                        navController.children.first?.navigationItem.prompt = group.name
+                                    }
+                                }
+                            }
+                    }
+                }
             }
         }
     }
 
     private func handleMarkAsComplete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
 
-        switch Validations.chorePermission(chore, user: currentUser, operation: .update) {
+        switch Validations.chorePermission(chore, user: currentUser, operation: .complete) {
         case .failure(let err):
             log.error(err.localizedDescription)
             log.info("Tried to complete the chore without being the assigned user or the creator")
 
             let alert = self.setAlert(title: "Error!",
                                       message: """
-                                        Only the group admin, the creator of the chore or the user assigned to it
-                                        can complete this element
-                                        """,
+                                            Only the group admin, the creator of the chore or the user assigned to it
+                                            can complete this element
+                                            """,
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
@@ -162,17 +218,16 @@ class ChoresTableViewController: UITableViewController {
     }
 
     private func handleMarkAsDelete(chore: Chore, index: Int, onComplete completion: @escaping (Bool) -> Void) {
-
-        switch Validations.chorePermission(chore, user: currentUser, operation: .update) {
+        switch Validations.chorePermission(chore, user: currentUser, operation: .remove) {
         case .failure(let err):
             log.error(err.localizedDescription)
             log.info("Tried to remove the chore without being the creator")
 
             let alert = self.setAlert(title: "Error!",
                                       message: """
-                                        Only the creator of the chore or the group admin are able to
-                                        remove this element
-                                        """,
+                                            Only the creator of the chore or the group admin are able to
+                                            remove this element
+                                            """,
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
