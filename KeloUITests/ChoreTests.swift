@@ -57,7 +57,7 @@ class ChoreTests: XCTestCase {
 
         app.navigationBars.buttons["Add"].tap()
 
-        app.textFields.element.waitForExistence(timeout: 10)
+        _ = app.textFields.element.waitForExistence(timeout: 10)
         app.textFields.element.tap()
 
         app.textFields.element.typeText(choreName)
@@ -74,15 +74,16 @@ class ChoreTests: XCTestCase {
     }
 
     func testEditChore() throws {
+
         guard let app = ChoreTests.app else {
             XCTFail("Unknown error")
             return
         }
 
-        app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 10)
+        _ = app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 10)
         app.tables.cells.element(boundBy: 0).tap()
 
-        app.textFields[choreName].waitForExistence(timeout: 5)
+        _ = app.textFields[choreName].waitForExistence(timeout: 5)
         XCTAssertTrue(app.textFields[choreName].exists)
         XCTAssertTrue(app.buttons[userName + " (You)"].exists)
         XCTAssertTrue(app.buttons["Medium"].isSelected)
@@ -91,12 +92,13 @@ class ChoreTests: XCTestCase {
     }
 
     func testAssigneeSelection() throws {
+
         guard let app = ChoreTests.app else {
             XCTFail("Unknown error")
             return
         }
 
-        app.navigationBars.element.waitForExistence(timeout: 5)
+        _ = app.navigationBars.element.waitForExistence(timeout: 5)
         app.navigationBars.buttons["Add"].tap()
 
         XCTAssertFalse(app.buttons[userName + " (You)"].exists)
@@ -108,12 +110,13 @@ class ChoreTests: XCTestCase {
     }
 
     func testCompletedChores() throws {
+
         guard let app = ChoreTests.app else {
             XCTFail("Unknown error")
             return
         }
 
-        app.navigationBars.element.waitForExistence(timeout: 5)
+        _ = app.navigationBars.element.waitForExistence(timeout: 5)
         app.navigationBars.buttons["Checkmark"].tap()
 
         XCTAssert(app.staticTexts.element(matching: .any, identifier: "Completed").exists)

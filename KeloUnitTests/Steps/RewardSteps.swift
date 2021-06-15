@@ -24,11 +24,11 @@ final class RewardSteps: StepDefiner {
 
         // MARK: - Reward Validation
         step("the user that fills up a invalid reward") {
-            self.reward = Reward(id: "", name: "Beers")
+            self.reward = Reward(id: "", name: "")
         }
 
         step("the user that fills up a valid reward") {
-            self.reward = Reward(id: "", name: "Beers", expiration: Date())
+            self.reward = Reward(id: "", name: "Beers", frequency: Period.none)
         }
 
         step("the user tries to create the reward") {

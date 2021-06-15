@@ -237,7 +237,7 @@ struct Validations {
     }
 
     private static func isValid(input: Reward) -> Bool {
-        return input.name != "" && input.expiration != nil
+        return input.name != "" && input.frequency != nil
     }
 
 }

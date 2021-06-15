@@ -142,7 +142,7 @@ class GroupTests: XCTestCase {
                 }
             }
         }
-        wait(for: [expectation], timeout: 8)
+        wait(for: [expectation], timeout: 10)
     }
 
 }

@@ -49,7 +49,7 @@ class RewardTests: XCTestCase {
             return
         }
 
-        app.tables.cells.element(boundBy: 2).waitForExistence(timeout: 5)
+        _ = app.tables.cells.element(boundBy: 2).waitForExistence(timeout: 5)
         app.tables.cells.element(boundBy: 2).tap()
 
         app.textFields.element.tap()
@@ -57,35 +57,30 @@ class RewardTests: XCTestCase {
         app.keyboards.buttons["Done"].tap()
 
         app.buttons["Select period"].tap()
-        app.tables.cells.element(boundBy: 0).tap()
-        XCTAssert(app.staticTexts.element(matching: .any, identifier: rewardName).label == rewardName)
+        app.tables.cells.element(boundBy: 1).tap()
 
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.navigationBars.buttons["Save"].tap()
+
+        XCTAssert(app.staticTexts.element(matching: .any, identifier: rewardName).identifier == rewardName)
     }
 
-    func testEditReward() throws {
+    func testEditRewardAndFrequencySelection() throws {
         guard let app = RewardTests.app else {
             XCTFail("Unknown error")
             return
         }
 
-        app.tables.cells.element(boundBy: 2).waitForExistence(timeout: 5)
+        _ = app.tables.cells.element(boundBy: 2).waitForExistence(timeout: 5)
         app.tables.cells.element(boundBy: 2).tap()
 
-        app.textFields.element.tap()
-        app.textFields.element.typeText(rewardName)
-        app.keyboards.buttons["Done"].tap()
-
-        app.buttons["Select period"].tap()
+        app.buttons["Every week"].tap()
         app.tables.cells.element(boundBy: 0).tap()
 
         app.navigationBars.buttons["Save"].tap()
 
+        _ = app.tables.cells.element(boundBy: 2).waitForExistence(timeout: 5)
         app.tables.cells.element(boundBy: 2).tap()
         XCTAssertTrue(app.textFields[rewardName].exists)
-        XCTAssertTrue(app.buttons["No frequency"].exists)
-
-        app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 
 }

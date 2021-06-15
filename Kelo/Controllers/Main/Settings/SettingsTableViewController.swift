@@ -91,7 +91,7 @@ class SettingsTableViewController: UITableViewController {
 
         let index = users?.firstIndex { $0.id == currentUser?.id }
 
-        if indexPath.row == index {
+        if indexPath.row == index && indexPath.section != 2 {
             return nil
         } else {
             let deleteAction = UIContextualAction(style: .destructive,
