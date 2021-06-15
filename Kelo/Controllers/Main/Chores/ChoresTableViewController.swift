@@ -52,8 +52,6 @@ class ChoresTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.prompt = ""
-
         tableView.tableFooterView = UIView()
 
         refreshControl = UIRefreshControl()
@@ -136,7 +134,7 @@ class ChoresTableViewController: UITableViewController {
                                      onComplete: completionHandler)
         }
         deleteAction.backgroundColor = UIColor.systemRed
-        deleteAction.image = UIImage(systemName: "trash.fill")
+        deleteAction.image = UIImage(systemName: "trash.circle.fill")
 
         if isShowingCompletedChores {
             configuration = UISwipeActionsConfiguration(actions: [])
@@ -173,10 +171,7 @@ class ChoresTableViewController: UITableViewController {
                                     log.error(err.localizedDescription)
                                 case .success(let group):
                                     self.group = group
-
-                                    self.tabBarController?.children.forEach { navController in
-                                        navController.children.first?.navigationItem.prompt = group.name
-                                    }
+                                    self.navigationItem.addSubtitle(group.name)
                                 }
                             }
                     }

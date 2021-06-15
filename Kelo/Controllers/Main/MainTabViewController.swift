@@ -24,6 +24,7 @@ class MainTabViewController: UITabBarController {
 
     }
 
+    // MARK: - Internal
     private func setupNotifications() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.notificationDelegate = self
@@ -125,6 +126,7 @@ extension MainTabViewController: DatabaseManagerDelegate {
 }
 
 extension MainTabViewController: NotificationDelegate {
+
     func didReceivedNotification() {
         if let navController = self.children.first as? UINavigationController,
            let viewController = navController.children.first as? ChoresTableViewController {

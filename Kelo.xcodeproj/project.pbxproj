@@ -92,6 +92,7 @@
 		C4DC41FD2678877D004F1712 /* ThirdStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC41FC2678877D004F1712 /* ThirdStepViewController.swift */; };
 		C4DC41FF26788896004F1712 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC41FE26788896004F1712 /* TutorialViewController.swift */; };
 		C4DC420126788DD7004F1712 /* FourthStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC420026788DD7004F1712 /* FourthStepViewController.swift */; };
+		C4DC42032678B174004F1712 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC42022678B174004F1712 /* UINavigationItem+Extensions.swift */; };
 		C4E40774266E387C006942B8 /* EditSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */; };
 		C4E407762670CD01006942B8 /* DetailRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E407752670CD00006942B8 /* DetailRewardViewController.swift */; };
 		C4E407782670D9AE006942B8 /* RewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */; };
@@ -213,6 +214,7 @@
 		C4DC41FC2678877D004F1712 /* ThirdStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdStepViewController.swift; sourceTree = "<group>"; };
 		C4DC41FE26788896004F1712 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		C4DC420026788DD7004F1712 /* FourthStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthStepViewController.swift; sourceTree = "<group>"; };
+		C4DC42022678B174004F1712 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
 		C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		C4E407752670CD00006942B8 /* DetailRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRewardViewController.swift; sourceTree = "<group>"; };
 		C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableViewCell.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				C41F385A261CB99A00121956 /* TextField+Extensions.swift */,
 				C490409D26494B2A0058E636 /* UIImage+Extensions.swift */,
 				C4E8CE75264BBF8C004A9F04 /* UserDefaults+Extensions.swift */,
+				C4DC42022678B174004F1712 /* UINavigationItem+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				C4E4078226711043006942B8 /* DatabaseManager+Rewards.swift in Sources */,
 				C49040A22649977C0058E636 /* SelectableLabel.swift in Sources */,
 				C4F1C2652638608900E2AD7E /* ChoresTableViewController.swift in Sources */,
+				C4DC42032678B174004F1712 /* UINavigationItem+Extensions.swift in Sources */,
 				C45F1B18265E698200538956 /* PointsTableViewCell.swift in Sources */,
 				C4E407782670D9AE006942B8 /* RewardTableViewCell.swift in Sources */,
 				C4A9B3DE260E419500D1E770 /* Constants.swift in Sources */,

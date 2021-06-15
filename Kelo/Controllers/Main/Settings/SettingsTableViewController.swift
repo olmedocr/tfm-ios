@@ -33,8 +33,6 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.prompt = ""
-
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
@@ -113,7 +111,7 @@ class SettingsTableViewController: UITableViewController {
 
             }
             deleteAction.backgroundColor = UIColor.systemRed
-            deleteAction.image = UIImage(systemName: "trash.fill")
+            deleteAction.image = UIImage(systemName: "trash.circle.fill")
 
             let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
             return configuration
@@ -130,9 +128,7 @@ class SettingsTableViewController: UITableViewController {
             case .success(let group):
                 self.group = group
 
-                self.tabBarController?.children.forEach { navController in
-                    navController.children.first?.navigationItem.prompt = group.name
-                }
+                self.navigationItem.addSubtitle(group.name)
 
                 DatabaseManager.shared.retrieveCurrencies { (currencyResult) in
                     switch currencyResult {

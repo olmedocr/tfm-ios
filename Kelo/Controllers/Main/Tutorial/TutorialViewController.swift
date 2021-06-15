@@ -15,11 +15,12 @@ class TutorialViewController: UIPageViewController {
     // MARK: - UI Elements
     private var viewControllerList: [UIViewController] = {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let firstVC = storyboard.instantiateViewController(withIdentifier: "FirstStepVC")
-        let secondVC = storyboard.instantiateViewController(withIdentifier: "SecondStepVC")
-        let thirdVC = storyboard.instantiateViewController(withIdentifier: "ThirdStepVC")
+        let firstVC = storyboard.instantiateViewController(withIdentifier: "FirstStepViewController")
+        let secondVC = storyboard.instantiateViewController(withIdentifier: "SecondStepViewController")
+        let thirdVC = storyboard.instantiateViewController(withIdentifier: "ThirdStepViewController")
+        let fourthVC = storyboard.instantiateViewController(withIdentifier: "FourthStepViewController")
 
-        return [firstVC, secondVC, thirdVC]
+        return [firstVC, secondVC, thirdVC, fourthVC]
     }()
 
     // MARK: - View lifecycle
