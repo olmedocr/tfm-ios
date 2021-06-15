@@ -11,7 +11,7 @@ import LetterAvatarKit
 
 class DetailRewardViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     var reward: Reward?
     var selectedPeriod: Period? {
         didSet {
@@ -27,21 +27,21 @@ class DetailRewardViewController: UIViewController {
     }
     var computedExpiration: Date?
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var rewardImage: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var rewardTitleErrorLabel: UILabel!
     @IBOutlet weak var periodButton: RoundedButton!
     @IBOutlet weak var periodErrorLabel: UILabel!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapPeriodButton(_ sender: Any) {
         periodButton.hideError(periodErrorLabel)
 
         presentPeriodTableViewController()
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

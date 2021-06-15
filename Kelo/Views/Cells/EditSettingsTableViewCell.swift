@@ -14,10 +14,10 @@ protocol EditSettingsCellDelegate: AnyObject {
 
 class EditSettingsTableViewCell: UITableViewCell {
 
-    // MARK: Properties
+    // MARK: - Properties
     weak var delegate: EditSettingsCellDelegate?
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapEditGroupButton(_ sender: Any) {
         delegate?.didTapOnEditGroup()
     }

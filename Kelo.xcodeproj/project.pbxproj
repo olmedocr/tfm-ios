@@ -87,6 +87,12 @@
 		C4B7515B26444110002888FC /* ChoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7515A26444110002888FC /* ChoreTests.swift */; };
 		C4B7517426454A33002888FC /* ChoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7517326454A33002888FC /* ChoreTests.swift */; };
 		C4C1D1042664FF6B00553C44 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */; };
+		C4DC41F926788751004F1712 /* FirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC41F826788751004F1712 /* FirstStepViewController.swift */; };
+		C4DC41FB2678876C004F1712 /* SecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC41FA2678876C004F1712 /* SecondStepViewController.swift */; };
+		C4DC41FD2678877D004F1712 /* ThirdStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC41FC2678877D004F1712 /* ThirdStepViewController.swift */; };
+		C4DC41FF26788896004F1712 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC41FE26788896004F1712 /* TutorialViewController.swift */; };
+		C4DC420126788DD7004F1712 /* FourthStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC420026788DD7004F1712 /* FourthStepViewController.swift */; };
+		C4DC42032678B174004F1712 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC42022678B174004F1712 /* UINavigationItem+Extensions.swift */; };
 		C4E40774266E387C006942B8 /* EditSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */; };
 		C4E407762670CD01006942B8 /* DetailRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E407752670CD00006942B8 /* DetailRewardViewController.swift */; };
 		C4E407782670D9AE006942B8 /* RewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */; };
@@ -203,6 +209,12 @@
 		C4B7516C264531D0002888FC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4B7517326454A33002888FC /* ChoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreTests.swift; sourceTree = "<group>"; };
 		C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
+		C4DC41F826788751004F1712 /* FirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepViewController.swift; sourceTree = "<group>"; };
+		C4DC41FA2678876C004F1712 /* SecondStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewController.swift; sourceTree = "<group>"; };
+		C4DC41FC2678877D004F1712 /* ThirdStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdStepViewController.swift; sourceTree = "<group>"; };
+		C4DC41FE26788896004F1712 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		C4DC420026788DD7004F1712 /* FourthStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthStepViewController.swift; sourceTree = "<group>"; };
+		C4DC42022678B174004F1712 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
 		C4E40773266E387C006942B8 /* EditSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		C4E407752670CD00006942B8 /* DetailRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRewardViewController.swift; sourceTree = "<group>"; };
 		C4E407772670D9AE006942B8 /* RewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableViewCell.swift; sourceTree = "<group>"; };
@@ -503,6 +515,7 @@
 				C41F385A261CB99A00121956 /* TextField+Extensions.swift */,
 				C490409D26494B2A0058E636 /* UIImage+Extensions.swift */,
 				C4E8CE75264BBF8C004A9F04 /* UserDefaults+Extensions.swift */,
+				C4DC42022678B174004F1712 /* UINavigationItem+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -515,6 +528,7 @@
 				C490409F2649939F0058E636 /* ShareGroupCodeViewController.swift */,
 				C4360A4826289E49009852F3 /* Chores */,
 				C49A605C265E632000298A6C /* Settings */,
+				C4DC41F726788724004F1712 /* Tutorial */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -545,6 +559,18 @@
 				C4B7516C264531D0002888FC /* Info.plist */,
 			);
 			path = KeloUITests;
+			sourceTree = "<group>";
+		};
+		C4DC41F726788724004F1712 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				C4DC41FE26788896004F1712 /* TutorialViewController.swift */,
+				C4DC41F826788751004F1712 /* FirstStepViewController.swift */,
+				C4DC41FA2678876C004F1712 /* SecondStepViewController.swift */,
+				C4DC41FC2678877D004F1712 /* ThirdStepViewController.swift */,
+				C4DC420026788DD7004F1712 /* FourthStepViewController.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -761,6 +787,7 @@
 			files = (
 				C4E4077C2670DFD2006942B8 /* PeriodTableViewController.swift in Sources */,
 				C4360A3C26289DDB009852F3 /* OnboardingNavigationController.swift in Sources */,
+				C4DC41FB2678876C004F1712 /* SecondStepViewController.swift in Sources */,
 				C4B751482642FA4E002888FC /* DetailChoreViewController.swift in Sources */,
 				C4E4078426723128006942B8 /* NoRewardTableViewCell.swift in Sources */,
 				C42AA3EF2662A3A300270FD2 /* TableViewDataSource+Reward.swift in Sources */,
@@ -770,6 +797,7 @@
 				C4A9B3EF2611D81600D1E770 /* UIVIewController+Extensions.swift in Sources */,
 				C4E4077E2671057B006942B8 /* PeriodTableViewCell.swift in Sources */,
 				C47D293C2611E5E600F824F6 /* NSRegularExpression+Extensions.swift in Sources */,
+				C4DC41FD2678877D004F1712 /* ThirdStepViewController.swift in Sources */,
 				C4E4078026710633006942B8 /* TableViewDataSource+Period.swift in Sources */,
 				C49040B7264A7F110058E636 /* AssignChoreViewController.swift in Sources */,
 				C470CCC92642E37B0074FCE1 /* DatabaseManager+Chores.swift in Sources */,
@@ -779,9 +807,11 @@
 				C4360A3D26289DDB009852F3 /* JoinViewController.swift in Sources */,
 				C4360A2526289DAC009852F3 /* Chore.swift in Sources */,
 				C42A80C6263871C000D9468F /* ChoreTableViewCell.swift in Sources */,
+				C4DC41FF26788896004F1712 /* TutorialViewController.swift in Sources */,
 				C41F3841261B5C7900121956 /* DatabaseManager.swift in Sources */,
 				C49040A02649939F0058E636 /* ShareGroupCodeViewController.swift in Sources */,
 				C4E407762670CD01006942B8 /* DetailRewardViewController.swift in Sources */,
+				C4DC420126788DD7004F1712 /* FourthStepViewController.swift in Sources */,
 				C4360A0E26288333009852F3 /* SetupTransition.swift in Sources */,
 				C4F1C2672638662500E2AD7E /* SettingsTableViewController.swift in Sources */,
 				C490409E26494B2A0058E636 /* UIImage+Extensions.swift in Sources */,
@@ -806,10 +836,12 @@
 				C47D29412611E8E800F824F6 /* UIAlertController+Extension.swift in Sources */,
 				C45F1B1F265E87C600538956 /* TableViewDataSource.swift in Sources */,
 				C42F5E312609F3DB00818229 /* SceneDelegate.swift in Sources */,
+				C4DC41F926788751004F1712 /* FirstStepViewController.swift in Sources */,
 				C4360A2F26289DC7009852F3 /* RoundedButton.swift in Sources */,
 				C4E4078226711043006942B8 /* DatabaseManager+Rewards.swift in Sources */,
 				C49040A22649977C0058E636 /* SelectableLabel.swift in Sources */,
 				C4F1C2652638608900E2AD7E /* ChoresTableViewController.swift in Sources */,
+				C4DC42032678B174004F1712 /* UINavigationItem+Extensions.swift in Sources */,
 				C45F1B18265E698200538956 /* PointsTableViewCell.swift in Sources */,
 				C4E407782670D9AE006942B8 /* RewardTableViewCell.swift in Sources */,
 				C4A9B3DE260E419500D1E770 /* Constants.swift in Sources */,

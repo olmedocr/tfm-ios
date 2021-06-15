@@ -13,11 +13,11 @@ protocol CurrencyTableViewDelegate: AnyObject {
 
 class CurrencyTableViewController: UITableViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     weak var delegate: CurrencyTableViewDelegate?
     var dataSource: TableViewDataSource<Currency>?
 
-    // MARK: View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +39,7 @@ class CurrencyTableViewController: UITableViewController {
         sheetViewController?.handleScrollView(tableView)
     }
 
-    // MARK: Table view delegate
+    // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectedCurrency = dataSource?.models[indexPath.row] {
             delegate?.didSelectCurrency(currency: selectedCurrency)

@@ -8,7 +8,7 @@
 import UIKit
 
 class NoRewardTableViewCell: UITableViewCell {
-    // MARK: @IBOutlets
+    // MARK: - @IBOutlets
     @IBOutlet weak var label: UILabel!
 
     override func awakeFromNib() {

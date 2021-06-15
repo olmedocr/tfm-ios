@@ -10,7 +10,7 @@ import FittedSheets
 
 class ChoresTableViewController: UITableViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     var currentUser: User!
     var dataSource: TableViewDataSource<Chore>?
     var isShowingCompletedChores: Bool = false {
@@ -20,10 +20,10 @@ class ChoresTableViewController: UITableViewController {
     }
     var group: Group?
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var checkButton: UIBarButtonItem!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapAddButton(_ sender: Any) {
         self.presentDetailChoreViewController()
     }
@@ -48,11 +48,9 @@ class ChoresTableViewController: UITableViewController {
         fetchData()
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.prompt = ""
 
         tableView.tableFooterView = UIView()
 
@@ -74,7 +72,7 @@ class ChoresTableViewController: UITableViewController {
         fetchData()
     }
 
-    // MARK: Table view delegate
+    // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         switch Validations.chorePermission((dataSource?.models[indexPath.row])!,
@@ -136,7 +134,7 @@ class ChoresTableViewController: UITableViewController {
                                      onComplete: completionHandler)
         }
         deleteAction.backgroundColor = UIColor.systemRed
-        deleteAction.image = UIImage(systemName: "trash.fill")
+        deleteAction.image = UIImage(systemName: "trash.circle.fill")
 
         if isShowingCompletedChores {
             configuration = UISwipeActionsConfiguration(actions: [])
@@ -173,10 +171,7 @@ class ChoresTableViewController: UITableViewController {
                                     log.error(err.localizedDescription)
                                 case .success(let group):
                                     self.group = group
-
-                                    self.tabBarController?.children.forEach { navController in
-                                        navController.children.first?.navigationItem.prompt = group.name
-                                    }
+                                    self.navigationItem.addSubtitle(group.name)
                                 }
                             }
                     }

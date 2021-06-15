@@ -9,18 +9,18 @@ import UIKit
 
 class FinalViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     let defaults = UserDefaults.standard
     var group: Group?
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
 
-    // MARK: IBOutlet Collections
+    // MARK: - IBOutlet Collections
     @IBOutlet var viewsToAnimate: [UIView]!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapContinue(_ sender: Any) {
         var user = User(name: userNameTextField.text!)
 
@@ -63,7 +63,7 @@ class FinalViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,7 +73,7 @@ class FinalViewController: UIViewController {
         configureDismissGesture()
     }
 
-    // MARK: Internal
+    // MARK: - Internal
     private func configureDismissGesture() {
         let dismissPanGesture = UIScreenEdgePanGestureRecognizer()
 

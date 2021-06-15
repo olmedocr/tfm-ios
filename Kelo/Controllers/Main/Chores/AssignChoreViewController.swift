@@ -9,11 +9,11 @@ import UIKit
 
 class AssignChoreViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     weak var delegate: UsersTableViewDelegate?
     weak var embeddedTableView: UsersTableViewController?
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapRandomButton(_ sender: Any) {
         DatabaseManager.shared.getRandomUser { (result) in
             switch result {
@@ -42,7 +42,7 @@ class AssignChoreViewController: UIViewController {
         }
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }

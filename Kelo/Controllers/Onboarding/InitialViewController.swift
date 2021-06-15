@@ -9,10 +9,10 @@ import UIKit
 
 class InitialViewController: UIViewController {
 
-    // MARK: IBOutlet Collections
+    // MARK: - IBOutlet Collections
     @IBOutlet var viewsToAnimate: [UIView]!
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func didTapCreateGroup(_ sender: Any) {
         log.debug("Create group")
         presentCreateViewController()
@@ -23,7 +23,7 @@ class InitialViewController: UIViewController {
         presentJoinViewController()
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
