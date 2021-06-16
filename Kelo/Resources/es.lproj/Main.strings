@@ -1,0 +1,307 @@
+
+/* Class = "UILabel"; text = "Pega el Código del Grupo"; ObjectID = "0Si-ds-Z8g"; */
+"0Si-ds-Z8g.text" = "Pega el Código del Grupo";
+
+/* Class = "UILabel"; text = "Asignado"; ObjectID = "0kn-Sw-Mfg"; */
+"0kn-Sw-Mfg.text" = "Asignado";
+
+/* Class = "UILabel"; text = "Pts:"; ObjectID = "1Nm-Qr-IAu"; */
+"1Nm-Qr-IAu.text" = "Pts:";
+
+/* Class = "UILabel"; text = "Tareas"; ObjectID = "1XO-MG-dc3"; */
+"1XO-MG-dc3.text" = "Tareas";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1r1-Qi-t82"; */
+"1r1-Qi-t82.text" = "Label";
+
+/* Class = "UILabel"; text = "1/1/1970"; ObjectID = "257-5I-Y00"; */
+"257-5I-Y00.text" = "1/1/1970";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "2Qj-sj-paN"; */
+"2Qj-sj-paN.title" = "Item";
+
+/* Class = "UILabel"; text = "Importancia"; ObjectID = "3EH-1A-c7L"; */
+"3EH-1A-c7L.text" = "Importancia";
+
+/* Class = "UITextField"; placeholder = "asAFferf4tFD"; ObjectID = "4EO-VN-stn"; */
+"4EO-VN-stn.placeholder" = "asAFferf4tFD";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "5zg-f1-1M9"; */
+"5zg-f1-1M9.text" = "0";
+
+/* Class = "UILabel"; text = "Selecciona la Moneda"; ObjectID = "7Ka-uE-sFo"; */
+"7Ka-uE-sFo.text" = "Selecciona la Moneda";
+
+/* Class = "UILabel"; text = "KELO helps you and your friends to manage house chores (or anything) for summer trips or long-stay housing. You can even define a reward for completing the most chores to get some motivation!\n"; ObjectID = "o9r-wn-sVu"; */
+"o9r-wn-sVu.text" = "KELO te ayuda a ti y a tus amigos a gestionar las tareas de la casa (o lo que sea) para los viajes de verano, las estancias de larga duración o cualquier otra cosa. Incluso puedes definir una recompensa por completar el mayor número de tareas para motivaros.";
+
+/* Class = "UILabel"; text = "Bienvenido a Kelo"; ObjectID = "81f-Kg-BQ3"; */
+"81f-Kg-BQ3.text" = "Bienvenido a Kelo";
+
+/* Class = "UILabel"; text = "Invalid user name"; ObjectID = "82B-AL-iQH"; */
+"82B-AL-iQH.text" = "Nombre inválido";
+
+/* Class = "UILabel"; text = "Frecuencia"; ObjectID = "917-sY-h0z"; */
+"917-sY-h0z.text" = "Frecuencia";
+
+/* Class = "UITabBarItem"; title = "Tareas"; ObjectID = "AG5-Bt-hJ7"; */
+"AG5-Bt-hJ7.title" = "Tareas";
+
+/* Class = "UILabel"; text = "El usuario que creó la tarea. Puede editarla, completarla y borrarla."; ObjectID = "Asy-yW-kMk"; */
+"Asy-yW-kMk.text" = "El usuario que creó la tarea. Puede editarla, completarla y borrarla.";
+
+/* Class = "UILabel"; text = "Creador"; ObjectID = "AyB-nc-aG3"; */
+"AyB-nc-aG3.text" = "Creador";
+
+/* Class = "UILabel"; text = "Nombre del Grupo"; ObjectID = "B5R-pa-72P"; */
+"B5R-pa-72P.text" = "Nombre del Grupo";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BCX-Yt-H6F"; */
+"BCX-Yt-H6F.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Casa del Lío"; ObjectID = "CSF-Uo-5Z6"; */
+"CSF-Uo-5Z6.placeholder" = "Casa del Lío";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "CZl-EM-spk"; */
+"CZl-EM-spk.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "EOR-U9-yaj"; */
+"EOR-U9-yaj.normalTitle" = "Cerrar";
+
+/* Class = "UIButton"; normalTitle = "Editar Grupo"; ObjectID = "EP3-9l-UJ4"; */
+"EP3-9l-UJ4.normalTitle" = "Editar Grupo";
+
+/* Class = "UILabel"; text = "Asignado"; ObjectID = "EuL-6d-fhA"; */
+"EuL-6d-fhA.text" = "Asignado";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Hax-Xs-i7h"; */
+"Hax-Xs-i7h.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Unirse a un Grupo"; ObjectID = "I2u-QA-tdv"; */
+"I2u-QA-tdv.normalTitle" = "Unirse a un Grupo";
+
+/* Class = "UILabel"; text = "Invalid group name"; ObjectID = "I8q-gS-xwA"; */
+"I8q-gS-xwA.text" = "Nombre inválido";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "IvP-Gk-3n1"; */
+"IvP-Gk-3n1.normalTitle" = "Continuar";
+
+/* Class = "UINavigationItem"; title = "Ajustes"; ObjectID = "J40-PP-XEs"; */
+"J40-PP-XEs.title" = "Ajustes";
+
+/* Class = "UIButton"; normalTitle = "Aleatorio"; ObjectID = "JSW-FP-AnJ"; */
+"JSW-FP-AnJ.normalTitle" = "Aleatorio";
+
+/* Class = "UITextField"; placeholder = "Pepito Pérez"; ObjectID = "JtU-eI-Q05"; */
+"JtU-eI-Q05.placeholder" = "Pepito Pérez";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "K5D-rk-vFm"; */
+"K5D-rk-vFm.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Continuar"; ObjectID = "Kf2-KZ-gRc"; */
+"Kf2-KZ-gRc.normalTitle" = "Continuar";
+
+/* Class = "UILabel"; text = "Usuarios"; ObjectID = "Kf3-AK-rHq"; */
+"Kf3-AK-rHq.text" = "Usuarios";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "L4d-3o-S4Q"; */
+"L4d-3o-S4Q.text" = "Label";
+
+/* Class = "UILabel"; text = "Invalid reward name"; ObjectID = "LCg-rb-mBG"; */
+"LCg-rb-mBG.text" = "Nombre inválido";
+
+/* Class = "UILabel"; text = "Solo el administrador del grupo puede borrar a los usuarios. Todos los datos del usuario eliminado se perderán."; ObjectID = "Mya-Lb-2rr"; */
+"Mya-Lb-2rr.text" = "Solo el administrador del grupo puede borrar a los usuarios. Todos los datos del usuario eliminado se perderán.";
+
+/* Class = "UIButton"; normalTitle = "Continuar"; ObjectID = "NHd-E2-FUj"; */
+"NHd-E2-FUj.normalTitle" = "Continuar";
+
+/* Class = "UILabel"; text = "Nombre de la Tarea"; ObjectID = "NXj-JV-tr5"; */
+"NXj-JV-tr5.text" = "Nombre de la Tarea";
+
+/* Class = "UIButton"; normalTitle = "EUR"; ObjectID = "O5p-kr-W4j"; */
+"O5p-kr-W4j.normalTitle" = "EUR";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OQo-GD-1ab"; */
+"OQo-GD-1ab.text" = "Label";
+
+/* Class = "UILabel"; text = "Gestionar Recompensa"; ObjectID = "OTq-4M-u34"; */
+"OTq-4M-u34.text" = "Gestionar Recompensa";
+
+
+/* Class = "UILabel"; text = "What would you like to do?"; ObjectID = "XQp-W6-VBr"; */
+"XQp-W6-VBr.text" = "¿Que te gustaría hacer?";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Qsn-GM-Hgh"; */
+"Qsn-GM-Hgh.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RRq-lI-xo1"; */
+"RRq-lI-xo1.text" = "Label";
+
+/* Class = "UILabel"; text = "Frecuencia"; ObjectID = "Rh8-qj-5wN"; */
+"Rh8-qj-5wN.text" = "Frecuencia";
+
+/* Class = "UILabel"; text = "Solo el administrador y el creador de una tarea pueden borrarla de la lista."; ObjectID = "S8j-3m-MoA"; */
+"S8j-3m-MoA.text" = "Solo el administrador y el creador de una tarea pueden borrarla de la lista.";
+
+/* Class = "UILabel"; text = "Bienvenido a Kelo"; ObjectID = "SUY-mz-myO"; */
+"SUY-mz-myO.text" = "Bienvenido a Kelo";
+
+/* Class = "UIButton"; normalTitle = "Crear un Grupo"; ObjectID = "Sbt-Le-J2E"; */
+"Sbt-Le-J2E.normalTitle" = "Crear un Grupo";
+
+/* Class = "UILabel"; text = "El usuario asignado a la tarea. Es capaz de completarlas pero nada más."; ObjectID = "Tpl-ma-fJC"; */
+"Tpl-ma-fJC.text" = "El usuario asignado a la tarea. Es capaz de completarlas pero nada más.";
+
+/* Class = "UILabel"; text = "Lorem Ipsum Dolor Sit Amet Consectetur"; ObjectID = "Tyb-5K-KnO"; */
+"Tyb-5K-KnO.text" = "Lorem Ipsum Dolor Sit Amet Consectetur";
+
+/* Class = "UIButton"; normalTitle = "Selecciona un Usuario"; ObjectID = "UZ9-ug-67I"; */
+"UZ9-ug-67I.normalTitle" = "Selecciona un Usuario";
+
+/* Class = "UILabel"; text = "Bienvenido a Kelo"; ObjectID = "VUa-zq-nlD"; */
+"VUa-zq-nlD.text" = "Bienvenido a Kelo";
+
+/* Class = "UIButton"; normalTitle = "Continuar"; ObjectID = "WRc-v4-I37"; */
+"WRc-v4-I37.normalTitle" = "Continuar";
+
+/* Class = "UILabel"; text = "Descripción de la Recompensa"; ObjectID = "Wcs-rY-rez"; */
+"Wcs-rY-rez.text" = "Descripción de la Recompensa";
+
+/* Class = "UIButton"; normalTitle = "Compartir el Código de Grupo"; ObjectID = "XQ0-pp-i32"; */
+"XQ0-pp-i32.normalTitle" = "Compartir el Código de Grupo";
+
+/* Class = "UILabel"; text = "Fecha de Vencimiento"; ObjectID = "Xdw-Lh-YEk"; */
+"Xdw-Lh-YEk.text" = "Fecha de Vencimiento";
+
+/* Class = "UILabel"; text = "Select a currency"; ObjectID = "Xvp-01-jmm"; */
+"Xvp-01-jmm.text" = "Select a currency";
+
+/* Class = "UILabel"; text = "¿Quién Eres?"; ObjectID = "YUO-P3-o3p"; */
+"YUO-P3-o3p.text" = "¿Quién Eres?";
+
+/* Class = "UILabel"; text = "Invalid assignee"; ObjectID = "ZDK-1L-D3b"; */
+"ZDK-1L-D3b.text" = "Usuario inválido";
+
+/* Class = "UITextField"; placeholder = "Beers"; ObjectID = "aOm-s2-BaJ"; */
+"aOm-s2-BaJ.placeholder" = "Cervezas";
+
+/* Class = "UILabel"; text = "El administrador puede crear, editar o eliminar la recompensa del grupo. ¡Puede ser lo que quieras!"; ObjectID = "adH-Bl-hPm"; */
+"adH-Bl-hPm.text" = "El administrador puede crear, editar o eliminar la recompensa del grupo. ¡Puede ser lo que quieras!";
+
+/* Class = "UIButton"; normalTitle = "Continuar"; ObjectID = "bPE-RW-HO8"; */
+"bPE-RW-HO8.normalTitle" = "Continuar";
+
+/* Class = "UILabel"; text = "Cualquier usuario puede compartir el código con otra gente para añadirles al grupo."; ObjectID = "bcJ-GY-WZC"; */
+"bcJ-GY-WZC.text" = "Cualquier usuario puede compartir el código con otra gente para añadirles al grupo.";
+
+/* Class = "UILabel"; text = "Tareas"; ObjectID = "boS-EI-Wva"; */
+"boS-EI-Wva.text" = "Tareas";
+
+/* Class = "UILabel"; text = "Puntos recibidos por el asignado una vez que se completa la tarea. Cuanta más importancia, mayor puntuación"; ObjectID = "cDk-Rn-SUE"; */
+"cDk-Rn-SUE.text" = "Puntos recibidos por el asignado una vez que se completa la tarea. Cuanta más importancia, mayor puntuación";
+
+/* Class = "UISegmentedControl"; cjU-zl-oKZ.segmentTitles[0] = "Baja"; ObjectID = "cjU-zl-oKZ"; */
+"cjU-zl-oKZ.segmentTitles[0]" = "Baja";
+
+/* Class = "UISegmentedControl"; cjU-zl-oKZ.segmentTitles[1] = "Media"; ObjectID = "cjU-zl-oKZ"; */
+"cjU-zl-oKZ.segmentTitles[1]" = "Media";
+
+/* Class = "UISegmentedControl"; cjU-zl-oKZ.segmentTitles[2] = "Alta"; ObjectID = "cjU-zl-oKZ"; */
+"cjU-zl-oKZ.segmentTitles[2]" = "Alta";
+
+/* Class = "UIButton"; normalTitle = "Salir del Grupo"; ObjectID = "dAM-eR-IpR"; */
+"dAM-eR-IpR.normalTitle" = "Salir del Grupo";
+
+/* Class = "UILabel"; text = "Completando una Tarea"; ObjectID = "e5M-cv-STE"; */
+"e5M-cv-STE.text" = "Completando una Tarea";
+
+/* Class = "UILabel"; text = "El administrador del grupo, el asignado y el creador pueden completar la tarea. Los puntos siempre los recibirá el usuario asignado."; ObjectID = "eC8-ec-sq1"; */
+"eC8-ec-sq1.text" = "El administrador del grupo, el asignado y el creador pueden completar la tarea. Los puntos siempre los recibirá el usuario asignado.";
+
+/* Class = "UIBarButtonItem"; title = "Add"; ObjectID = "eCx-1N-6Hy"; */
+"eCx-1N-6Hy.title" = "Añadir";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "esz-D5-94x"; */
+"esz-D5-94x.text" = "Label";
+
+/* Class = "UILabel"; text = "Invalid chore title"; ObjectID = "gDf-hj-Bqb"; */
+"gDf-hj-Bqb.text" = "Título inválido";
+
+/* Class = "UILabel"; text = "Pts:"; ObjectID = "gGx-L5-kvL"; */
+"gGx-L5-kvL.text" = "Pts:";
+
+/* Class = "UIButton"; normalTitle = "Editar Usuario"; ObjectID = "gTR-cW-iYe"; */
+"gTR-cW-iYe.normalTitle" = "Editar Usuario";
+
+/* Class = "UIBarButtonItem"; title = "Share"; ObjectID = "gkj-k7-RGI"; */
+"gkj-k7-RGI.title" = "Compartir";
+
+/* Class = "UITabBarItem"; title = "Ajustes"; ObjectID = "i3w-Ap-POK"; */
+"i3w-Ap-POK.title" = "Ajustes";
+
+/* Class = "UILabel"; text = "?"; ObjectID = "iXh-XO-J7m"; */
+"iXh-XO-J7m.text" = "?";
+
+/* Class = "UINavigationItem"; title = "Tareas"; ObjectID = "icf-dB-Dlu"; */
+"icf-dB-Dlu.title" = "Tareas";
+
+/* Class = "UILabel"; text = "The chosen reward will be given to the user with the most points at the end of the selected period. You can also deactivate this by selecting \"No frequency\"."; ObjectID = "ilQ-B0-pg7"; */
+"ilQ-B0-pg7.text" = "La recompensa elegida se entregará al usuario con más puntos al final de cada periodo de tiempo. También puedes desactivarlo seleccionando \"Sin Frecuencia\".";
+
+/* Class = "UILabel"; text = "Importancia"; ObjectID = "juQ-ks-nkm"; */
+"juQ-ks-nkm.text" = "Importancia";
+
+/* Class = "UIButton"; normalTitle = "Más Vago"; ObjectID = "jzD-v1-dvd"; */
+"jzD-v1-dvd.normalTitle" = "Más Vago";
+
+/* Class = "UIButton"; normalTitle = "Seleccionar Periodo"; ObjectID = "kJp-gH-VoN"; */
+"kJp-gH-VoN.normalTitle" = "Seleccionar Periodo";
+
+/* Class = "UIButton"; normalTitle = "Borrar Grupo"; ObjectID = "kYC-DB-pSG"; */
+"kYC-DB-pSG.normalTitle" = "Borrar Grupo";
+
+/* Class = "UILabel"; text = "Admin"; ObjectID = "lgw-wn-2OL"; */
+"lgw-wn-2OL.text" = "Admin";
+
+/* Class = "UILabel"; text = "Añadiendo a un Usuario"; ObjectID = "li3-SO-M0y"; */
+"li3-SO-M0y.text" = "Añadiendo a un Usuario";
+
+/* Class = "UILabel"; text = "Invalid period"; ObjectID = "odr-lT-xH5"; */
+"odr-lT-xH5.text" = "Periodo inválido";
+
+/* Class = "UILabel"; text = "Recompensa"; ObjectID = "pS2-nx-UNY"; */
+"pS2-nx-UNY.text" = "Recompensa";
+
+/* Class = "UILabel"; text = "Sin Asignar"; ObjectID = "pc0-IC-35y"; */
+"pc0-IC-35y.text" = "Sin Asignar";
+
+/* Class = "UILabel"; text = "Invalid code format"; ObjectID = "rfv-gv-Jg5"; */
+"rfv-gv-Jg5.text" = "Formato inválido";
+
+/* Class = "UIBarButtonItem"; title = "Checkmark"; ObjectID = "sHl-tA-wJB"; */
+"sHl-tA-wJB.title" = "Tick";
+
+/* Class = "UITextField"; placeholder = "Lavar los Platos"; ObjectID = "tuy-rh-Mis"; */
+"tuy-rh-Mis.placeholder" = "Lavar los Platos";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "vCM-HY-Zcp"; */
+"vCM-HY-Zcp.normalTitle" = "Continuar";
+
+/* Class = "UILabel"; text = "Removing a Chore"; ObjectID = "w4y-YV-121"; */
+"w4y-YV-121.text" = "Borrando una Tarea";
+
+/* Class = "UILabel"; text = "See the tutorial in the settings to get more information."; ObjectID = "nK5-rg-aeJ"; */
+"nK5-rg-aeJ.text" = "Mira el tutorial en los ajustes para obtener más información.";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "wmt-vG-BJS"; */
+"wmt-vG-BJS.title" = "Item";
+
+/* Class = "UILabel"; text = "Bienvenido a Kelo"; ObjectID = "yFE-Gu-bez"; */
+"yFE-Gu-bez.text" = "Bienvenido a Kelo";
+
+/* Class = "UILabel"; text = "Borrando a un Usuario"; ObjectID = "ytE-w0-Szg"; */
+"ytE-w0-Szg.text" = "Borrando a un Usuario";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zzY-K8-f9M"; */
+"zzY-K8-f9M.text" = "Label";

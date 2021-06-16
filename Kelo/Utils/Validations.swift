@@ -28,25 +28,25 @@ enum EvaluateError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .isNotValidGroupName:
-            return "Invalid name"
+            return NSLocalizedString("Invalid name", comment: "")
         case .isNotValidGroupCode:
-            return "Invalid code"
+            return NSLocalizedString("Invalid code", comment: "")
         case .isNotValidUserName:
-            return "Invalid name"
+            return NSLocalizedString("Invalid name", comment: "")
         case .isNotValidChore:
-            return "Invalid chore"
+            return NSLocalizedString("Invalid chore", comment: "")
         case .isNotValidChoreName:
-            return "Invalid name"
+            return NSLocalizedString("Invalid name", comment: "")
         case .noPermissions:
-            return "Not enough permission"
+            return NSLocalizedString("Not enough permission", comment: "")
         case .groupNoLongerExists:
-            return "It appears that this group no longer exists"
+            return NSLocalizedString("It appears that this group no longer exists", comment: "")
         case .userNoLongerExists:
-            return "You no longer have access to the group"
+            return NSLocalizedString("You no longer have access to the group", comment: "")
         case .isNotValidRewardName:
-            return "Invalid name"
+            return NSLocalizedString("Invalid name", comment: "")
         case .isnotValidReward:
-            return "Invalid reward"
+            return NSLocalizedString("Invalid reward", comment: "")
         }
     }
 }

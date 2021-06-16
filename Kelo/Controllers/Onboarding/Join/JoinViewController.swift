@@ -42,7 +42,7 @@ class JoinViewController: UIViewController {
                     self.presentFinalViewController(withGroup: group)
                 case .failure(let err):
                     log.error(err.localizedDescription)
-                    let alert = self.setAlert(title: "Error!",
+                    let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
                                               message: err.localizedDescription,
                                               actionTitle: "OK")
 

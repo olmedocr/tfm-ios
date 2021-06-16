@@ -11,7 +11,12 @@ import FittedSheets
 class SettingsTableViewController: UITableViewController {
 
     // MARK: - Properties
-    let sectionTitles = ["Your points", "Users", "Reward", "Currency", "Miscellaneous", "Danger zone"]
+    let sectionTitles = [NSLocalizedString("Your points", comment: ""),
+                         NSLocalizedString("Users", comment: ""),
+                         NSLocalizedString("Reward", comment: ""),
+                         NSLocalizedString("Currency", comment: ""),
+                         NSLocalizedString("Miscellaneous", comment: ""),
+                         NSLocalizedString("Danger zone", comment: "")]
     var dataSources: SectionedTableViewDataSource?
     var users: [User]?
     var group: Group?
@@ -20,9 +25,7 @@ class SettingsTableViewController: UITableViewController {
 
     // MARK: - @IBActions
     @IBAction func didTapShareButton(_ sender: Any) {
-        if let tabBarController = tabBarController as? MainTabViewController {
-            tabBarController.presentShareGroupCodeViewController(context: self)
-        }
+        self.presentShareGroupCodeViewController()
     }
 
     @IBAction func didTapInfoButton(_ sender: Any) {
@@ -54,11 +57,11 @@ class SettingsTableViewController: UITableViewController {
                 log.error(err.localizedDescription)
                 log.info("Tried to remove a reward without being the admin")
 
-                let alert = self.setAlert(title: "Error!",
-                                          message: """
+                let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
+                                          message: NSLocalizedString("""
                                         Only the group admin is able to
                                         edit the reward
-                                        """,
+                                        """, comment: ""),
                                           actionTitle: "OK")
 
                 self.present(alert, animated: true)
@@ -74,10 +77,10 @@ class SettingsTableViewController: UITableViewController {
 
                 tableView.deselectRow(at: indexPath, animated: true)
 
-                let alert = self.setAlert(title: "Error!",
-                                          message: """
+                let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
+                                          message: NSLocalizedString("""
                                         Only the group admin is able to edit the currency
-                                        """,
+                                        """, comment: ""),
                                           actionTitle: "OK")
 
                 self.present(alert, animated: true)
@@ -177,7 +180,7 @@ class SettingsTableViewController: UITableViewController {
 
             rewardDataSource = TableViewDataSource.make(for: reward)
         } else {
-            let reward = Reward(name: "Tap here to configure reward")
+            let reward = Reward(name: NSLocalizedString("Tap here to configure reward", comment: ""))
             editableSections = [1]
 
             rewardDataSource = TableViewDataSource(
@@ -185,7 +188,7 @@ class SettingsTableViewController: UITableViewController {
                 reuseIdentifier: "noRewardTableViewCell"
             ) { _, cell in
                 if let cell = cell as? NoRewardTableViewCell {
-                    cell.label.text = "Tap here to configure reward"
+                    cell.label.text = NSLocalizedString("Tap here to configure reward", comment: "")
                 }
             }
         }
@@ -241,11 +244,11 @@ class SettingsTableViewController: UITableViewController {
             log.error(err.localizedDescription)
             log.info("Tried to remove a user without being the admin")
 
-            let alert = self.setAlert(title: "Error!",
-                                      message: """
+            let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
+                                      message: NSLocalizedString("""
                                         Only the group admin is able to
                                         remove this element
-                                        """,
+                                        """, comment: ""),
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
@@ -256,7 +259,7 @@ class SettingsTableViewController: UITableViewController {
                 case .failure(let err):
                     log.error(err.localizedDescription)
 
-                    let alert = self.setAlert(title: "Error!",
+                    let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
                                               message: err.localizedDescription,
                                               actionTitle: "OK")
 
@@ -276,11 +279,11 @@ class SettingsTableViewController: UITableViewController {
             log.error(err.localizedDescription)
             log.info("Tried to remove a reward without being the admin")
 
-            let alert = self.setAlert(title: "Error!",
-                                      message: """
+            let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
+                                      message: NSLocalizedString("""
                                         Only the group admin is able to
                                         remove this element
-                                        """,
+                                        """, comment: ""),
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
@@ -291,7 +294,7 @@ class SettingsTableViewController: UITableViewController {
                 case .failure(let err):
                     log.error(err.localizedDescription)
 
-                    let alert = self.setAlert(title: "Error!",
+                    let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
                                               message: err.localizedDescription,
                                               actionTitle: "OK")
 
@@ -340,9 +343,9 @@ class SettingsTableViewController: UITableViewController {
         controller.hidesBottomBarWhenPushed = true
 
         if reward != nil {
-            controller.title = "Edit Reward"
+            controller.title = NSLocalizedString("Edit Reward", comment: "")
         } else {
-            controller.title = "New Reward"
+            controller.title = NSLocalizedString("New Reward", comment: "")
         }
 
         navigationController?.pushViewController(controller, animated: true)
@@ -358,6 +361,25 @@ class SettingsTableViewController: UITableViewController {
         }
 
         navigationController?.present(controller, animated: true, completion: nil)
+    }
+
+    func presentShareGroupCodeViewController() {
+        guard let controller = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "ShareGroupCodeViewController")
+                as? ShareGroupCodeViewController
+        else {
+            log.error("Could not instantiate ShareGroupCodeViewController")
+            return
+        }
+
+        let options = SheetOptions(shrinkPresentingViewController: false)
+        let sheetController = SheetViewController(
+            controller: controller,
+            sizes: [.percent(0.25)],
+            options: options)
+
+        navigationController?.present(sheetController, animated: true, completion: nil)
+
     }
 
 }
@@ -389,11 +411,11 @@ extension SettingsTableViewController: DangerSettingsCellDelegate {
         if currentUser!.isAdmin {
             DatabaseManager.shared.removeAllListeners()
 
-            let alert = self.setAlert(title: "Are you sure?",
-                                      message: "This will erase all data in the group. The action cannot be undone",
-                                      actionTitle: "Cancel")
+            let alert = self.setAlert(title: NSLocalizedString("Are you sure?", comment: ""),
+                                      message: NSLocalizedString("This will erase all data in the group. The action cannot be undone", comment: ""),
+                                      actionTitle: NSLocalizedString("Cancel", comment: ""))
 
-            let action = UIAlertAction(title: "Delete",
+            let action = UIAlertAction(title: NSLocalizedString("Delete", comment: ""),
                                        style: .destructive) { _ in
                 DatabaseManager.shared.deleteGroup(groupId: DatabaseManager.shared.groupId!) { (result) in
                     switch result {
@@ -410,10 +432,10 @@ extension SettingsTableViewController: DangerSettingsCellDelegate {
 
             self.present(alert, animated: true)
         } else {
-            let alert = self.setAlert(title: "Attention!",
-                                      message: """
+            let alert = self.setAlert(title: NSLocalizedString("Attention!", comment: ""),
+                                      message: NSLocalizedString("""
                                         Only the admin of the group can delete it
-                                        """,
+                                        """, comment: ""),
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
@@ -422,11 +444,12 @@ extension SettingsTableViewController: DangerSettingsCellDelegate {
     }
 
     func didTapOnLeaveGroup() {
-        let alert = self.setAlert(title: "Are you sure?",
-                                  message: "You will loose all access to this group. The action cannot be undone",
-                                  actionTitle: "Cancel")
+        let alert = self.setAlert(title: NSLocalizedString("Are you sure?", comment: ""),
+                                  message: NSLocalizedString("You will lose all access to this group. The action cannot be undone",
+                                                             comment: ""),
+                                  actionTitle: NSLocalizedString("Cancel", comment: ""))
 
-        let action = UIAlertAction(title: "Leave",
+        let action = UIAlertAction(title: NSLocalizedString("Leave", comment: ""),
                                    style: .destructive) { _ in
             DatabaseManager.shared.removeAllListeners()
             DatabaseManager.shared.deleteUser(userId: DatabaseManager.shared.userId!) { (result) in
@@ -441,7 +464,8 @@ extension SettingsTableViewController: DangerSettingsCellDelegate {
                             log.error(err.localizedDescription)
                         case .success:
                             log.info("Assigned random admin correctly")
-                            self.restartApp(withMessage: "You left the group successfully")
+                            self.restartApp(withMessage: NSLocalizedString("You left the group successfully",
+                                                                           comment: ""))
                         }
                     }
                 }
@@ -459,23 +483,23 @@ extension SettingsTableViewController: DangerSettingsCellDelegate {
 extension SettingsTableViewController: EditSettingsCellDelegate {
 
     func didTapOnEditUser() {
-        let alert = UIAlertController(title: "Edit User Name",
-                                      message: "Change your username in the group",
+        let alert = UIAlertController(title: NSLocalizedString("Edit User Name", comment: ""),
+                                      message: NSLocalizedString("Change your username in the group", comment: ""),
                                       preferredStyle: .alert)
 
         alert.addTextField { (textField) in
             textField.placeholder = self.currentUser?.name
         }
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: ""), style: .default, handler: { (_) in
             let newUsername = alert.textFields![0].text
             var updatedUser = self.currentUser
 
             switch Validations.userName(newUsername!) {
             case .failure(let err):
                 log.error(err.localizedDescription)
-                let alert = self.setAlert(title: "Error!",
+                let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
                                           message: err.localizedDescription,
                                           actionTitle: "OK")
 
@@ -487,7 +511,7 @@ extension SettingsTableViewController: EditSettingsCellDelegate {
                     switch result {
                     case .failure(let err):
                         log.error(err.localizedDescription)
-                        let alert = self.setAlert(title: "Error!",
+                        let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
                                                   message: err.localizedDescription,
                                                   actionTitle: "OK")
 
@@ -495,10 +519,10 @@ extension SettingsTableViewController: EditSettingsCellDelegate {
                     case .success:
                         log.info("Successfully updated user name")
 
-                        let alert = self.setAlert(title: "Done!",
-                                                  message: """
+                        let alert = self.setAlert(title: NSLocalizedString("Done!", comment: ""),
+                                                  message: NSLocalizedString("""
                                                     Successfully updated user name
-                                                    """,
+                                                    """, comment: ""),
                                                   actionTitle: "OK")
 
                         self.present(alert, animated: true)
@@ -513,23 +537,23 @@ extension SettingsTableViewController: EditSettingsCellDelegate {
     }
 
     func didTapOnEditGroup() {
-        let alert = UIAlertController(title: "Edit Group Name",
-                                      message: "Change the name of the group",
+        let alert = UIAlertController(title: NSLocalizedString("Edit Group Name", comment: ""),
+                                      message: NSLocalizedString("Change the name of the group", comment: ""),
                                       preferredStyle: .alert)
 
         alert.addTextField { (textField) in
             textField.placeholder = self.group?.name
         }
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: ""), style: .default, handler: { (_) in
             let newGroupname = alert.textFields![0].text
             var updatedGroup = self.group
 
             switch Validations.groupName(newGroupname!) {
             case .failure(let err):
                 log.error(err.localizedDescription)
-                let alert = self.setAlert(title: "Error!",
+                let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
                                           message: err.localizedDescription,
                                           actionTitle: "OK")
 
@@ -541,7 +565,7 @@ extension SettingsTableViewController: EditSettingsCellDelegate {
                     switch result {
                     case .failure(let err):
                         log.error(err.localizedDescription)
-                        let alert = self.setAlert(title: "Error!",
+                        let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
                                                   message: err.localizedDescription,
                                                   actionTitle: "OK")
 
@@ -549,10 +573,10 @@ extension SettingsTableViewController: EditSettingsCellDelegate {
                     case .success:
                         log.info("Successfully updated group name")
 
-                        let alert = self.setAlert(title: "Done!",
-                                                  message: """
+                        let alert = self.setAlert(title: NSLocalizedString("Done!", comment: ""),
+                                                  message: NSLocalizedString("""
                                                     Successfully updated group name
-                                                    """,
+                                                    """, comment: ""),
                                                   actionTitle: "OK")
 
                         self.present(alert, animated: true)

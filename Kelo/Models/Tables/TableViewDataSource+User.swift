@@ -5,6 +5,7 @@
 //  Created by Raul Olmedo on 29/5/21.
 //
 
+import Foundation
 import LetterAvatarKit
 
 extension TableViewDataSource where Model == User {
@@ -34,7 +35,7 @@ extension TableViewDataSource where Model == User {
                 cell.pointsLabel.text = String(user.points)
 
                 if user.id == DatabaseManager.shared.userId {
-                    cell.userNameLabel.text = user.name + " (You)"
+                    cell.userNameLabel.text = user.name + " " + NSLocalizedString("(You)", comment: "")
                 } else {
                     cell.userNameLabel.text = user.name
                 }

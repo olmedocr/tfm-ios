@@ -57,7 +57,7 @@ extension UIViewController {
             UIApplication.shared.windows.first?.rootViewController = navigationController
             UIApplication.shared.windows.first?.makeKeyAndVisible()
 
-            let alert = self.setAlert(title: "Attention!",
+            let alert = self.setAlert(title: NSLocalizedString("Attention!", comment: ""),
                                       message: message,
                                       actionTitle: "OK")
 

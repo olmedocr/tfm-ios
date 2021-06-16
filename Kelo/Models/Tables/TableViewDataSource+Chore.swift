@@ -57,7 +57,6 @@ extension TableViewDataSource where Model == Chore {
     }
 
     private static func setImage(_ cell: ChoreTableViewCell, choreName: String) {
-        // FIXME: the avatar fucks the space around the image, check user assignment to copy its IB settings
         let circleAvatarImage = LetterAvatarMaker()
             .setCircle(true)
             .setUsername(choreName)
@@ -75,8 +74,9 @@ extension TableViewDataSource where Model == Chore {
                     log.error(err.localizedDescription)
                 case .success(let user):
                     if user.id == DatabaseManager.shared.userId {
-                        cell.assigneeName.text = user.name + " (You)"
-                        cell.assigneeName.accessibilityIdentifier = user.name + " (You)"
+                        cell.assigneeName.text = user.name + " " + NSLocalizedString("(You)", comment: "")
+                        cell.assigneeName.accessibilityIdentifier = user.name + " " + NSLocalizedString("(You)",
+                                                                                                        comment: "")
                     } else {
                         cell.assigneeName.text = user.name
                         cell.assigneeName.accessibilityIdentifier = user.name
@@ -94,8 +94,9 @@ extension TableViewDataSource where Model == Chore {
                     log.error(err.localizedDescription)
                 case .success(let user):
                     if user.id == DatabaseManager.shared.userId {
-                        cell.assignerName.text = user.name + " (You)"
-                        cell.assignerName.accessibilityIdentifier = user.name + " (You)"
+                        cell.assignerName.text = user.name + " " + NSLocalizedString("(You)", comment: "")
+                        cell.assignerName.accessibilityIdentifier = user.name + " " + NSLocalizedString("(You)",
+                                                                                                        comment: "")
                     } else {
                         cell.assignerName.text = user.name
                         cell.assignerName.accessibilityIdentifier = user.name

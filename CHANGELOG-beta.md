@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Let the user know to that the group no longer exists or that he has been kicked out
 - Capability to edit the currency only if the user is the admin
 - Avatar for the chore images
+- Completed chore list
+- Added notifications
+- Added rewards
+- Added tutorial
 
 ### Deleted
 - Edit button in chore list
