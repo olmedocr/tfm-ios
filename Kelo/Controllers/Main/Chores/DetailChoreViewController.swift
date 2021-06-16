@@ -17,7 +17,8 @@ class DetailChoreViewController: UIViewController {
         didSet {
             if let assignee = selectedAssignee {
                 if DatabaseManager.shared.userId == assignee.id {
-                    self.assigneeButton.setTitle(assignee.name + " (You)", for: .normal)
+                    self.assigneeButton.setTitle(assignee.name + " " + NSLocalizedString("(You)", comment: ""),
+                                                 for: .normal)
                 } else {
                     self.assigneeButton.setTitle(assignee.name, for: .normal)
                 }

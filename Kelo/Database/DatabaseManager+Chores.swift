@@ -56,41 +56,75 @@ extension DatabaseManager {
         }
     }
 
-    func retrieveAllChores(isCompleted: Bool, result: @escaping (Result<[Chore], Error>) -> Void) {
+    func retrieveAllChores(isCompleted: Bool, isAssigned: Bool, result: @escaping (Result<[Chore], Error>) -> Void) {
         let groupReference: DocumentReference = database.collection(Constants.groupsCollectionKey).document(groupId!)
         let choresReference: CollectionReference = groupReference.collection(Constants.choresCollectionKey)
         var chores: [Chore] = []
 
-        choresReference
-            .order(by: Chore.CodingKeys.expiration.rawValue)
-            .whereField(Chore.CodingKeys.isCompleted.rawValue, isEqualTo: isCompleted)
-            .getDocuments { (choresSnapshot, err) in
-                if let err = err {
-                    log.error(err.localizedDescription)
-                    result(.failure(err))
-                }
-
-                let group = DispatchGroup()
-
-                choresSnapshot?.documents.forEach { (choreSnapshot) in
-                    group.enter()
-                    do {
-                        if let chore = try choreSnapshot.data(as: Chore.self) {
-                            chores.append(chore)
-                            group.leave()
-                        }
-                    } catch let err {
+        if isAssigned {
+            choresReference
+                .order(by: Chore.CodingKeys.expiration.rawValue)
+                .whereField(Chore.CodingKeys.isCompleted.rawValue, isEqualTo: isCompleted)
+                .whereField(Chore.CodingKeys.assignee.rawValue, isEqualTo: DatabaseManager.shared.userId!)
+                .getDocuments { (choresSnapshot, err) in
+                    if let err = err {
                         log.error(err.localizedDescription)
                         result(.failure(err))
-                        group.leave()
+                    }
+
+                    let group = DispatchGroup()
+
+                    choresSnapshot?.documents.forEach { (choreSnapshot) in
+                        group.enter()
+                        do {
+                            if let chore = try choreSnapshot.data(as: Chore.self) {
+                                chores.append(chore)
+                                group.leave()
+                            }
+                        } catch let err {
+                            log.error(err.localizedDescription)
+                            result(.failure(err))
+                            group.leave()
+                        }
+                    }
+
+                    group.notify(queue: .main) {
+                        log.info("Successfully retrieved all chores")
+                        result(.success(chores))
                     }
                 }
+        } else {
+            choresReference
+                .order(by: Chore.CodingKeys.expiration.rawValue)
+                .whereField(Chore.CodingKeys.isCompleted.rawValue, isEqualTo: isCompleted)
+                .getDocuments { (choresSnapshot, err) in
+                    if let err = err {
+                        log.error(err.localizedDescription)
+                        result(.failure(err))
+                    }
 
-                group.notify(queue: .main) {
-                    log.info("Successfully retrieved all chores")
-                    result(.success(chores))
+                    let group = DispatchGroup()
+
+                    choresSnapshot?.documents.forEach { (choreSnapshot) in
+                        group.enter()
+                        do {
+                            if let chore = try choreSnapshot.data(as: Chore.self) {
+                                chores.append(chore)
+                                group.leave()
+                            }
+                        } catch let err {
+                            log.error(err.localizedDescription)
+                            result(.failure(err))
+                            group.leave()
+                        }
+                    }
+
+                    group.notify(queue: .main) {
+                        log.info("Successfully retrieved all chores")
+                        result(.success(chores))
+                    }
                 }
-            }
+        }
     }
 
     func updateChore(chore: Chore, result: @escaping (Result<Void, Error>) -> Void) {

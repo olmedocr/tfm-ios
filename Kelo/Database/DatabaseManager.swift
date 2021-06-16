@@ -21,19 +21,19 @@ extension DatabaseManager {
         var errorDescription: String? {
             switch self {
             case .groupNotFound:
-                return "Group not found"
+                return NSLocalizedString("Group not found", comment: "")
             case .userNotFound:
-                return "User not found"
+                return NSLocalizedString("User not found", comment: "")
             case .userNameAlreadyTaken:
-                return "Username already taken"
+                return NSLocalizedString("Username already taken", comment: "")
             case .groupIsFull:
-                return "Group is full"
+                return NSLocalizedString("Group is full", comment: "")
             case .bundleError:
-                return "No CurrencyList Bundle Access"
+                return NSLocalizedString("No CurrencyList Bundle Access", comment: "")
             case .rewardNotFound:
-                return "No Reward could be retrieved"
+                return NSLocalizedString("No Reward could be retrieved", comment: "")
             case .unknown:
-                return "Uknown error"
+                return NSLocalizedString("Uknown error", comment: "")
             }
         }
     }

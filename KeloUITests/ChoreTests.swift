@@ -85,7 +85,7 @@ class ChoreTests: XCTestCase {
 
         _ = app.textFields[choreName].waitForExistence(timeout: 5)
         XCTAssertTrue(app.textFields[choreName].exists)
-        XCTAssertTrue(app.buttons[userName + " (You)"].exists)
+        XCTAssertTrue(app.buttons[userName + " " + NSLocalizedString("(You)", comment: "")].exists)
         XCTAssertTrue(app.buttons["Medium"].isSelected)
 
         app.navigationBars.buttons.element(boundBy: 0).tap()
@@ -101,10 +101,10 @@ class ChoreTests: XCTestCase {
         _ = app.navigationBars.element.waitForExistence(timeout: 5)
         app.navigationBars.buttons["Add"].tap()
 
-        XCTAssertFalse(app.buttons[userName + " (You)"].exists)
+        XCTAssertFalse(app.buttons[userName + " " + NSLocalizedString("(You)", comment: "")].exists)
         app.buttons["Select a user"].tap()
         app.tables.cells.element(boundBy: 0).tap()
-        XCTAssertTrue(app.buttons[userName + " (You)"].exists)
+        XCTAssertTrue(app.buttons[userName + " " + NSLocalizedString("(You)", comment: "")].exists)
 
         app.navigationBars.buttons.element(boundBy: 0).tap()
     }

@@ -18,31 +18,39 @@ class ChoresTableViewController: UITableViewController {
             tableView.allowsSelection = !isShowingCompletedChores
         }
     }
+    var isShowingAssignedChores: Bool = false
     var group: Group?
 
     // MARK: - IBOutlets
     @IBOutlet weak var checkButton: UIBarButtonItem!
+    @IBOutlet weak var pinButton: UIBarButtonItem!
 
     // MARK: - IBActions
     @IBAction func didTapAddButton(_ sender: Any) {
         self.presentDetailChoreViewController()
     }
 
-    @IBAction func didTapShareButton(_ sender: Any) {
-        if let tabBarController = tabBarController as? MainTabViewController {
-            tabBarController.presentShareGroupCodeViewController(context: self)
-        }
-    }
-
     @IBAction func didTapCheckButton(_ sender: Any) {
         if isShowingCompletedChores {
             isShowingCompletedChores = false
             checkButton.image = UIImage(systemName: "checkmark.circle")
-            navigationItem.title = "Chores"
+            navigationItem.title = NSLocalizedString("Chores", comment: "")
         } else {
             isShowingCompletedChores = true
             checkButton.image = UIImage(systemName: "checkmark.circle.fill")
-            navigationItem.title = "Completed"
+            navigationItem.title = NSLocalizedString("Completed", comment: "")
+        }
+
+        fetchData()
+    }
+
+    @IBAction func didTapPinButton(_ sender: Any) {
+        if isShowingAssignedChores {
+            isShowingAssignedChores = false
+            pinButton.image = UIImage(systemName: "pin.circle")
+        } else {
+            isShowingAssignedChores = true
+            pinButton.image = UIImage(systemName: "pin.circle.fill")
         }
 
         fetchData()
@@ -83,11 +91,12 @@ class ChoresTableViewController: UITableViewController {
             log.error(err.localizedDescription)
             log.info("Tried to edit a chore without being the creator")
 
-            let alert = self.setAlert(title: "Error!",
-                                      message: """
+            let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
+                                      message:
+                                        NSLocalizedString("""
                                         Only the creator of the chore and the group admin are able to
                                         edit this element
-                                        """,
+                                        """, comment: ""),
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
@@ -147,7 +156,8 @@ class ChoresTableViewController: UITableViewController {
 
     // MARK: - Internal
     @objc func fetchData() {
-        DatabaseManager.shared.retrieveAllChores(isCompleted: isShowingCompletedChores) { choresResult in
+        DatabaseManager.shared.retrieveAllChores(isCompleted: isShowingCompletedChores,
+                                                 isAssigned: isShowingAssignedChores) { choresResult in
             switch choresResult {
             case .failure(let err):
                 log.error(err.localizedDescription)
@@ -187,11 +197,11 @@ class ChoresTableViewController: UITableViewController {
             log.error(err.localizedDescription)
             log.info("Tried to complete the chore without being the assigned user or the creator")
 
-            let alert = self.setAlert(title: "Error!",
-                                      message: """
+            let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
+                                      message: NSLocalizedString("""
                                             Only the group admin, the creator of the chore or the user assigned to it
                                             can complete this element
-                                            """,
+                                            """, comment: ""),
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
@@ -218,11 +228,11 @@ class ChoresTableViewController: UITableViewController {
             log.error(err.localizedDescription)
             log.info("Tried to remove the chore without being the creator")
 
-            let alert = self.setAlert(title: "Error!",
-                                      message: """
+            let alert = self.setAlert(title: NSLocalizedString("Error!", comment: ""),
+                                      message: NSLocalizedString("""
                                             Only the creator of the chore or the group admin are able to
                                             remove this element
-                                            """,
+                                            """, comment: ""),
                                       actionTitle: "OK")
 
             self.present(alert, animated: true)
@@ -253,9 +263,9 @@ class ChoresTableViewController: UITableViewController {
             viewController.hidesBottomBarWhenPushed = true
 
             if chore != nil {
-                viewController.title = "Edit Chore"
+                viewController.title = NSLocalizedString("Edit Chore", comment: "")
             } else {
-                viewController.title = "New Chore"
+                viewController.title = NSLocalizedString("New Chore", comment: "")
             }
 
             navigationController?.pushViewController(viewController, animated: true)

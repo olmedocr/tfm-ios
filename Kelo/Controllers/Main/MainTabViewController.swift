@@ -92,26 +92,6 @@ class MainTabViewController: UITabBarController {
 
     }
 
-    // MARK: - Navigation
-    func presentShareGroupCodeViewController(context: UIViewController) {
-        guard let controller = UIStoryboard(name: "Main", bundle: nil)
-                .instantiateViewController(withIdentifier: "ShareGroupCodeViewController")
-                as? ShareGroupCodeViewController
-        else {
-            log.error("Could not instantiate ShareGroupCodeViewController")
-            return
-        }
-
-        let options = SheetOptions(shrinkPresentingViewController: false)
-        let sheetController = SheetViewController(
-            controller: controller,
-            sizes: [.percent(0.25)],
-            options: options)
-
-        context.present(sheetController, animated: true, completion: nil)
-
-    }
-
 }
 
 extension MainTabViewController: DatabaseManagerDelegate {
