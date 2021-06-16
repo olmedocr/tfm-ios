@@ -56,7 +56,7 @@ class RewardTests: XCTestCase {
         app.textFields.element.typeText(rewardName)
         app.keyboards.buttons["Done"].tap()
 
-        app.buttons["Select period"].tap()
+        app.buttons["Select Period"].tap()
         app.tables.cells.element(boundBy: 1).tap()
 
         app.navigationBars.buttons["Save"].tap()
@@ -73,7 +73,7 @@ class RewardTests: XCTestCase {
         _ = app.tables.cells.element(boundBy: 2).waitForExistence(timeout: 5)
         app.tables.cells.element(boundBy: 2).tap()
 
-        app.buttons["Every week"].tap()
+        app.buttons["Every Week"].tap()
         app.tables.cells.element(boundBy: 0).tap()
 
         app.navigationBars.buttons["Save"].tap()

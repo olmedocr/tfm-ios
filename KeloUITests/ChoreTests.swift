@@ -63,7 +63,7 @@ class ChoreTests: XCTestCase {
         app.textFields.element.typeText(choreName)
         app.keyboards.buttons["Done"].tap()
 
-        app.buttons["Select a user"].tap()
+        app.buttons["Select a User"].tap()
         app.tables.cells.element(boundBy: 0).tap()
         app.buttons["Medium"].tap()
         app.navigationBars.buttons["Save"].tap()
@@ -102,7 +102,7 @@ class ChoreTests: XCTestCase {
         app.navigationBars.buttons["Add"].tap()
 
         XCTAssertFalse(app.buttons[userName + " " + NSLocalizedString("(You)", comment: "")].exists)
-        app.buttons["Select a user"].tap()
+        app.buttons["Select a User"].tap()
         app.tables.cells.element(boundBy: 0).tap()
         XCTAssertTrue(app.buttons[userName + " " + NSLocalizedString("(You)", comment: "")].exists)
 
