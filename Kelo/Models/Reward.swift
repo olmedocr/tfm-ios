@@ -20,17 +20,17 @@ enum Period: Int, Codable, CaseIterable {
     var description: String {
         switch self {
         case .none:
-            return "No frequency"
+            return NSLocalizedString("No Frequency", comment: "")
         case .weekly:
-            return "Every week"
+            return NSLocalizedString("Every Week", comment: "")
         case .biWeekly:
-            return "Every 2 weeks"
+            return NSLocalizedString("Every 2 Weeks", comment: "")
         case .monthly:
-            return "Every month"
+            return NSLocalizedString("Every Month", comment: "")
         case .biMonthly:
-            return "Every 2 months"
+            return NSLocalizedString("Every 2 Months", comment: "")
         case .yearly:
-            return "Every year"
+            return NSLocalizedString("Every Year", comment: "")
         }
     }
 
