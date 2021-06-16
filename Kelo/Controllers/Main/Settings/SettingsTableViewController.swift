@@ -20,9 +20,7 @@ class SettingsTableViewController: UITableViewController {
 
     // MARK: - @IBActions
     @IBAction func didTapShareButton(_ sender: Any) {
-        if let tabBarController = tabBarController as? MainTabViewController {
-            tabBarController.presentShareGroupCodeViewController(context: self)
-        }
+        self.presentShareGroupCodeViewController()
     }
 
     @IBAction func didTapInfoButton(_ sender: Any) {
@@ -358,6 +356,25 @@ class SettingsTableViewController: UITableViewController {
         }
 
         navigationController?.present(controller, animated: true, completion: nil)
+    }
+
+    func presentShareGroupCodeViewController() {
+        guard let controller = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "ShareGroupCodeViewController")
+                as? ShareGroupCodeViewController
+        else {
+            log.error("Could not instantiate ShareGroupCodeViewController")
+            return
+        }
+
+        let options = SheetOptions(shrinkPresentingViewController: false)
+        let sheetController = SheetViewController(
+            controller: controller,
+            sizes: [.percent(0.25)],
+            options: options)
+
+        navigationController?.present(sheetController, animated: true, completion: nil)
+
     }
 
 }

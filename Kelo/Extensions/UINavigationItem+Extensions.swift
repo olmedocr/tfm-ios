@@ -14,7 +14,7 @@ extension UINavigationItem {
         label.font = UIFont.boldSystemFont(ofSize: 14.0)
         label.numberOfLines = 2
         label.text = subtitle
-        label.textColor = UIColor.black
+        label.textColor = UIColor.label
         label.sizeToFit()
         label.textAlignment = NSTextAlignment.center
 

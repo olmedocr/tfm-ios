@@ -18,20 +18,16 @@ class ChoresTableViewController: UITableViewController {
             tableView.allowsSelection = !isShowingCompletedChores
         }
     }
+    var isShowingAssignedChores: Bool = false
     var group: Group?
 
     // MARK: - IBOutlets
     @IBOutlet weak var checkButton: UIBarButtonItem!
+    @IBOutlet weak var pinButton: UIBarButtonItem!
 
     // MARK: - IBActions
     @IBAction func didTapAddButton(_ sender: Any) {
         self.presentDetailChoreViewController()
-    }
-
-    @IBAction func didTapShareButton(_ sender: Any) {
-        if let tabBarController = tabBarController as? MainTabViewController {
-            tabBarController.presentShareGroupCodeViewController(context: self)
-        }
     }
 
     @IBAction func didTapCheckButton(_ sender: Any) {
@@ -43,6 +39,18 @@ class ChoresTableViewController: UITableViewController {
             isShowingCompletedChores = true
             checkButton.image = UIImage(systemName: "checkmark.circle.fill")
             navigationItem.title = "Completed"
+        }
+
+        fetchData()
+    }
+
+    @IBAction func didTapPinButton(_ sender: Any) {
+        if isShowingAssignedChores {
+            isShowingAssignedChores = false
+            pinButton.image = UIImage(systemName: "pin.circle")
+        } else {
+            isShowingAssignedChores = true
+            pinButton.image = UIImage(systemName: "pin.circle.fill")
         }
 
         fetchData()
@@ -147,7 +155,8 @@ class ChoresTableViewController: UITableViewController {
 
     // MARK: - Internal
     @objc func fetchData() {
-        DatabaseManager.shared.retrieveAllChores(isCompleted: isShowingCompletedChores) { choresResult in
+        DatabaseManager.shared.retrieveAllChores(isCompleted: isShowingCompletedChores,
+                                                 isAssigned: isShowingAssignedChores) { choresResult in
             switch choresResult {
             case .failure(let err):
                 log.error(err.localizedDescription)
