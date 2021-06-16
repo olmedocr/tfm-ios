@@ -280,7 +280,7 @@
 "rfv-gv-Jg5.text" = "Formato inválido";
 
 /* Class = "UIBarButtonItem"; title = "Checkmark"; ObjectID = "sHl-tA-wJB"; */
-"sHl-tA-wJB.title" = "Tick";
+"sHl-tA-wJB.title" = "Checkmark";
 
 /* Class = "UITextField"; placeholder = "Lavar los Platos"; ObjectID = "tuy-rh-Mis"; */
 "tuy-rh-Mis.placeholder" = "Lavar los Platos";
