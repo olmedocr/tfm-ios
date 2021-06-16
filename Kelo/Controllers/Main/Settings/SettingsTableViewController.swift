@@ -445,7 +445,8 @@ extension SettingsTableViewController: DangerSettingsCellDelegate {
 
     func didTapOnLeaveGroup() {
         let alert = self.setAlert(title: NSLocalizedString("Are you sure?", comment: ""),
-                                  message: NSLocalizedString("You will lose all access to this group. The action cannot be undone", comment: ""),
+                                  message: NSLocalizedString("You will lose all access to this group. The action cannot be undone",
+                                                             comment: ""),
                                   actionTitle: NSLocalizedString("Cancel", comment: ""))
 
         let action = UIAlertAction(title: NSLocalizedString("Leave", comment: ""),
@@ -463,7 +464,8 @@ extension SettingsTableViewController: DangerSettingsCellDelegate {
                             log.error(err.localizedDescription)
                         case .success:
                             log.info("Assigned random admin correctly")
-                            self.restartApp(withMessage: "You left the group successfully")
+                            self.restartApp(withMessage: NSLocalizedString("You left the group successfully",
+                                                                           comment: ""))
                         }
                     }
                 }

@@ -209,10 +209,10 @@
 		C4B7516C264531D0002888FC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4B7517326454A33002888FC /* ChoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreTests.swift; sourceTree = "<group>"; };
 		C4C1D1032664FF6B00553C44 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
-		C4D18FA4267A1CC5004DF6E0 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = es; path = es.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C4D18FA5267A1CC5004DF6E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4D18FA7267A1E24004DF6E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4D18FA9267A1E2B004DF6E0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C4D18FAC267A4205004DF6E0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		C4D18FAD267A4257004DF6E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4DC41F826788751004F1712 /* FirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepViewController.swift; sourceTree = "<group>"; };
 		C4DC41FA2678876C004F1712 /* SecondStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewController.swift; sourceTree = "<group>"; };
 		C4DC41FC2678877D004F1712 /* ThirdStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdStepViewController.swift; sourceTree = "<group>"; };
@@ -502,11 +502,11 @@
 		C4A9B3DB260E411B00D1E770 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C4D18FA6267A1E24004DF6E0 /* Localizable.strings */,
 				C42F5E372609F3DC00818229 /* Assets.xcassets */,
 				C42F5E342609F3DB00818229 /* Main.storyboard */,
 				C42F5E392609F3DC00818229 /* LaunchScreen.storyboard */,
 				C41F3707261B27B900121956 /* Currencies.bundle */,
+				C4D18FA6267A1E24004DF6E0 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -918,8 +918,8 @@
 		C42F5E342609F3DB00818229 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C4D18FA4267A1CC5004DF6E0 /* es */,
-				C4D18FA5267A1CC5004DF6E0 /* en */,
+				C4D18FAC267A4205004DF6E0 /* es */,
+				C4D18FAD267A4257004DF6E0 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
